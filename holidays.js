@@ -89,6 +89,7 @@
     fr: '7-14', be: '7-21', lu: '6-23', it: '6-2', pt: '6-10', cz: '10-28', hu: '8-20', ro: '12-1',
     si: '6-25', hr: '5-30', rs: '2-15', me: '7-13', mk: '9-8', al: '11-28', lt: '2-16', lv: '11-18',
     ee: '2-24', fi: '12-6', se: '6-6', no: '5-17', dk: '6-5', is: '6-17', mt: '9-21',
+    bg: '9-22', gr: '3-25', cy: '10-1',
   };
 
   const HOLIDAYS = [
@@ -106,7 +107,7 @@
     { id: 'pancake_day', theme: 'pancake',   emoji: '🥞', countries: ['gb', 'ie'], rule: { easter: 'w', off: -47 }, len: 1, pre: 0, gift: 10 },
     { id: 'valentine',   theme: 'valentine', emoji: '💗', countries: 'all', except: ['uz', 'tj', 'tm'], rule: '2-14', len: 1, pre: 1, gift: 10 },
     { id: 'martisor',    theme: 'martisor',  emoji: '🌼', countries: ['ro', 'md', 'bg'], rule: '3-1', len: 1, pre: 0, gift: 10 },
-    { id: 'womens_day',  theme: 'moms',      emoji: '💐', countries: ['kz', 'uz', 'kg', 'tj', 'tm', 'az', 'md'], rule: '3-8', len: 1, pre: 0, gift: 10 },
+    { id: 'womens_day',  theme: 'moms',      emoji: '💐', countries: ['kz', 'uz', 'kg', 'tj', 'tm', 'az', 'md', 'bg', 'hu'], rule: '3-8', len: 1, pre: 0, gift: 10 },
     { id: 'st_patrick',  theme: 'patrick',   emoji: '🍀', countries: ['ie', 'us', 'ca'], rule: '3-17', len: 1, pre: 0, gift: 10 },
     { id: 'nowruz',      theme: 'nowruz',    emoji: '🌷', countries: CENTRAL_ASIA_AZ, rule: '3-21', rules: { az: '3-20' },
       len: 3, pre: 3, gift: 20 },

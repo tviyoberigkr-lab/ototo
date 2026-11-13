@@ -7,7 +7,7 @@
    гри (без перезавантаження посеред гри). Мережевих запитів назовні немає. */
 
 /* PRECACHE-START (не редагувати вручну) */
-const VERSION = 'dbd48c806741';
+const VERSION = '7a3f13418660';
 const PRECACHE = [
   "achieve.css",
   "achieve.js",
@@ -159,14 +159,24 @@ const PRECACHE = [
   "img/rig/whale_finF.png",
   "img/rig/whale_finN.png",
   "img/rig/whale_tail.png",
+  "lang/az.js",
+  "lang/bg.js",
+  "lang/cs.js",
   "lang/de.js",
+  "lang/el.js",
   "lang/en.js",
   "lang/es.js",
   "lang/fr.js",
+  "lang/hu.js",
+  "lang/it.js",
   "lang/kk.js",
+  "lang/nl.js",
   "lang/pl.js",
+  "lang/pt.js",
   "lang/ro.js",
-  "lang/uk.js"
+  "lang/sv.js",
+  "lang/uk.js",
+  "lang/uz.js"
 ];
 /* PRECACHE-END */
 

@@ -12,7 +12,7 @@
 .rdSpeak.rdHide { visibility: hidden; }
 .rdPrompt { margin: auto 0 0; font-size: 18px; font-weight: 800; text-align: center; max-width: 100%; }
 .rdBig { line-height: 1; text-align: center; }
-.rdLetterBig { font-size: 120px; font-weight: 800; color: var(--accent2); text-shadow: 0 0 22px rgba(107,255,209,.35); }
+.rdLetterBig { font-size: 120px; font-weight: 800; color: var(--accent2); text-shadow: 0 0 22px rgba(107,255,209,.35); line-height: 1.15; }
 .rdEmoji { font-size: 104px; }
 .rdWord { font-size: 38px; font-weight: 800; letter-spacing: .14em; }
 .rdSentence { margin: 4px 0; font-size: 20px; line-height: 1.4; text-align: center; font-weight: 600;

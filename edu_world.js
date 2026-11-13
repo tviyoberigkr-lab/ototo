@@ -277,7 +277,8 @@
     { id: 'edu.world.globe', e: '🌐', cat: 'geo', need: 20 },
     { id: 'edu.world.rocket', e: '🚀', cat: 'sky', need: 15 },
   ];
-  const LOCALE = { uk: 'uk-UA', en: 'en-GB', pl: 'pl-PL', de: 'de-DE', ro: 'ro-RO', kk: 'kk-KZ', fr: 'fr-FR', es: 'es-ES' };
+  const LOCALE = { uk: 'uk-UA', en: 'en-GB', pl: 'pl-PL', de: 'de-DE', ro: 'ro-RO', kk: 'kk-KZ', fr: 'fr-FR', es: 'es-ES',
+    it: 'it-IT', pt: 'pt-PT', nl: 'nl-NL', cs: 'cs-CZ', el: 'el-GR', sv: 'sv-SE', hu: 'hu-HU', bg: 'bg-BG', uz: 'uz-UZ', az: 'az-AZ' };
 
   const later = (fn, ms) => { const id = setTimeout(() => { timers = timers.filter(x => x !== id); fn(); }, ms); timers.push(id); };
   const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };

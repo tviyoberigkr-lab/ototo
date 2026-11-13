@@ -236,7 +236,9 @@ function t(key, vars) {
 // форма множини: 1 день / 2 дні / 5 днів (правила кожної мови — вбудовані в браузер)
 function tPlural(base, n) {
   let form = 'other';
-  try { form = new Intl.PluralRules(langReady(curLang()) ? curLang() : 'en').select(n); } catch (e) {}
+  // pt — це португальська Португалії: 'pt' у браузері = бразильські правила (0 → «one»), а pt-PT дає «0 dias»
+  const pl = langReady(curLang()) ? curLang() : 'en';
+  try { form = new Intl.PluralRules(pl === 'pt' ? 'pt-PT' : pl).select(n); } catch (e) {}
   const key = base + '.' + form;
   const v = t(key, { n });
   return v === key ? t(base + '.other', { n }) : v;

@@ -228,7 +228,9 @@
     W: 'M2 0 L16 100 L32 30 L48 100 L62 0', X: 'M6 0 L58 100 M58 0 L6 100', Y: 'M4 0 L32 48 L60 0 M32 48 V100', Z: 'M6 0 H58 L6 100 H58',
   };
   const DOTS2 = 'M20 -18 V-12 M44 -18 V-12', ACUTE = 'M28 -8 L42 -22', BREVE = 'M20 -20 Q32 -4 44 -20',
-        CIRC = 'M20 -8 L32 -20 L44 -8', OGONEK = 'M52 100 Q42 112 56 118', COMMA = 'M32 110 L27 122';
+        CIRC = 'M20 -8 L32 -20 L44 -8', OGONEK = 'M52 100 Q42 112 56 118', COMMA = 'M32 110 L27 122',
+        DACUTE = 'M18 -8 L28 -22 M36 -8 L46 -22', CARON = 'M20 -20 L32 -8 L44 -20', RING = circ(32, -16, 7),
+        CEDILLA = 'M30 98 V106 Q42 107 38 115 Q34 121 24 118', DOT = 'M32 -18 V-12';
   const CYR = {
     'Б': 'M52 0 H8 V100 H32 C56 100 56 50 32 50 H8', 'Г': 'M52 0 H8 V100', 'Ґ': 'M8 100 V0 H48 V-16',
     'Д': 'M20 0 H50 V100 M20 0 Q18 70 6 100 M0 118 V100 H58 V118', 'Є': 'M54 18 C46 -4 6 -4 6 50 C6 104 46 104 54 82 M6 50 H40',
@@ -261,7 +263,26 @@
     'Ż': withMark(LAT.Z, 'M32 -18 V-12'), 'Ä': withMark(LAT.A, DOTS2), 'Ö': withMark(LAT.O, DOTS2), 'Ü': withMark(LAT.U, DOTS2),
     'Ă': withMark(LAT.A, BREVE), 'Â': withMark(LAT.A, CIRC), 'Î': withMark(LAT.I, CIRC), 'Ș': withMark(LAT.S, COMMA),
     'Ț': withMark(LAT.T, COMMA), 'Ñ': withMark(LAT.N, 'M14 -10 Q22 -22 32 -12 Q42 -2 50 -14'),
+    // гострий наголос (cs, hu): Ó уже вище
+    'Á': withMark(LAT.A, ACUTE), 'É': withMark(LAT.E, ACUTE), 'Í': withMark(LAT.I, ACUTE), 'Ú': withMark(LAT.U, ACUTE),
+    'Ý': withMark(LAT.Y, ACUTE),
+    // угорський подвійний наголос
+    'Ő': withMark(LAT.O, DACUTE), 'Ű': withMark(LAT.U, DACUTE),
+    // чеський гачок (háček) і кільце
+    'Č': withMark(LAT.C, CARON), 'Ď': withMark(LAT.D, CARON), 'Ě': withMark(LAT.E, CARON), 'Ň': withMark(LAT.N, CARON),
+    'Ř': withMark(LAT.R, CARON), 'Š': withMark(LAT.S, CARON), 'Ť': withMark(LAT.T, CARON), 'Ž': withMark(LAT.Z, CARON),
+    'Ů': withMark(LAT.U, RING),
+    // шведське Å (Ä, Ö — вище)
+    'Å': withMark(LAT.A, 'M32 -24 C37 -24 40 -21 40 -16 C40 -11 37 -8 32 -8 C27 -8 24 -11 24 -16 C24 -21 27 -24 32 -24 Z'),
+    // азербайджанська: Ç Ş Ğ İ, Ə (латинська, вигляд як кириличне Ә)
+    'Ç': withMark(LAT.C, CEDILLA), 'Ş': withMark(LAT.S, CEDILLA), 'Ğ': withMark(LAT.G, BREVE), 'İ': withMark(LAT.I, DOT),
+    'Ə': CYR['Ә'],
   };
+  // грецька (el): літери, однакові з латиницею/кирилицею, + 7 власних
+  const GREEK = { 'Δ': 'M32 0 L4 100 H60 Z', 'Θ': [ell(32, 50, 27, 50), 'M16 50 H48'], 'Λ': 'M4 100 L32 0 L60 100', 'Ξ': 'M8 0 H56 M16 50 H48 M6 100 H58', 'Σ': 'M56 0 H6 L32 50 L6 100 H58', 'Ψ': 'M32 0 V100 M4 4 V30 C4 66 60 66 60 30 V4', 'Ω': 'M4 100 H22 C2 86 0 50 6 30 C14 2 50 2 58 30 C64 50 62 86 42 100 H60' };
+  [['Α', LAT.A], ['Β', LAT.B], ['Γ', CYR.Г], ['Ε', LAT.E], ['Ζ', LAT.Z], ['Η', LAT.H], ['Κ', LAT.K], ['Μ', LAT.M], ['Ν', LAT.N], ['Ο', LAT.O], ['Π', CYR.П], ['Ρ', LAT.P], ['Τ', LAT.T], ['Υ', LAT.Y], ['Φ', CYR.Ф], ['Χ', LAT.X], ['Ι', CYR.І]]
+    .forEach(([g, d]) => { GREEK[g] = d; });
+  Object.assign(EXTRA, GREEK);
   const DIG = {
     0: ell(30, 50, 26, 50), 1: 'M12 24 L36 0 V100', 2: 'M8 22 C12 -4 52 -6 52 26 C52 50 20 70 6 100 H56',
     3: 'M8 12 C20 -6 54 -2 52 24 C50 44 34 48 24 48 C58 48 58 100 28 100 C16 100 8 94 6 86',
@@ -276,8 +297,20 @@
     en: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', fr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     es: 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ', de: 'ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ',
     pl: 'AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻ', ro: 'AĂÂBCDEFGHIÎJKLMNOPQRSȘTȚUVWXYZ',
+    it: 'ABCDEFGHILMNOPQRSTUVZ', pt: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', nl: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    cs: 'AÁBCČDĎEÉĚFGHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZŽ', sv: 'ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ',
+    hu: 'AÁBCDEÉFGHIÍJKLMNOÓÖŐPQRSTUÚÜŰVWXYZ',     // диграфи CS, GY, SZ… — не одна гліфа, у прописи не беремо
+    bg: 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ', el: 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ',
+    uz: 'ABDEFGHIJKLMNOPQRSTUVXYZ',                 // Oʻ Gʻ Sh Ch Ng — кілька знаків, у прописи не беремо
+    az: 'ABCÇDEƏFGĞHXIİJKQLMNOÖPRSŞTUÜVYZ',
   };
-  const VOWELS = { uk: 'АЕИІОУЯЮЄ', kk: 'АӘЕИОӨҰҮЫІЭ', lat: 'AEIOU' };
+  // голосні для складів (режим «склад»); мова без запису бере lat
+  const VOWELS = {
+    uk: 'АЕИІЇОУЯЮЄ', kk: 'АӘЕЁИОӨҰҮЫІЭЮЯ', bg: 'АЕИОУЪЮЯ', el: 'ΑΕΗΙΟΥΩ',
+    cs: 'AÁEÉĚIÍOÓUÚŮYÝ', hu: 'AÁEÉIÍOÓÖŐUÚÜŰ', sv: 'AEIOUYÅÄÖ', az: 'AEƏIİOÖUÜ',
+    de: 'AEIOUÄÖÜ', pl: 'AĄEĘIOÓUY', ro: 'AĂÂEIÎOU',
+    lat: 'AEIOU',      // en, fr, es, it, pt, nl, uz
+  };
   function abc(lang) { return [...(ABC[lang] || ABC.en)]; }
   function glyph(ch) {
     const def = (/\d/.test(ch) ? DIG[ch] : (CYR[ch] || EXTRA[ch] || LAT[ch]));
@@ -327,7 +360,7 @@
         const c = notYet.length && Math.random() < 0.6 ? pickOf(notYet) : avoidRecent(set, recent.map(r => r.slice(2)));
         kind = 'letter'; key = 'l:' + c; strokes = glyph(c); label = { k: 'letter', v: c };
       } else {
-        const vw = [...(lang === 'uk' ? VOWELS.uk : lang === 'kk' ? VOWELS.kk : VOWELS.lat)].filter(v => set.includes(v));
+        const vw = [...(VOWELS[lang] || VOWELS.lat)].filter(v => set.includes(v));
         const cons = set.filter(c => !vw.includes(c) && !/[ЬЪЫЙ]/.test(c) && glyph(c));
         const s = pickOf(cons) + pickOf(vw);
         kind = 'syll'; key = 's:' + s; strokes = combo([...s].map(glyph)); label = { k: 'syllable', v: s };
