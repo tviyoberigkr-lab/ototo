@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>ototo</title>
+<meta name="description" content="ototo — гра для дітей: віртуальний улюбленець, навчальні ігри, мапа пригод. Без реклами, працює без інтернету.">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0d0f1a">
 <link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32.png">
@@ -34,7 +35,7 @@
 </head>
 <body>
   <script src="splash.js"></script>
-  <div id="screen">
+  <main id="screen">
 
     <!-- Активація, крок 1: країна (прапор + назва мовою самої країни) -->
     <section id="view-country" class="view">
@@ -57,7 +58,7 @@
       <h1 class="logo">ototo</h1>
       <button id="btnStartCountry" class="countryChip"><img id="startFlag" src="" alt=""><span id="startCountryName"></span></button>
       <p class="tagline" data-i18n="start.tagline">познайомся — це твій перший друг!</p>
-      <img class="startPet" src="img/gecko.png" alt="">
+      <img class="startPet" src="img/gecko.png" alt="" width="320" height="320" loading="lazy" decoding="async">
 
       <div id="personaPick">
         <button class="personaOpt selected" data-p="bo">⚡<br><span data-i18n="start.boy">Хлопчик</span></button>
@@ -78,7 +79,7 @@
       <div id="hatchStage">
         <div id="eggAura" class="egg-idle">
           <div id="eggGlow"></div>
-          <img id="hatchPetImg" src="img/gecko.png" alt="">
+          <img id="hatchPetImg" src="img/gecko.png" alt="" width="320" height="320" loading="lazy" decoding="async">
           <div id="eggShellL" class="shell"></div>
           <div id="eggShellR" class="shell"></div>
         </div>
@@ -91,8 +92,8 @@
       <header id="topbar">
         <div id="petName">mimi</div>
         <div id="stageLabel">малюк</div>
-        <button id="btnWardrobe" class="iconBtn">👕</button>
-        <button id="btnCharacters" class="iconBtn">🦎</button>
+        <button id="btnWardrobe" class="iconBtn" data-i18n-title="wardrobe.title">👕</button>
+        <button id="btnCharacters" class="iconBtn" data-i18n-title="chars.title">🦎</button>
         <div id="points">⭐ 0</div>
         <button id="streak" class="tapStat">🔥 0</button>
         <button id="btnLang" class="iconBtn langBtn" data-i18n-title="main.lang"><img id="topFlag" src="" alt=""></button>
@@ -100,14 +101,14 @@
       </header>
 
       <div id="stage">
-        <div id="pet"><img id="petImg" src="img/gecko.png" alt=""><span id="petEmoji"></span><span id="petAccessory"></span></div>
+        <div id="pet"><img id="petImg" src="img/gecko.png" alt="" width="320" height="320"><span id="petEmoji"></span><span id="petAccessory"></span></div>
         <div id="bubble" class="hidden"></div>
       </div>
 
       <div id="stats">
         <div class="stat"><span class="stat-icon">🍎</span><div class="bar"><div id="barHunger" class="bar-fill"></div></div></div>
         <div class="stat"><span class="stat-icon">😊</span><div class="bar"><div id="barMood" class="bar-fill"></div></div></div>
-        <div class="stat"><span id="iconEnergy" class="stat-icon tapStat">⚡</span><div class="bar"><div id="barEnergy" class="bar-fill"></div></div></div>
+        <div class="stat"><span id="iconEnergy" class="stat-icon tapStat" data-i18n-title="stat.energyTitle">⚡</span><div class="bar"><div id="barEnergy" class="bar-fill"></div></div></div>
         <div class="stat"><span class="stat-icon">🧼</span><div class="bar"><div id="barHygiene" class="bar-fill"></div></div></div>
         <div class="stat"><span class="stat-icon">❤️</span><div class="bar"><div id="barHealth" class="bar-fill"></div></div></div>
       </div>
@@ -190,15 +191,15 @@
       <div id="mamaBox">
         <div id="mamaHearts"></div>
         <div id="mamaScene">
-          <img id="mamaSvg" class="mamaImg" src="img/mama.png" alt="">
-          <img id="mamaBabyImg" src="img/gecko.png" alt="">
+          <img id="mamaSvg" class="mamaImg" src="img/mama.png" alt="" width="640" height="483" loading="lazy" decoding="async">
+          <img id="mamaBabyImg" src="img/gecko.png" alt="" width="320" height="320" loading="lazy" decoding="async">
           <div id="mamaTapHint" class="hidden-hint" data-i18n="mama.tap">👉 тапни</div>
         </div>
         <div id="mamaCaption"></div>
       </div>
     </div>
 
-  </div>
+  </main>
 
   <script src="countries.js"></script>
   <!-- мовні файли: одна мова = один файл + один рядок тут -->

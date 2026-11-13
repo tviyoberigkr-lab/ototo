@@ -27,7 +27,7 @@
 
 <header class="wrap top">
   <a class="brand" href="../about/" aria-label="ototo — про гру / about">
-    <img src="../img/icons/favicon-32.png" alt="" width="36" height="36">
+    <img src="../img/icons/favicon-32.png" srcset="../img/icons/favicon-32.png 1x, ../img/icons/apple-touch-icon.png 2x" alt="" width="36" height="36">
     <span class="logo">ototo</span>
   </a>
   <nav class="langNav" aria-label="Мова / Language">
@@ -231,5 +231,18 @@
     <p>© 2026 CoLaba Production</p>
   </div>
 </footer>
+<script>
+/* Відкрито з гри (?inapp=1): прибираємо переходи на інші сторінки, щоб дитина
+   не вийшла з політики на сайт і далі в інтернет (правила Google Play для дітей). */
+(function () {
+  try {
+    if (!/[?&]inapp=1(&|$)/.test(location.search)) return;
+    document.querySelectorAll('a[href^="../"]').forEach(function (a) {
+      if (a.classList.contains('brand')) { a.removeAttribute('href'); a.removeAttribute('aria-label'); }
+      else a.remove();
+    });
+  } catch (e) {}
+})();
+</script>
 </body>
 </html>

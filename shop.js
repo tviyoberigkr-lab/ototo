@@ -53,15 +53,18 @@
      price — орієнтовний рівень ціни для налаштування в консолях (справжню ціну
      в валюті покупця дає магазин); у тестовому режимі показуємо USD. */
   const CATALOG = [
-    { id: 'ototo.full',          kind: 'full', icon: '🎁', includes: ['ototo.pack.outfits1', 'ototo.pack.room1'],
-      price: { USD: 4.99, EUR: 4.99, UAH: 199 } },
-    { id: 'ototo.pack.outfits1', kind: 'pack', icon: '👗', price: { USD: 1.99, EUR: 1.99, UAH: 79 } },
-    { id: 'ototo.pack.room1',    kind: 'pack', icon: '🚀', price: { USD: 1.99, EUR: 1.99, UAH: 79 } },
+    { id: 'ototo.full',          kind: 'full', icon: '🎁', includes: [],   // = УСІ набори, див. нижче
+      price: { USD: 4.99, EUR: 4.99, UAH: 149 } },
+    { id: 'ototo.pack.outfits1', kind: 'pack', icon: '👗', price: { USD: 1.99, EUR: 1.99, UAH: 59 } },
+    { id: 'ototo.pack.room1',    kind: 'pack', icon: '🚀', price: { USD: 1.99, EUR: 1.99, UAH: 59 } },
     // наступний набір (друзі) — коли будуть малюнки: { id: 'ototo.pack.friends1', kind: 'pack', icon: '🐾', … }
-    // і premium: 'ototo.pack.friends1' у CONFIG.characters; додати його в includes повної версії.
+    // і premium: 'ototo.pack.friends1' у CONFIG.characters. У повну версію він увійде САМ.
   ];
   const FULL = 'ototo.full';
   const byId = id => CATALOG.find(p => p.id === id);
+  // Повна версія = усі нинішні й майбутні набори гри (рішення 13.11: інакше вона дорожча
+  // за суму наборів). Тому includes рахується з каталогу, а не пишеться руками.
+  byId(FULL).includes = CATALOG.filter(p => p.kind === 'pack').map(p => p.id);
   const short = id => id.replace(/^ototo\.(pack\.)?/, '');            // 'ototo.pack.room1' → 'room1'
   const T = (k, v) => BO.t('shop.' + k, v);
   const $ = id => document.getElementById(id);

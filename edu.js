@@ -113,6 +113,7 @@
 
   function renderHead() {
     view.querySelector('.eduBack').textContent = BO.t('start.back');
+    view.querySelector('.eduPlayBack').setAttribute('aria-label', BO.t('common.back'));   // стрілка «←» без слів
     view.querySelector('.eduTitle').textContent = T('title');
     const a = age();
     view.querySelector('.eduAgeLine').textContent = a ? T('ageLine', { age: a === 21 ? '21+' : a }) : '';

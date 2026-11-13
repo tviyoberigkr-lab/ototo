@@ -46,7 +46,8 @@
 .pgKey:disabled { opacity: .35; cursor: default; }
 .pgOk:disabled { background: #262b57; }
 .pgDel { background: #1c2040; font-size: 20px; }
-.pgOk { background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+.pgOk { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #10142e; }
+.pgOk:disabled { color: #fff; }
 .pgCancel { width: 100%; max-width: 270px; margin-top: 12px; }
 
 @keyframes pgShake { 0%, 100% { transform: none; } 25% { transform: translateX(-7px); } 75% { transform: translateX(7px); } }

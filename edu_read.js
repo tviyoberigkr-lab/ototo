@@ -29,8 +29,10 @@
      sentences: (необов'язково) [[речення, правильне емодзі, хибне, хибне], …] — для віку 9–14.
      avoid:     (необов'язково) справжні слова мови, які генератор помилок у «правильно написаному
                 слові» міг би утворити з наших слів (Katze → Kotze, pato → puto, kura → kora): їх як
-                «помилку» не показуємо. Слова в words пишемо лише літерами з alphabet (без É, Ç, Á…,
-                якщо їх немає в абетці): інакше «Якої літери не вистачає?» дасть хибні варіанти.
+                «помилку» не показуємо; сюди ж — грубі/страшні слова, які могли б утворитися в «Якої
+                літери не вистачає?» (P_TO + U = PUTO): така літера-пастка відкидається. Кожна літера слова
+                в words має бути в alphabet (É, Ç, Ã… — теж, якщо вони є в словах; голосні — і у vowels):
+                інакше «Якої літери не вистачає?» дасть хибні варіанти (перевіряє edu_read_check.py).
    Код гри при цьому не міняється. Повні дані (≈60–70 слів + 14 речень): усі 18 мов (pl, de, ro, kk, fr, es — дані чекають перевірки носієм мови, див. new_words_review.csv). */
 (function () {
   'use strict';
@@ -69,6 +71,15 @@
         ['Він колючий і живе в лісі під листям.','🦔','🐰','🐢'],
         ['Її відкривають, коли йде дощ.','☂️','📖','⏰'],
       ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку);
+      // наприкінці — грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+      avoid: [
+        'трот','сон','граб','гріб','гроб','груб','сива','раба','роба','руба','ряба','рака',
+        'ріка','нуга','тир','лиман','банна','гроша','кавну','кака','кача','мапа','синя','крука',
+        'курак','карка','кирка','кірка','корка','кука','сінце','кнага','клич','лапа','лама','квитка',
+        'хмура','акала','моква','огарок','корява','древо','ялика','ялина','мушина','машинна','місць','курва',
+        'сука','біс','чорт','дурка','пук','пука','рила','кат','ніж','ножа',
+      ],
     },
     en: {
       speech: 'en-GB',
@@ -98,6 +109,16 @@
         ['This bird stays awake at night and has big eyes.','🦉','🦆','🐔'],
         ['It is spiky and hides under leaves in the forest.','🦔','🐰','🐢'],
         ['You open it when it rains.','☂️','📖','⏰'],
+      ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку);
+      // наприкінці — грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+      avoid: [
+        'frag','frig','fog','deck','dick','dock','loin','lino','loon','lien','boar','beer',
+        'bar','coke','true','tee','stir','mono','moan','rein','ruin','ran','noes','noose',
+        'gout','got','peer','par','per','gripes','gropes','gapes','hose','moues','moose','mousse',
+        'muse','moue','sake','tier','while','whole','wale','racket','rabbet','money','fuck','milf',
+        'kike','wog','coon','nig','pee','pis','pox','pus','queer','suck','bum','demon',
+        'gun','stab','crapes','mick','fat','war','fist',
       ],
     },
     // ---- стартові дані: абетка + ~15 слів (носіям — розширити words, додати sentences) ----
@@ -136,6 +157,8 @@
       avoid: [
         'kara','kora','siwa','masz','zera','mała','mapa','piła','półka','pałka','pułka','lama',
         'łydka','kacza','motel','jako','klacz','kwit','chmara',
+        // грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+        'kupa','wódka',
       ],
     },
     de: {
@@ -177,6 +200,8 @@
         'Stirn','Zeige','Tier','Beine','Fachs','Vögel','Mich','Mehre','Welke','Ragen','Regne','Rügen',
         'Jucke','Stuft','Banne','Kochen','Köchen','Küchen','Forsch','Frisch','Taube','Trabe','Traue','Kirche',
         'Schein','Schüssel',
+        // грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+        'Kacke','Mord',
       ],
     },
     ro: {
@@ -215,6 +240,8 @@
         'parc','cosă','lână','lînă','sta','pură','tot','mînă','ten','tron','sare','mine',
         'lupte','late','paște','cine','cîine','cară','arii','pîine','care','curte','certe','bară',
         'lămîie','brînză','alină',
+        // грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+        'mort',
       ],
     },
     kk: {
@@ -251,6 +278,8 @@
       // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку)
       avoid: [
         'ала','сыр','қоын','екі','буқа','болт','бұт','балақ','қалақ','құлық','лиман','қарыз',
+        // грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+        'көт','қан',
       ],
     },
     fr: {
@@ -290,6 +319,8 @@
         'paon','pin','chine','paire','pire','pore','lopin','lupin','tige','tire','signe','songe',
         'kola','nage','plaie','plie','ploie','lire','lame','tain','cocon','crise','fraie','frise',
         'raison','poison','crotte',
+        // грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+        'chier',
       ],
     },
     es: {
@@ -329,6 +360,8 @@
         'pito','puto','mino','runa','sita','sota','ten','peña','dedo','parro','pero','porro',
         'coce','loche','luche','cardo','cedo','cedro','cero','credo','curdo','cara','cobra','ceba',
         'cebar','cera','frisa','nueve','lave','cabello','cabillo','caracal','hilado',
+        // грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+        'caca','caga','teta','cono',
       ],
     },
     it: {
@@ -362,11 +395,27 @@
         ['Ha gli aculei e vive nel bosco sotto le foglie.','🦔','🐰','🐢'],
         ['Si apre quando piove.','☂️','📖','⏰'],
       ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку);
+      // наприкінці — грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+      avoid: [
+        'sale','sule','solee','mala','mila','mola','mula','getto','gitto','gotto','gato','cene',
+        'cune','canne','canee','lana','lena','para','pira','pura','cosa','cassa','oso','oro',
+        'tipo','pene','pone','panne','rena','runa','meno','mino','mono','mao','nove','dodo',
+        'pilla','polla','pala','trota','tota','pasce','pisce','pece','pese','fiere','lette','lotte',
+        'late','lattee','terno','trino','trono','teno','lene','mecca','vole','zecca','rezzo','rizzo',
+        'rozzo','ruzzo','libo','fango','fingo','fugo','pazza','pezza','pozza','puzza','anitra','banna',
+        'limane','limine','stalla','stilla','sella','carata','carta','ricco','mattia','matta','fregola','frugola',
+        'cavillo','cavalo','gallona','foraggio','coccolato','cazzo','caca','caga','palle','morta','peste','orco',
+        'zizza',
+      ],
     },
     pt: {
       speech: 'pt-PT',
-      alphabet: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
-      vowels: 'AEIOU',
+      // Á Ã Ç É — не окремі літери португальської абетки, але є в наших словах (pão, maçã, pé, lápis…):
+      // без них «Якої літери не вистачає?» на місці Ã дала б приголосні замість голосних. Тому вони —
+      // окремі плитки, а Á Ã É — ще й голосні (варіанти для Ã: A, É, U… — справжній вибір написання).
+      alphabet: ['A','Á','Ã','B','C','Ç','D','E','É','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
+      vowels: 'AÁÃEÉIOU',
       words: [
         ['sol','☀️'],['pão','🍞'],['mão','✋'],['pé','🦶'],['cão','🐶'],['mar','🌊'],['lua','🌙'],['ovo','🥚'],
         ['uva','🍇'],['gato','🐱'],['rato','🐭'],['pato','🦆'],['urso','🐻'],['leão','🦁'],['flor','🌸'],['casa','🏠'],
@@ -392,6 +441,16 @@
         ['Esta ave não dorme à noite e tem olhos grandes.','🦉','🦆','🐔'],
         ['Tem picos e esconde-se debaixo das folhas.','🦔','🐰','🐢'],
         ['Abre-se quando chove.','☂️','📖','⏰'],
+      ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку);
+      // наприкінці — грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+      avoid: [
+        'goto','reto','rito','roto','pito','puto','uso','leio','for','cisa','cosa','bala',
+        'bela','bula','boa','para','pira','pura','perra','belo','bulo','parco','perco','poro',
+        'chove','cave','cerro','corro','curro','caro','cabra','cubra','cora','tire','lavro','chova',
+        'povo','polo','limo','coalho','colho','caruja','corja','baleai','boleia','balia','grafa','galado',
+        'geado','cenoira','caca','caga','rabo','chula','chupa','peru','cio','porca','tolo','tola',
+        'gago',
       ],
     },
     nl: {
@@ -421,6 +480,16 @@
         ['Deze vogel is in de nacht wakker en heeft grote ogen.','🦉','🦆','🐔'],
         ['Hij heeft stekels en verstopt zich onder de bladeren.','🦔','🐰','🐢'],
         ['Die doe je open als het regent.','☂️','📖','⏰'],
+      ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку);
+      // наприкінці — грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+      avoid: [
+        'hand','mana','man','star','boem','bom','hus','eind','end','eed','giet','guit',
+        'geat','geut','git','get','mais','meis','mis','mus','bier','boer','beur','pier',
+        'poer','peur','per','kas','milk','molk','mek','walk','welk','wulk','wok','eel',
+        'slik','slok','slaak','sak','beek','bek','bok','broed','bood','tart','blom','kakker',
+        'kekker','kokker','verken','vorken','varen','wartel','citrien','pootlood','vlonder','vinder','kut','kak',
+        'geil','bil','pis','bloed','dolk','zot',
       ],
     },
     cs: {
@@ -454,6 +523,16 @@
         ['Je pichlavý a žije v lese pod listím.','🦔','🐰','🐢'],
         ['Otvíráme ho, když prší.','☂️','📖','⏰'],
       ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку);
+      // наприкінці — грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+      avoid: [
+        'kleč','klič','kluč','snah','síh','slin','slín','raba','róba','sůva','raka','reka',
+        'roka','naha','něha','šenk','šek','vlka','vlek','vak','káře','keře','kúře','kůře',
+        'kře','broku','brok','strum','kačka','káčka','koka','káva','slánce','slince','sluce','ježík',
+        'pase','prse','opuce','opce','huška','citran','citrín','citrón','mrkve','huba','lumpa','lama',
+        'květena','května','motal','motel','deštík','tížka','hodny','vela','vojce','vece','chlub','zubra',
+        'dvoře','třeně','slepce','píč','mrtev','moč','leb','šlak',
+      ],
     },
     el: {
       speech: 'el-GR',
@@ -484,6 +563,11 @@
         ['Έχει αγκάθια και κρύβεται κάτω από τα φύλλα στο δάσος.','🦔','🐰','🐢'],
         ['Το ανοίγουμε όταν βρέχει.','☂️','📖','⏰'],
       ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку);
+      // наприкінці — грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+      avoid: [
+        'πάπα','μάλα','μπλα','ήλος','τούτα','κρότο','κοράσι','παγετό','σκύλας','σκύλες','ελέφαντες','γερο',
+      ],
     },
     sv: {
       speech: 'sv-SE',
@@ -513,6 +597,15 @@
         ['Den här fågeln är vaken på natten och har stora ögon.','🦉','🦆','🐔'],
         ['Den är taggig och gömmer sig under löven i skogen.','🦔','🐰','🐢'],
         ['Man fäller upp det när det regnar.','☂️','📖','⏰'],
+      ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку);
+      // наприкінці — грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+      avoid: [
+        'kitt','kött','hand','hind','hud','girs','grus','gräs','fiks','fusk','fik','ana',
+        'hast','hest','hyst','höst','tärd','trad','tråd','trädd','månne','ren','gass','glas',
+        'gröda','grodda','goda','tårat','banna','benan','bönan','riket','rakat','rakit','rakt','panna',
+        'pinna','kinin','kanon','tager','tyger','tigger','citrin','nickel','limpa','lämpa','lapa','lama',
+        'blemma','bomma','blockfisk','bläckfusk','bäckfisk','skuldpadda','röv','niger','pisk',
       ],
     },
     hu: {
@@ -548,6 +641,17 @@
         ['Tüskés, és az erdőben, a levelek alatt bújik meg.','🦔','🐰','🐢'],
         ['Akkor nyitjuk ki, amikor esik az eső.','☂️','📖','⏰'],
       ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку);
+      // наприкінці — грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+      avoid: [
+        'coca','moci','muci','mai','macii','ama','epre','háld','baka','bika','boka','sejt',
+        'sújt','köret','kérte','köre','bénán','tujás','tojós','tárta','túrta','tora','varág','várág',
+        'vérág','falhő','félhő','fülhő','zabra','majam','majám','teén','bálan','bála','kőkas','kakás',
+        'kakis','kőlap','gátár','gotár','gótár','gittár','vonta','vénat','vonít','vonót','vont','lápa',
+        'láma','cetrom','toknős','töknős','teknőős','tráktor','szám','szóm','szúm','sem','szíív','gyök',
+        'nyal','nyál','nyel','nyél','nyíl','szelő','szülő','kecsek','kecse','csillog','sárkény','cici',
+        'kakak','kakad','kakam','kakan','kakat','szex','béna','bűz','kéj','holt',
+      ],
     },
     bg: {
       speech: 'bg-BG',
@@ -579,6 +683,15 @@
         ['Тази птица не спи през нощта и има големи очи.','🦉','🦆','🐔'],
         ['Той е бодлив и живее в гората под листата.','🦔','🐰','🐢'],
         ['Отваряме го, когато вали дъжд.','☂️','📖','⏰'],
+      ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку);
+      // наприкінці — грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+      avoid: [
+        'каче','кече','коче','слян','сива','роба','ръба','рака','река','рока','крик','как',
+        'лена','лина','лона','лунна','кила','кула','кла','еха','ела','деня','дъня','котак',
+        'китка','кътка','кока','кота','тота','тора','пасе','крива','лапа','лама','облик','забра',
+        'акъла','аула','чедър','шипка','шопка','шапа','петица','птица','ракита','мачка','мека','меча',
+        'кокоша','красавица','шиба','гъза','кокотка','дърто','гола','нож',
       ],
     },
     uz: {
@@ -613,6 +726,12 @@
         ['U tikanli va oʻrmonda barglar ostida yashaydi.','🦔','🐰','🐢'],
         ['Yomgʻir yogʻganda uni ochishadi.','☂️','📖','⏰'],
       ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку);
+      // наприкінці — грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+      avoid: [
+        'qol','olam','ola','shar','shor','sot','tot','yarak','buqa','boring','mushak','oʻrak',
+        'sehr','ser','tilki','kitab','liman','koʻt','kot','qon','gor',
+      ],
     },
     az: {
       speech: 'az-AZ',
@@ -644,6 +763,11 @@
         ['Bu quş gecə yatmır və gözləri iridir.','🦉','🦆','🐔'],
         ['Tikanlıdır və meşədə yarpaqların altında yaşayır.','🦔','🐰','🐢'],
         ['Yağış yağanda onu açırlar.','☂️','📖','⏰'],
+      ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку);
+      // наприкінці — грубі/страшні слова, які могли б утворитися в «Якої літери не вистачає?»
+      avoid: [
+        'ala','ama','buran','lama','liman','sat','yığış','amı','göt','qan',
       ],
     },
   };
@@ -760,8 +884,11 @@
       const n = Math.min(4, 3 + Math.floor((lvl() - 1) / 3));
       const w = pick(wordList().filter(x => D.alphabet.includes(firstLetter(x[0]))));
       const L = firstLetter(w[0]);
-      const firsts = [...new Set(wordList().map(x => firstLetter(x[0])))].filter(x => x !== L && D.alphabet.includes(x));
-      const extra = sample(firsts.length >= n - 1 ? firsts : D.alphabet.filter(x => x.length === 1), n - 1, [L]);
+      // не ставимо поруч «двійників» (árvore → Á, тож без A; їжак → Ї, тож без І): дитина не мусить
+      // вгадувати, чи наголос/крапки «рахуються»
+      const base = x => x.normalize('NFD').charAt(0), twin = x => x !== L && base(x) === base(L);
+      const firsts = [...new Set(wordList().map(x => firstLetter(x[0])))].filter(x => x !== L && D.alphabet.includes(x) && !twin(x));
+      const extra = sample(firsts.length >= n - 1 ? firsts : D.alphabet.filter(x => x.length === 1 && !twin(x)), n - 1, [L]);
       return { type: 'first', prompt: ctx.t('task.first'), big: w[1], bigCls: 'rdEmoji', say: w[0],
                opts: shuffle([L].concat(extra)), answer: L, cls: 'rdOptsLetters' };
     },
@@ -774,18 +901,23 @@
     },
     miss() {
       const max = Math.min(7, 4 + Math.floor((lvl() - 1) / 2));
-      const w = pick(wordsBy(3, max).filter(x => units(x[0]).some(u => u.length === 1)));
-      const letters = units(w[0]);
-      // пропуск — лише на місці одиночної літери (диграф не вміщається в одну клітинку)
-      const single = letters.map((c, k) => c.length === 1 ? k : -1).filter(k => k >= 0);
-      const i = pick(single);
+      // пропуск — лише на місці одиночної літери, яка є плиткою абетки (диграф не вміщається в одну клітинку,
+      // а літера поза абеткою дала б варіанти не того типу)
+      const holes = ls => ls.map((c, k) => c.length === 1 && D.alphabet.includes(c) ? k : -1).filter(k => k >= 0);
+      const ws = wordsBy(3, max).filter(x => holes(units(x[0])).length);
+      // диграфи (GY, Sh…) не пасують до однієї клітинки; голосна ↔ голосні, приголосна ↔ приголосні
+      const poolFor = L => D.alphabet.filter(x => x.length === 1 && x !== L && (D.vowels.includes(x) === D.vowels.includes(L)));
+      // шукаємо слово й пропуск, де є щонайменше 2 «чисті» хибні літери (D_CK: E, I, O дають DECK, DICK, DOCK —
+      // такий пропуск краще не брати); якщо за 30 спроб не знайшли — останній варіант із найкращими пастками
+      let w, letters, i;
+      for (let k = 0; k < 30; k++) {
+        w = pick(ws); letters = units(w[0]); i = pick(holes(letters));
+        if (poolFor(letters[i]).filter(x => trapRank(letters, i, x) === 0).length >= 2) break;
+      }
       const L = letters[i];
-      const isV = D.vowels.includes(L);
-      const pool = D.alphabet.filter(x => x.length === 1 && x !== L && (D.vowels.includes(x) === isV));   // диграфи (GY, Sh…) не пасують до однієї клітинки
-      // жодна пастка не має утворювати інше слово зі списку
-      const others = new Set(D.words.map(x => up(x[0])));
+      const pool = poolFor(L);
       const n = lvl() >= 4 ? 4 : 3;
-      const extra = sample(pool.filter(x => { const t = letters.slice(); t[i] = x; return !others.has(t.join('')); }), n - 1);
+      const extra = missTraps(letters, i, pool, n - 1);
       const shown = letters.map((c, k) => k === i ? '_' : c).join('');
       return { type: 'miss', prompt: ctx.t('task.miss'), big: w[1], bigCls: 'rdEmoji', say: w[0], word2: shown,
                opts: shuffle([L].concat(extra)), answer: L, cls: 'rdOptsLetters' };
@@ -814,6 +946,31 @@
                opts: shuffle(s.slice(1, 4)), answer: s[1], cls: 'rdOptsEmoji' };
     },
   };
+
+  // «Якої літери не вистачає?»: хибні літери. Пастка, що утворює інше справжнє слово (P_RA + U = PURA),
+  // гірша за звичайну: спершу беремо «чисті» літери; слово зі списку words — запасний варіант,
+  // слово з avoid (сюди потрапляють і грубі слова) — найостанніший. Пастку відкидаємо, лише якщо
+  // після цього лишається щонайменше 3 варіанти (правильна + 2 хибні); інакше — найкращі з наявних.
+  // 0 — літера не утворює справжнього слова; 1 — утворює інше слово зі списку words; 2 — слово з avoid
+  function trapRank(letters, i, x) {
+    if (!D._own) D._own = new Set(D.words.map(w => w[0].toLocaleUpperCase(ctx.lang)));
+    if (!D._bad) D._bad = new Set((D.avoid || []).map(w => w.toLocaleUpperCase(ctx.lang)));
+    const t = letters.slice(); t[i] = x; const s = up(t.join(''));
+    return D._bad.has(s) ? 2 : D._own.has(s) ? 1 : 0;
+  }
+  function missTraps(letters, i, pool, want) {
+    const rank = x => trapRank(letters, i, x);
+    const byRank = [[], [], []];
+    shuffle(pool).forEach(x => byRank[rank(x)].push(x));
+    const out = byRank[0].slice(0, want);
+    for (const r of [1, 2]) byRank[r].forEach(x => { if (out.length < Math.min(2, want)) out.push(x); });
+    if (out.length < Math.min(2, want)) {   // дуже мала група літер — додаємо будь-які інші одиночні літери
+      const L = letters[i];
+      shuffle(D.alphabet.filter(x => x.length === 1 && x !== L && !out.includes(x) && rank(x) < 2))
+        .forEach(x => { if (out.length < Math.min(2, want)) out.push(x); });
+    }
+    return out;
+  }
 
   function shuffleNotSame(letters) {
     let t = letters;
@@ -983,5 +1140,7 @@
 
   // для тестів і для носіїв мов (перевірити свої дані в консолі)
   BO.eduRead = { data: READ_DATA, medals: MEDALS.map(m => m.id), current: () => task,
-    units: (w, lang) => units(w, dataFor(lang)), unitSafe: (w, lang) => unitSafe(w, dataFor(lang)) };
+    units: (w, lang) => units(w, dataFor(lang)), unitSafe: (w, lang) => unitSafe(w, dataFor(lang)),
+    // лише для тестів: згенерувати завдання поточної гри без показу (стрес-перевірка тисяч завдань)
+    gen: type => (ctx && D && GEN[type]) ? GEN[type]() : null };
 })();

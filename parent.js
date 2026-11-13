@@ -34,7 +34,7 @@
   'use strict';
   if (!window.BO) return;
   const BO = window.BO;
-  if (typeof BO.PRIVACY_URL !== 'string') BO.PRIVACY_URL = 'privacy/';   // privacy/index.html поруч із грою
+  if (typeof BO.PRIVACY_URL !== 'string') BO.PRIVACY_URL = 'privacy/?inapp=1';   // privacy/index.html поруч із грою; inapp=1 ховає переходи на сайт
 
   const CFG = {
     maxFails: 3,          // скільки помилок поспіль до паузи

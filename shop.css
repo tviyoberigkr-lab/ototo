@@ -39,7 +39,7 @@
 .shopPrice { font-size: 15px; font-weight: 800; color: #ffd86b; white-space: nowrap; }
 .shopBuy {
   min-height: 44px; min-width: 96px; max-width: 100%; padding: 6px 16px; border: none; border-radius: 12px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; font-family: inherit;
+  background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #10142e; font-family: inherit;
   font-size: 14px; font-weight: 700; cursor: pointer; overflow-wrap: anywhere;
 }
 .shopBuy:disabled { opacity: .5; cursor: default; }

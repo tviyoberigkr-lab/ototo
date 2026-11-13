@@ -196,6 +196,7 @@
     if (!view) return;
     view.querySelector('.decorTitle').textContent = t('title');
     view.querySelector('.decorBackBottom').textContent = t('back');
+    view.querySelector('.decorBack').setAttribute('aria-label', t('back'));   // стрілка «←» без слів — назва для екранних читачів
     const ch = BO.activeCharacter();
     const pet = view.querySelector('.decorPet');
     if (pet.getAttribute('src') !== ch.img) pet.setAttribute('src', ch.img);

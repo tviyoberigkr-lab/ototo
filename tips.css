@@ -58,7 +58,7 @@
 .tipsDots i.on { background: var(--accent); transform: scale(1.25); }
 .tipsNext {
   min-height: 48px; min-width: 112px; max-width: 56%; padding: 0 18px; border: none; border-radius: 14px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #10142e;
   font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; line-height: 1.15;
   box-shadow: 0 4px 12px rgba(0, 0, 0, .18);
 }

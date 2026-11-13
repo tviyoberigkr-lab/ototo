@@ -420,12 +420,12 @@ function updateStreak() {
   const y = new Date(Date.now() - 86400000).toDateString();
   if (state.lastVisitDay === y) {
     state.streak += 1;
-  } else if (state.streakShieldActive) {
-    // пропущений день, але стрік був захищений — не скидаємо, щит витрачається
-    state.streakShieldActive = false;
-  } else {
+  } else if (!state.streak) {
     state.streak = 1;
   }
+  // Пропущений день серію НЕ обнуляє — вона лише «чекає» (м'яка механіка для дітей,
+  // орієнтир — настанови ЄС щодо захисту неповнолітніх онлайн). Щит більше не потрібен.
+  state.streakShieldActive = false;
   state.lastVisitDay = today;
   const P = CONFIG.points;
   if (state.points !== undefined) addPoints(P.dailyVisit + Math.min(state.streak, 7) * P.streakBonusPerDay);
@@ -740,22 +740,8 @@ function onEnergyTap() {
 }
 
 function onStreakTap() {
-  let label = null, fn = null;
-  if (state.streakShieldActive) {
-    label = null; // вже захищено — нема що пропонувати
-  } else if (!state.streakShieldUsed) {
-    label = t('stat.streakFree');
-    fn = () => { state.streakShieldActive = true; state.streakShieldUsed = true; saveState(); hideStatModal(); showBubble(t('bubble.streakSaved')); };
-  } else {
-    label = t('stat.streakPaid', { n: CONFIG.points.streakShieldCost });
-    fn = () => {
-      if (state.points < CONFIG.points.streakShieldCost) { hideStatModal(); showBubble(t('bubble.notEnough')); return; }
-      state.points -= CONFIG.points.streakShieldCost; state.streakShieldActive = true;
-      saveState(); hideStatModal(); showBubble(t('bubble.streakSaved'));
-    };
-  }
-  const shieldNote = state.streakShieldActive ? t('stat.streakShielded') : '';
-  showStatModal('🔥', t('stat.streakTitle'), t('stat.streakText', { days: tPlural('days', state.streak) }) + shieldNote, label, fn);
+  // Лише інформація: серія не згорає, тож нічого купувати чи «захищати» не треба.
+  showStatModal('🔥', t('stat.streakTitle'), t('stat.streakText', { days: tPlural('days', state.streak) }) + t('stat.streakPause'), null, null);
 }
 
 // Тестовий/службовий reset — повністю скидає прогрес і повертає на екран

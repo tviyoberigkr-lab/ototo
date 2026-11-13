@@ -478,6 +478,7 @@
     view.querySelector('.achTotal').textContent = '🏆 ' + T('count', { n: got, total });
     view.querySelector('.achSummary .achBar i').style.width = Math.round(got / total * 100) + '%';
     view.querySelector('.achBackBottom').textContent = T('back');
+    view.querySelector('.achBack').setAttribute('aria-label', T('back'));   // стрілка «←» без слів — назва для екранних читачів
     detail.querySelector('.achDetailClose').textContent = T('ok');
     let html = '';
     CATS.forEach(cat => {
