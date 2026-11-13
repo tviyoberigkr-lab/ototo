@@ -115,7 +115,7 @@ window.BO_LANG.uk = {
   'chars.buy': 'Відкрити за ⭐ {n}',
   'chars.need': '🔒 ⭐ {price} (ще {left})',
   'chars.newFriend': 'Новий друг! {name} тепер з тобою.',
-  'char.gecko.name': 'Сяйко',     'char.gecko.title': 'Райдужний геко',
+  'char.gecko.name': 'Сяйко',     'char.gecko.title': 'Райдужний гекон',
   'char.mushroom.name': 'Грибуня', 'char.mushroom.title': 'Пухкий грибочок',
   'char.robot.name': 'Гвинтик',   'char.robot.title': 'Мідний робот',
   'char.whale.name': 'Зорик',     'char.whale.title': 'Зоряний кит',
@@ -469,7 +469,7 @@ window.BO_LANG.uk = {
   "edu.logic.name": "Логіка",
   "edu.read.name": "Читання і літери",
   "edu.world.name": "Світ навколо",
-  // ---- edu.math (математика) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Грати",
   "edu.math.next": "Далі",
   "edu.math.exit": "Вийти",
@@ -534,7 +534,8 @@ window.BO_LANG.uk = {
   "edu.math.medal.level50": "Рівень 50",
   "edu.math.medal.level100": "Рівень 100",
   "edu.math.medal.speed20": "Блискавка: 20 за хвилину",
-  // ---- edu.logic (логіка) ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "Що далі?",
   "edu.logic.how.odd": "Знайди зайве",
   "edu.logic.how.pairs": "Знайди пари",
@@ -565,7 +566,8 @@ window.BO_LANG.uk = {
   "edu.logic.mLevel25": "Рівень 25",
   "edu.logic.mLevel50": "Рівень 50",
   "edu.logic.mLevel100": "Рівень 100",
-  // ---- edu.read (читання і літери (пілот)) ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Знайди літеру",
   "edu.read.task.first": "З якої літери починається слово?",
   "edu.read.task.build": "Склади слово",
@@ -584,7 +586,8 @@ window.BO_LANG.uk = {
   "edu.read.mStreak": "10 підряд без помилок",
   "edu.read.mLevel5": "Рівень 5",
   "edu.read.mSolved": "50 завдань",
-  // ---- edu.world (світ навколо (пілот)) ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "Рівень {n}",
   "edu.world.listen": "Послухати",
   "edu.world.right": "Правильно!",
@@ -795,7 +798,8 @@ window.BO_LANG.uk = {
   "edu.world.f.boil": "На рівні моря вода кипить при 100 °C.",
   "edu.world.f.sunEarth": "Сонце обертається навколо Землі.",
   "edu.world.f.insect": "У комах вісім ніг.",
-  // ---- edu.draw (Малювалка) ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Обведи по крапочках",
   "edu.draw.do.mirror": "Домалюй другу половинку",
   "edu.draw.do.memory": "Запам'ятай малюнок!",
@@ -869,11 +873,13 @@ window.BO_LANG.uk = {
   "edu.draw.mLvl50": "Рівень 50",
   "edu.draw.mLvl100": "Рівень 100",
   "edu.draw.mSniper": "Снайпер точності",
-  // ---- нагороди: медалі навчання ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Навчання",
   "ach.edu.unlocked": "Нова медаль!",
   "ach.edu.hint": "Грай у «{game}», щоб отримати",
-  // ---- нагороди: умови медалей навчання ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Пройди перший раунд",
   "edu.math.medal.tasks10.desc": "Розв’яжи 10 задач",
   "edu.math.medal.tasks50.desc": "Розв’яжи 50 задач",
@@ -926,8 +932,8 @@ window.BO_LANG.uk = {
   "edu.world.paw.desc": "20 правильних відповідей про тварин",
   "edu.world.globe.desc": "20 правильних про країни (від 7 років)",
   "edu.world.rocket.desc": "15 правильних про небо і науку (від 6 років)",
-  // ---- кінець умов медалей навчання (згенеровано з i18n_edu_medal_desc.json) ----,
-  // ---- для батьків: замок і екран (parent.js) ----
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "Для батьків",
   "parent.gateHint": "Щоб продовжити, розв’яжіть приклад",
   "parent.wrong": "Неправильно. Спробуйте ще раз.",
@@ -943,5 +949,51 @@ window.BO_LANG.uk = {
   "parent.reset": "Почати гру спочатку",
   "parent.shop": "Магазин (скоро)",
   "parent.shopNote": "Покупки, коли з’являться, будуть доступні лише після перевірки для батьків.",
-  // ---- кінець текстів для батьків (згенеровано з i18n_parent.json) ----
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Магазин",
+  "shop.entryNote": "Без реклами і підписок. Кожна оплата — лише після перевірки для батьків.",
+  "shop.title": "Магазин",
+  "shop.intro": "Разові покупки за справжні гроші: оплата через Google Play або App Store. Куплене лишається назавжди.",
+  "shop.starsNote": "Бали ⭐ у грі заробляються лише грою — за гроші вони не продаються. Навчання й основна гра безкоштовні.",
+  "shop.noneInfo": "Покупки будуть доступні в застосунку з Google Play / App Store.",
+  "shop.testBanner": "TEST — тестовий режим, справжніх оплат немає",
+  "shop.buy": "Купити",
+  "shop.owned": "Куплено ✓",
+  "shop.inFull": "Є в повній версії ✓",
+  "shop.allOwned": "Усі набори вже куплено ✓",
+  "shop.priceSoon": "Ціна — у магазині застосунків",
+  "shop.restore": "Відновити покупки",
+  "shop.restoring": "Перевіряємо покупки…",
+  "shop.restored": "Відновлено покупок: {n}",
+  "shop.restoredNone": "Покупок не знайдено",
+  "shop.thanks": "Дякуємо! Відкрито: «{name}».",
+  "shop.cancelled": "Покупку скасовано",
+  "shop.error": "Не вдалося з’єднатися з магазином. Спробуйте пізніше.",
+  "shop.reason": "Підтвердження покупки: «{name}»",
+  "shop.includes": "Що всередині:",
+  "shop.hideLocked": "Не показувати дитині речі з некуплених наборів",
+  "shop.family": "Повернення коштів і сімейний доступ — через Google Play або App Store, за їхніми правилами.",
+  "shop.lockedText": "Ця річ — з додаткового набору, вона поки зачинена. Спробуй інші речі — у тебе їх багато!",
+  "shop.lockTag": "набір",
+  "shop.p.full.name": "Повна версія",
+  "shop.p.full.desc": "Усі набори однією покупкою — назавжди.",
+  "shop.p.outfits1.name": "Модний гардероб",
+  "shop.p.outfits1.desc": "Нові речі для гардеробу.",
+  "shop.p.room1.name": "Космічна кімната",
+  "shop.p.room1.desc": "Космічні прикраси для кімнати — по одній на кожне місце.",
+  "wardrobe.goggles": "Окуляри пілота",
+  "wardrobe.grad_cap": "Шапочка випускника",
+  "wardrobe.headphones": "Навушники",
+  "wardrobe.star_clip": "Зірочка",
+  "wardrobe.flower_clip": "Квітка",
+  "wardrobe.butterfly": "Метелик",
+  "decor.item.win_space": "Зоряне небо",
+  "decor.item.pic_comet": "Комета",
+  "decor.item.shelf_telescope": "Телескоп",
+  "decor.item.lamp_star": "Зоряна лампа",
+  "decor.item.rocket": "Ракета",
+  "decor.item.ufo": "Літаюча тарілка",
+  "decor.item.rug_space": "Космічний килимок",
+  // <<< i18n:shop
 };

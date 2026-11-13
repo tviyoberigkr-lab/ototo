@@ -9,7 +9,8 @@
      5–6   квадрат, прямокутник, трикутник, ромб, овал, сердечко, зірка, місяць,
            цифри 0–9; далі — двоцифрові числа
      7–8   літери абетки дитини (укр./каз. кирилиця, латиниця з діакритикою для
-           pl/de/ro/es), прості предмети (рибка, будиночок, сонце, хмара, яблуко…),
+           pl/de/ro/es…; літери з кількох знаків — угор. CS/DZS/GY…, чеське CH,
+           узб. Oʻ Gʻ Sh Ch Ng — одна фігура з частин поруч), прості предмети (рибка, будиночок, сонце, хмара, яблуко…),
            далі — склади з двох літер
      9–14  складні контури (кіт, машина, дерево, ракета, метелик, замок…),
            «домалюй половинку» (симетрія), «з пам'яті» (контур 3 с, потім зникає),
@@ -291,28 +292,49 @@
     8: 'M30 48 C6 48 8 0 30 0 C52 0 54 48 30 48 C2 48 4 100 30 100 C56 100 58 48 30 48 Z',
     9: 'M54 38 C50 66 6 66 6 34 C6 -4 54 -6 54 34 V60 C54 100 18 106 8 90',
   };
+  // Абетка мови: рядок (кожен знак — літера) або масив (коли є літери з кількох знаків:
+  // угорські CS, DZS, GY…, чеське CH, узбецькі Oʻ Gʻ Sh Ch Ng). Порядок — офіційний.
   const ABC = {
     uk: 'АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ',
     kk: 'АӘБВГҒДЕЁЖЗИЙКҚЛМНҢОӨПРСТУҰҮФХҺЦЧШЩЪЫІЬЭЮЯ',
     en: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', fr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     es: 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ', de: 'ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ',
     pl: 'AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻ', ro: 'AĂÂBCDEFGHIÎJKLMNOPQRSȘTȚUVWXYZ',
-    it: 'ABCDEFGHILMNOPQRSTUVZ', pt: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', nl: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-    cs: 'AÁBCČDĎEÉĚFGHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZŽ', sv: 'ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ',
-    hu: 'AÁBCDEÉFGHIÍJKLMNOÓÖŐPQRSTUÚÜŰVWXYZ',     // диграфи CS, GY, SZ… — не одна гліфа, у прописи не беремо
+    it: 'ABCDEFGHILMNOPQRSTUVZ', pt: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    nl: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',   // IJ — диграф, не окрема літера офіційної абетки (26 літер)
+    cs: ['A', 'Á', 'B', 'C', 'Č', 'D', 'Ď', 'E', 'É', 'Ě', 'F', 'G', 'H', 'CH', 'I', 'Í', 'J', 'K', 'L', 'M', 'N', 'Ň', 'O', 'Ó',
+         'P', 'Q', 'R', 'Ř', 'S', 'Š', 'T', 'Ť', 'U', 'Ú', 'Ů', 'V', 'W', 'X', 'Y', 'Ý', 'Z', 'Ž'],
+    sv: 'ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ',
+    hu: ['A', 'Á', 'B', 'C', 'CS', 'D', 'DZ', 'DZS', 'E', 'É', 'F', 'G', 'GY', 'H', 'I', 'Í', 'J', 'K', 'L', 'LY', 'M', 'N', 'NY',
+         'O', 'Ó', 'Ö', 'Ő', 'P', 'Q', 'R', 'S', 'SZ', 'T', 'TY', 'U', 'Ú', 'Ü', 'Ű', 'V', 'W', 'X', 'Y', 'Z', 'ZS'],
     bg: 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ', el: 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ',
-    uz: 'ABDEFGHIJKLMNOPQRSTUVXYZ',                 // Oʻ Gʻ Sh Ch Ng — кілька знаків, у прописи не беремо
+    uz: ['A', 'B', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z',
+         'Oʻ', 'Gʻ', 'Sh', 'Ch', 'Ng'],   // ʻ — U+02BB (oʻ/gʻ belgisi)
     az: 'ABCÇDEƏFGĞHXIİJKQLMNOÖPRSŞTUÜVYZ',
   };
   // голосні для складів (режим «склад»); мова без запису бере lat
   const VOWELS = {
     uk: 'АЕИІЇОУЯЮЄ', kk: 'АӘЕЁИОӨҰҮЫІЭЮЯ', bg: 'АЕИОУЪЮЯ', el: 'ΑΕΗΙΟΥΩ',
     cs: 'AÁEÉĚIÍOÓUÚŮYÝ', hu: 'AÁEÉIÍOÓÖŐUÚÜŰ', sv: 'AEIOUYÅÄÖ', az: 'AEƏIİOÖUÜ',
-    de: 'AEIOUÄÖÜ', pl: 'AĄEĘIOÓUY', ro: 'AĂÂEIÎOU',
-    lat: 'AEIOU',      // en, fr, es, it, pt, nl, uz
+    de: 'AEIOUÄÖÜ', pl: 'AĄEĘIOÓUY', ro: 'AĂÂEIÎOU', uz: ['A', 'E', 'I', 'O', 'U', 'Oʻ'],
+    lat: 'AEIOU',      // en, fr, es, it, pt, nl
   };
-  function abc(lang) { return [...(ABC[lang] || ABC.en)]; }
+  const list = v => Array.isArray(v) ? v.slice() : [...v];
+  function abc(lang) { return list(ABC[lang] || ABC.en); }
+  // узбецький знак ʻ (перевернута кома) — праворуч угорі від літери
+  const TURNED_COMMA = 'M80 0 Q67 6 69 16 Q71 23 77 18';
+  const DIGRAPH_GAP = 12;    // між частинами однієї літери — тісніше, ніж між літерами складу (22)
   function glyph(ch) {
+    const cps = [...String(ch)];
+    if (cps.length > 1) {           // літера з кількох знаків: частини поруч, як одна фігура
+      if (cps.length === 2 && cps[1] === 'ʻ') {
+        const base = glyph(cps[0]); if (!base) return null;
+        const m = G(TURNED_COMMA), dx = bbox(base).x1 + 8 - bbox(m).x0;
+        return base.concat(copyStrokes(m, (x, y) => [x + dx, y]));
+      }
+      const gs = cps.map(c => glyph(c.toUpperCase()));
+      return gs.every(Boolean) ? combo(gs, DIGRAPH_GAP) : null;
+    }
     const def = (/\d/.test(ch) ? DIG[ch] : (CYR[ch] || EXTRA[ch] || LAT[ch]));
     if (!def) return null;
     return G(...parts(def));
@@ -360,10 +382,11 @@
         const c = notYet.length && Math.random() < 0.6 ? pickOf(notYet) : avoidRecent(set, recent.map(r => r.slice(2)));
         kind = 'letter'; key = 'l:' + c; strokes = glyph(c); label = { k: 'letter', v: c };
       } else {
-        const vw = [...(VOWELS[lang] || VOWELS.lat)].filter(v => set.includes(v));
-        const cons = set.filter(c => !vw.includes(c) && !/[ЬЪЫЙ]/.test(c) && glyph(c));
-        const s = pickOf(cons) + pickOf(vw);
-        kind = 'syll'; key = 's:' + s; strokes = combo([...s].map(glyph)); label = { k: 'syllable', v: s };
+        const vw = list(VOWELS[lang] || VOWELS.lat).filter(v => set.includes(v));
+        // Ng (узб.) складу не починає
+        const cons = set.filter(c => !vw.includes(c) && !/[ЬЪЫЙ]/.test(c) && c !== 'Ng' && glyph(c));
+        const c = pickOf(cons), v = pickOf(vw), s = c + v;
+        kind = 'syll'; key = 's:' + s; strokes = combo([glyph(c), glyph(v)]); label = { k: 'syllable', v: s };
       }
     } else {
       let ids = cat === 'mirror' || cat === 'memory' ? (band >= 11 ? SYM : SYM.filter(k => !/castle|crown/.test(k))) : BANK[cat];
@@ -390,9 +413,10 @@
     strokes = transform(strokes, flip, rot);
     return { key, kind, label, strokes, mode, glyph: isGlyph, scale, closed: strokes.map(s => !!s.closed) };
   }
-  function combo(glyphs) {
+  function combo(glyphs, gap) {
     const out = []; let x = 0;
-    glyphs.forEach(g => { if (!g) return; const b = bbox(g); copyStrokes(g, (px, py) => [px - b.x0 + x, py]).forEach(s => out.push(s)); x += b.w + 22; });
+    gap = gap == null ? 22 : gap;
+    glyphs.forEach(g => { if (!g) return; const b = bbox(g); copyStrokes(g, (px, py) => [px - b.x0 + x, py]).forEach(s => out.push(s)); x += b.w + gap; });
     return out;
   }
   function transform(strokes, flip, rotDeg) {
@@ -520,12 +544,12 @@
   function later(fn, ms) { const g = G0; if (!g) return; const id = setTimeout(() => { if (G0 === g) fn(); }, ms); g.timers.push(id); }
 
   /* ---------- завдання ---------- */
-  function nextTask(first) {
+  function nextTask(first, preset) {
     const g = G0; if (!g) return;
     const { ctx, p } = g;
     g.timers.forEach(clearTimeout); g.timers = [];
     const precise = g.adult && !!p.precise;
-    g.task = pickTask(ctx.band, p.level, p, ctx.lang, precise);
+    g.task = preset || pickTask(ctx.band, p.level, p, ctx.lang, precise);
     g.task.precise = precise;
     p.recent = [g.task.key].concat(p.recent.filter(k => k !== g.task.key)).slice(0, 6);
     if (g.task.mode === 'mirror') {
@@ -945,7 +969,16 @@
     score() { return G0 ? score() : null; },
     result() { return G0 && G0.result; },
     next() { if (G0) nextTask(); },
-    _pick: pickTask, _glyph: glyph, _shapes: Object.keys(SH), _abc: ABC,
+    // для автотестів: обвести конкретну літеру абетки (у т. ч. з кількох знаків: CS, CH, Oʻ)
+    letter(c) {
+      if (!G0) return false;
+      const strokes = glyph(c); if (!strokes) return false;
+      nextTask(false, { key: 'l:' + c, kind: 'letter', label: { k: 'letter', v: c }, strokes, mode: 'trace', glyph: true, scale: 1,
+                        closed: strokes.map(s => !!s.closed) });
+      return true;
+    },
+    _pick: pickTask, _glyph: glyph, _shapes: Object.keys(SH), _abc: ABC, _abcList: abc,
+    _vowels: lang => list(VOWELS[lang] || VOWELS.lat),
   };
 
   BO.edu.register({ id: 'draw', slot: 2, icon: '✏️', start, stop });

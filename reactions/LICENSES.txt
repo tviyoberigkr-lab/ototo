@@ -1,0 +1,28 @@
+ OTOTO — ліцензії голосових реакцій react_01..15.mp3. CoLaba Production.
+
+ФАЙЛИ: reactions/react_01.mp3 … react_15.mp3
+ЗВІДКИ: згенеровано програмою tools/voice/make_reactions.py (офлайн, без платних сервісів,
+без реєстрацій і ключів). Слів немає — лише вигуки («Уа!», «Йей!», «Хі-хі» …).
+
+1) Голосова модель: Piper «en-us-libritts-high» (VITS), диктор №351 (= LibriTTS speaker 1851)
+   Джерело:  https://github.com/rhasspy/piper/releases/tag/v0.0.2
+             (файл voice-en-us-libritts-high.tar.gz, MODEL_CARD усередині)
+   Програма Piper v0.0.2 — ліцензія MIT (Michael Hansen / rhasspy).
+   Модель натренована на корпусі LibriTTS:
+             Heiga Zen, Viet Dang, Rob Clark, Yu Zhang, Ron J. Weiss, Ye Jia, Zhifeng Chen,
+             Yonghui Wu. "LibriTTS: A Corpus Derived from LibriSpeech for Text-to-Speech", 2019.
+             https://www.openslr.org/60/  — ліцензія CC BY 4.0
+             (комерційне використання ДОЗВОЛЕНО, умова — вказати авторство; NC-обмежень немає).
+   Сам LibriTTS зроблено із записів LibriVox (суспільне надбання, public domain).
+
+2) Обробка (підйом висоти/тембру ×1,5, інтонаційні вигини, фільтри, гучність, MP3) —
+   власний код CoLaba Production (tools/voice/*.py), обмежень немає.
+   Кодування MP3: ffmpeg + LAME (інструменти; на ліцензію самих звуків не впливають).
+
+ЯК ВИКОНАТИ УМОВУ CC BY 4.0 (вказати авторство) — цей файл лежить у грі поруч зі звуками;
+рекомендовано додати один рядок у «Про гру» / опис у магазині:
+   "Character voice sounds made with Piper TTS (MIT) using a model trained on
+    LibriTTS by H. Zen et al. (CC BY 4.0)."
+
+Жодних матеріалів з ліцензіями CC-NC / «лише для досліджень» не використано
+(голоси Piper «lessac» / «ryan» та подібні з такими обмеженнями свідомо НЕ брали).

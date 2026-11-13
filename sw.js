@@ -7,7 +7,7 @@
    гри (без перезавантаження посеред гри). Мережевих запитів назовні немає. */
 
 /* PRECACHE-START (не редагувати вручну) */
-const VERSION = '7a3f13418660';
+const VERSION = '94474c6d0896';
 const PRECACHE = [
   "achieve.css",
   "achieve.js",
@@ -42,6 +42,8 @@ const PRECACHE = [
   "parent.js",
   "pwa.js",
   "rig_data.js",
+  "shop.css",
+  "shop.js",
   "sound.css",
   "sound.js",
   "splash.css",
@@ -49,6 +51,17 @@ const PRECACHE = [
   "style.css",
   "tips.css",
   "tips.js",
+  "about/index.html",
+  "about/site.css",
+  "about/site.js",
+  "about/img/en-1-pet.webp",
+  "about/img/en-2-learn.webp",
+  "about/img/en-3-math.webp",
+  "about/img/en-4-map.webp",
+  "about/img/uk-1-pet.webp",
+  "about/img/uk-2-learn.webp",
+  "about/img/uk-3-math.webp",
+  "about/img/uk-4-map.webp",
   "fonts/liberation-serif-regular.woff2",
   "img/cactus.png",
   "img/gecko.png",
@@ -176,7 +189,23 @@ const PRECACHE = [
   "lang/ro.js",
   "lang/sv.js",
   "lang/uk.js",
-  "lang/uz.js"
+  "lang/uz.js",
+  "privacy/index.html",
+  "reactions/react_01.mp3",
+  "reactions/react_02.mp3",
+  "reactions/react_03.mp3",
+  "reactions/react_04.mp3",
+  "reactions/react_05.mp3",
+  "reactions/react_06.mp3",
+  "reactions/react_07.mp3",
+  "reactions/react_08.mp3",
+  "reactions/react_09.mp3",
+  "reactions/react_10.mp3",
+  "reactions/react_11.mp3",
+  "reactions/react_12.mp3",
+  "reactions/react_13.mp3",
+  "reactions/react_14.mp3",
+  "reactions/react_15.mp3"
 ];
 /* PRECACHE-END */
 
@@ -210,10 +239,17 @@ self.addEventListener('fetch', event => {
 
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
-    // Відкриття гри (".", "/", "index.html", з ?параметрами) — завжди index.html з кешу.
+    // Відкриття сторінки: гра (".", "/", "index.html", з ?параметрами) — index.html з кешу;
+    // сторінки сайту в підпапках (about/, privacy/) — їхній власний index.html з кешу, а НЕ гра.
+    // Чого нема в кеші — з мережі (а без мережі — гра, як і раніше).
     if (req.mode === 'navigate') {
-      const page = await cache.match('index.html');
-      if (page) return page;
+      const base = new URL(self.registration.scope).pathname;
+      if (url.pathname.startsWith(base)) {
+        let rel = url.pathname.slice(base.length);
+        if (rel === '' || rel.endsWith('/')) rel += 'index.html';
+        const page = await cache.match(rel);
+        if (page) return page;
+      }
     }
     const hit = await cache.match(req, { ignoreSearch: true });
     if (hit) return hit;

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!-- OTOTO — сайт-візитка гри (uk / en). CoLaba Production.
+     Статична сторінка: без трекерів, cookie, зовнішніх шрифтів і CDN.
+     Гра — на рівень вище (../), політика приватності — ../privacy/. -->
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ototo — гра-улюбленець для дітей і дорослих</title>
+<meta name="description" content="ototo — безкоштовна гра: віртуальний улюбленець, 5 навчальних ігор, мапа пригод, 18 мов. Без реклами, без збору даних, працює без інтернету.">
+<meta name="theme-color" content="#0d0f1a">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" type="image/png" sizes="32x32" href="../img/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../img/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="../img/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="site.css">
+<script>
+  /* мова до першого показу: збережений вибір, інакше uk для української системи, решта — en */
+  (function () {
+    var l = null;
+    try { l = localStorage.getItem('ototo_site_lang'); } catch (e) {}
+    if (l !== 'uk' && l !== 'en') l = /^uk\b/i.test(navigator.language || '') ? 'uk' : 'en';
+    document.documentElement.lang = l;
+  })();
+</script>
+</head>
+<body class="i18n">
+<a class="skip" href="#main"><span lang="uk">До змісту</span><span lang="en">Skip to content</span></a>
+
+<header class="wrap top">
+  <a class="brand" href="../" aria-label="ototo">
+    <img src="../img/icons/favicon-32.png" alt="" width="36" height="36">
+    <span class="logo">ototo</span>
+  </a>
+  <div class="langSwitch" role="group" aria-label="Мова / Language">
+    <button type="button" data-lang="uk" aria-pressed="false">UA</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap hero">
+    <img class="mascot" src="../img/gecko.png" alt="" width="200" height="200">
+    <h1 class="logo">ototo</h1>
+    <p class="pitch">
+      <span lang="uk">Твій перший друг-улюбленець, з яким весело вчитися рахувати, малювати, читати й пізнавати світ.</span>
+      <span lang="en">Your first pet friend who makes it fun to learn counting, drawing, reading and the world around you.</span>
+    </p>
+    <p class="sub">
+      <span lang="uk">Знайомтеся: райдужний геко Сяйко. Його треба годувати, мити, вкладати спати — а він за це грає з тобою.</span>
+      <span lang="en">Meet Sparky, the rainbow gecko. Feed him, wash him, put him to bed — and he will play with you in return.</span>
+    </p>
+    <a class="play" href="../">
+      <span class="tri" aria-hidden="true">▶</span>
+      <span lang="uk">Грати</span><span lang="en">Play</span>
+    </a>
+    <ul class="badges">
+      <li><span lang="uk">Безкоштовно</span><span lang="en">Free</span></li>
+      <li><span lang="uk">Без реклами</span><span lang="en">No ads</span></li>
+      <li><span lang="uk">Від 3 років</span><span lang="en">Age 3+</span></li>
+      <li><span lang="uk">Працює без інтернету</span><span lang="en">Works offline</span></li>
+    </ul>
+  </div>
+
+  <section aria-labelledby="hFeatures">
+    <div class="wrap">
+      <h2 id="hFeatures"><span lang="uk">Що є в грі</span><span lang="en">What’s inside</span></h2>
+      <ul class="features">
+        <li><span class="ico" aria-hidden="true">🦎</span><div>
+          <h3><span lang="uk">Віртуальний улюбленець</span><span lang="en">A virtual pet</span></h3>
+          <p lang="uk">Годуй, мий, вкладай спати й лікуй. Заробляй зірки в міні-іграх, відкривай нових друзів, одяг і прикраси для кімнати.</p>
+          <p lang="en">Feed, wash, put to bed and look after your pet. Earn stars in mini-games and unlock new friends, outfits and room decor.</p>
+        </div></li>
+        <li><span class="ico" aria-hidden="true">🎓</span><div>
+          <h3><span lang="uk">5 навчальних ігор</span><span lang="en">5 learning games</span></h3>
+          <p lang="uk">Математика, Малювалка, Логіка, Читання і літери, Світ навколо. Завдання підлаштовуються під вік.</p>
+          <p lang="en">Math, Drawing, Logic, Reading &amp; letters, The world around us. Tasks adapt to the player’s age.</p>
+        </div></li>
+        <li><span class="ico" aria-hidden="true">🗺️</span><div>
+          <h3><span lang="uk">Мапа пригод</span><span lang="en">Adventure map</span></h3>
+          <p lang="uk">Квітковий луг, ліс, море та інші краї: відкривай рівні за зірки, які заробив у грі.</p>
+          <p lang="en">Flower meadow, forest, sea and more: open new levels with the stars you earned.</p>
+        </div></li>
+        <li><span class="ico" aria-hidden="true">🌍</span><div>
+          <h3><span lang="uk">18 мов</span><span lang="en">18 languages</span></h3>
+          <p>Українська, English, Polski, Deutsch, Română, Қазақша, Français, Español, Italiano, Português, Nederlands, Čeština, Ελληνικά, Svenska, Magyar, Български, Oʻzbekcha, Azərbaycanca.</p>
+        </div></li>
+        <li><span class="ico" aria-hidden="true">👶</span><div>
+          <h3><span lang="uk">Від 3 років — і для дорослих</span><span lang="en">Age 3+ — and for grown-ups too</span></h3>
+          <p lang="uk">Вік обирається на старті (від 3 до 21+): від нього залежить складність завдань.</p>
+          <p lang="en">Pick an age at the start (3 to 21+): it sets how hard the tasks are.</p>
+        </div></li>
+        <li><span class="ico" aria-hidden="true">📴</span><div>
+          <h3><span lang="uk">Працює без інтернету</span><span lang="en">Works offline</span></h3>
+          <p lang="uk">Після першого запуску гра зберігає свої файли на пристрої й працює навіть у літаку.</p>
+          <p lang="en">After the first launch the game keeps its files on the device and works even on a plane.</p>
+        </div></li>
+        <li><span class="ico" aria-hidden="true">🚫</span><div>
+          <h3><span lang="uk">Без реклами</span><span lang="en">No ads</span></h3>
+          <p lang="uk">Жодних банерів, рекламних роликів і рекламних бібліотек.</p>
+          <p lang="en">No banners, no video ads, no ad libraries.</p>
+        </div></li>
+        <li><span class="ico" aria-hidden="true">🔒</span><div>
+          <h3><span lang="uk">Жодних даних не збираємо</span><span lang="en">No data collected</span></h3>
+          <p lang="uk">Без акаунтів, чатів і трекерів. Прогрес зберігається лише на самому пристрої.</p>
+          <p lang="en">No accounts, chats or trackers. Progress is stored only on the device itself.</p>
+        </div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="hShots">
+    <div class="wrap">
+      <h2 id="hShots"><span lang="uk">Як це виглядає</span><span lang="en">Screenshots</span></h2>
+      <ul class="shots">
+        <li lang="uk"><figure><img src="img/uk-1-pet.webp" width="390" height="844" loading="lazy" decoding="async" alt="Головний екран: геко Сяйко у своїй кімнаті, шкали їжі, настрою, енергії, чистоти й здоров’я"><figcaption>Улюбленець</figcaption></figure></li>
+        <li lang="uk"><figure><img src="img/uk-2-learn.webp" width="390" height="844" loading="lazy" decoding="async" alt="Розділ «Навчання»: п’ять ігор — Математика, Малювалка, Логіка, Читання і літери, Світ навколо"><figcaption>Навчання</figcaption></figure></li>
+        <li lang="uk"><figure><img src="img/uk-3-math.webp" width="390" height="844" loading="lazy" decoding="async" alt="Гра «Математика»: приклад із пропущеним числом і цифрова клавіатура"><figcaption>Математика</figcaption></figure></li>
+        <li lang="uk"><figure><img src="img/uk-4-map.webp" width="390" height="844" loading="lazy" decoding="async" alt="Мапа пригод: квітковий луг із пронумерованими рівнями"><figcaption>Мапа пригод</figcaption></figure></li>
+        <li lang="en"><figure><img src="img/en-1-pet.webp" width="390" height="844" loading="lazy" decoding="async" alt="Main screen: Sparky the gecko in his room with food, mood, energy, cleanliness and health bars"><figcaption>Your pet</figcaption></figure></li>
+        <li lang="en"><figure><img src="img/en-2-learn.webp" width="390" height="844" loading="lazy" decoding="async" alt="Learning hub: five games — Math, Drawing, Logic, Reading and letters, The world around us"><figcaption>Learning</figcaption></figure></li>
+        <li lang="en"><figure><img src="img/en-3-math.webp" width="390" height="844" loading="lazy" decoding="async" alt="Math game: a sum with a missing number and a number keypad"><figcaption>Math</figcaption></figure></li>
+        <li lang="en"><figure><img src="img/en-4-map.webp" width="390" height="844" loading="lazy" decoding="async" alt="Adventure map: a flower meadow with numbered levels"><figcaption>Adventure map</figcaption></figure></li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="hParents">
+    <div class="wrap">
+      <h2 id="hParents"><span lang="uk">Для батьків</span><span lang="en">For parents</span></h2>
+      <div class="parents">
+        <div class="box">
+          <h3><span lang="uk">🔒 Батьківський замок</span><span lang="en">🔒 Parental gate</span></h3>
+          <p lang="uk">Налаштування для дорослих і посилання за межі гри відкриваються лише після прикладу на множення, який мала дитина не розв’яже.</p>
+          <p lang="en">Grown-up settings and any link out of the game open only after a multiplication question that a small child can’t solve.</p>
+        </div>
+        <div class="box">
+          <h3><span lang="uk">🛡️ Жодних даних</span><span lang="en">🛡️ No data</span></h3>
+          <p lang="uk">Гра не збирає й не передає даних про дитину. Вік, ім’я улюбленця і прогрес лежать лише на пристрої; видалити їх можна кнопкою ⟲.</p>
+          <p lang="en">The game does not collect or send any data about your child. Age, pet name and progress stay on the device; the ⟲ button erases them.</p>
+        </div>
+        <div class="box">
+          <h3><span lang="uk">🚫 Без реклами й чатів</span><span lang="en">🚫 No ads, no chats</span></h3>
+          <p lang="uk">Немає реклами, акаунтів, спілкування з незнайомцями і стороннього стеження.</p>
+          <p lang="en">No ads, no accounts, no talking to strangers and no third-party tracking.</p>
+        </div>
+      </div>
+      <p><a href="../privacy/"><span lang="uk">Повна політика приватності →</span><span lang="en">Full privacy policy →</span></a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav aria-label="Посилання / Links">
+      <a href="../"><span lang="uk">Грати</span><span lang="en">Play</span></a>
+      <a href="../privacy/" lang="uk">Політика приватності</a>
+      <a href="../privacy/#en" lang="en">Privacy policy</a>
+    </nav>
+    <p>© 2026 CoLaba Production</p>
+    <p class="credits">Character voice sounds made with <a href="https://github.com/rhasspy/piper">Piper TTS</a> (MIT) using a model trained on <a href="https://www.openslr.org/60/">LibriTTS</a> by H. Zen et al. (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>). Font: Liberation Serif (OFL).</p>
+  </div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>

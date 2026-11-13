@@ -454,7 +454,7 @@ window.BO_LANG.kk = {
   "edu.logic.name": "Логика",
   "edu.read.name": "Оқу және әріптер",
   "edu.world.name": "Айналадағы әлем",
-  // ---- edu.math (математика) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Ойнау",
   "edu.math.next": "Әрі қарай",
   "edu.math.exit": "Шығу",
@@ -519,7 +519,8 @@ window.BO_LANG.kk = {
   "edu.math.medal.level50": "50-деңгей",
   "edu.math.medal.level100": "100-деңгей",
   "edu.math.medal.speed20": "Найзағай: минутына 20",
-  // ---- edu.logic (логіка) ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "Әрі қарай не болады?",
   "edu.logic.how.odd": "Артығын тап",
   "edu.logic.how.pairs": "Жұптарын тап",
@@ -550,7 +551,8 @@ window.BO_LANG.kk = {
   "edu.logic.mLevel25": "25-деңгей",
   "edu.logic.mLevel50": "50-деңгей",
   "edu.logic.mLevel100": "100-деңгей",
-  // ---- edu.read (читання і літери (пілот)) ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Әріпті тап",
   "edu.read.task.first": "Сөз қай әріптен басталады?",
   "edu.read.task.build": "Сөз құра",
@@ -569,7 +571,8 @@ window.BO_LANG.kk = {
   "edu.read.mStreak": "Қатесіз қатарынан 10",
   "edu.read.mLevel5": "5-деңгей",
   "edu.read.mSolved": "50 тапсырма",
-  // ---- edu.world (світ навколо (пілот)) ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "{n}-деңгей",
   "edu.world.listen": "Тыңда",
   "edu.world.right": "Дұрыс!",
@@ -780,7 +783,8 @@ window.BO_LANG.kk = {
   "edu.world.f.boil": "Теңіз деңгейінде су 100 °C‑та қайнайды.",
   "edu.world.f.sunEarth": "Күн Жерді айналады.",
   "edu.world.f.insect": "Жәндіктердің сегіз аяғы бар.",
-  // ---- edu.draw (Малювалка) ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Нүктелерді бойлай сыз",
   "edu.draw.do.mirror": "Екінші жартысын сал",
   "edu.draw.do.memory": "Суретті есіңе сақта!",
@@ -854,11 +858,13 @@ window.BO_LANG.kk = {
   "edu.draw.mLvl50": "50-деңгей",
   "edu.draw.mLvl100": "100-деңгей",
   "edu.draw.mSniper": "Дәлдік мергені",
-  // ---- нагороди: медалі навчання ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Оқу",
   "ach.edu.unlocked": "Жаңа медаль!",
   "ach.edu.hint": "Алу үшін «{game}» ойынын ойна",
-  // ---- нагороди: умови медалей навчання ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Алғашқы раундты аяқта",
   "edu.math.medal.tasks10.desc": "10 есеп шығар",
   "edu.math.medal.tasks50.desc": "50 есеп шығар",
@@ -911,8 +917,8 @@ window.BO_LANG.kk = {
   "edu.world.paw.desc": "Жануарлар туралы 20 дұрыс жауап",
   "edu.world.globe.desc": "Елдер туралы 20 дұрыс жауап (7 жастан)",
   "edu.world.rocket.desc": "Аспан мен ғылым туралы 15 дұрыс жауап (6 жастан)",
-  // ---- кінець умов медалей навчання (згенеровано з i18n_edu_medal_desc.json) ----,
-  // ---- для батьків: замок і екран (parent.js) ----
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "Ата-аналарға",
   "parent.gateHint": "Жалғастыру үшін мысалды шешіңіз",
   "parent.wrong": "Жауап қате. Қайта көріңіз.",
@@ -928,5 +934,51 @@ window.BO_LANG.kk = {
   "parent.reset": "Ойынды басынан бастау",
   "parent.shop": "Дүкен (жақында)",
   "parent.shopNote": "Сатып алулар пайда болғанда тек ата-ана тексеруінен кейін қолжетімді болады.",
-  // ---- кінець текстів для батьків (згенеровано з i18n_parent.json) ----
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Дүкен",
+  "shop.entryNote": "Жарнамасыз және жазылымсыз. Әр төлем тек ата-ана тексеруінен кейін.",
+  "shop.title": "Дүкен",
+  "shop.intro": "Нақты ақшаға бір реттік сатып алу: төлем Google Play немесе App Store арқылы. Сатып алынғаны мәңгі қалады.",
+  "shop.starsNote": "Ойындағы ұпайлар ⭐ тек ойнау арқылы жиналады — олар ақшаға сатылмайды. Оқу және негізгі ойын тегін.",
+  "shop.noneInfo": "Сатып алу Google Play / App Store қолданбасында қолжетімді болады.",
+  "shop.testBanner": "TEST — сынақ режимі, нақты төлем жоқ",
+  "shop.buy": "Сатып алу",
+  "shop.owned": "Сатып алынды ✓",
+  "shop.inFull": "Толық нұсқада бар ✓",
+  "shop.allOwned": "Барлық жинақ сатып алынған ✓",
+  "shop.priceSoon": "Бағасы — қолданбалар дүкенінде",
+  "shop.restore": "Сатып алғандарды қалпына келтіру",
+  "shop.restoring": "Сатып алулар тексерілуде…",
+  "shop.restored": "Қалпына келтірілді: {n}",
+  "shop.restoredNone": "Сатып алулар табылмады",
+  "shop.thanks": "Рақмет! Ашылды: «{name}».",
+  "shop.cancelled": "Сатып алудан бас тартылды",
+  "shop.error": "Дүкенге қосылу мүмкін болмады. Кейінірек қайталап көріңіз.",
+  "shop.reason": "Сатып алуды растау: «{name}»",
+  "shop.includes": "Ішінде:",
+  "shop.hideLocked": "Сатып алынбаған жинақтардың заттарын балаға көрсетпеу",
+  "shop.family": "Ақшаны қайтару және отбасылық қолжетімділік — Google Play немесе App Store арқылы, олардың ережелері бойынша.",
+  "shop.lockedText": "Бұл зат қосымша жинақтан, әзірге жабық. Басқа заттарды байқап көр — сенде олар өте көп!",
+  "shop.lockTag": "жинақ",
+  "shop.p.full.name": "Толық нұсқа",
+  "shop.p.full.desc": "Барлық жинақ бір сатып алумен — мәңгіге.",
+  "shop.p.outfits1.name": "Сәнді киімдер",
+  "shop.p.outfits1.desc": "Киімдерге жаңа заттар.",
+  "shop.p.room1.name": "Ғарыш бөлмесі",
+  "shop.p.room1.desc": "Бөлмеге арналған ғарыш әшекейлері — әр орынға біреуден.",
+  "wardrobe.goggles": "Ұшқыш көзілдірігі",
+  "wardrobe.grad_cap": "Түлек қалпағы",
+  "wardrobe.headphones": "Құлаққап",
+  "wardrobe.star_clip": "Жұлдызша",
+  "wardrobe.flower_clip": "Гүл",
+  "wardrobe.butterfly": "Көбелек",
+  "decor.item.win_space": "Жұлдызды аспан",
+  "decor.item.pic_comet": "Құйрықты жұлдыз",
+  "decor.item.shelf_telescope": "Телескоп",
+  "decor.item.lamp_star": "Жұлдыз шам",
+  "decor.item.rocket": "Зымыран",
+  "decor.item.ufo": "Ұшатын тәрелке",
+  "decor.item.rug_space": "Ғарыш кілемшесі",
+  // <<< i18n:shop
 };

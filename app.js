@@ -112,6 +112,8 @@ const CONFIG = {
                    в grantMinigameRewards(), без ручного втручання
        seasonal  — { from: 'YYYY-MM-DD', until: 'YYYY-MM-DD' } — предмет видимий
                    у гардеробі тільки в цьому проміжку дат, поза ним — ховається сам
+       premium   — { product: 'ototo.pack.…' } — з платного набору (shop.js). Дитині
+                   показується з замочком; тап — лише лагідне пояснення, НЕ магазин.
   */
   // Назва предмета — у мовному файлі, ключ 'wardrobe.<id>'.
   // place — де саме сидить аксесуар на зображенні персонажа (зсув від
@@ -133,6 +135,14 @@ const CONFIG = {
     { id: 'crown',      emoji: '👑', gender: 'any', unlock: { type: 'streak', value: 14 }, place: { top: -20, right: -2, rotate: 0 } },
     { id: 'medal_tap',  emoji: '🥇', gender: 'any', unlock: { type: 'minigame', game: 'tap', scoreThreshold: 8 } },
     { id: 'hat_santa',  emoji: '🎅', gender: 'any', unlock: { type: 'seasonal', from: '2026-12-01', until: '2027-01-10' }, place: { top: -20, right: -2, rotate: 0 } },
+    // premium — з набору «Модний гардероб» (shop.js, покупка лише через батьківський замок).
+    // Безкоштовні речі вище НЕ чіпаємо: старі збереження нічого не втрачають.
+    { id: 'goggles',     emoji: '🥽', gender: 'any',  unlock: { type: 'premium', product: 'ototo.pack.outfits1' }, place: { top: -16, right: -2, rotate: 0 } },
+    { id: 'grad_cap',    emoji: '🎓', gender: 'any',  unlock: { type: 'premium', product: 'ototo.pack.outfits1' }, place: { top: -20, right: -2, rotate: 0 } },
+    { id: 'headphones',  emoji: '🎧', gender: 'any',  unlock: { type: 'premium', product: 'ototo.pack.outfits1' }, place: { top: -16, right: -2, rotate: 0 } },
+    { id: 'star_clip',   emoji: '🌟', gender: 'any',  unlock: { type: 'premium', product: 'ototo.pack.outfits1' }, place: { top: -8, right: 10, rotate: -20 } },
+    { id: 'flower_clip', emoji: '🌺', gender: 'girl', unlock: { type: 'premium', product: 'ototo.pack.outfits1' }, place: { top: -8, right: 10, rotate: -20 } },
+    { id: 'butterfly',   emoji: '🦋', gender: 'girl', unlock: { type: 'premium', product: 'ototo.pack.outfits1' }, place: { top: -10, right: 8, rotate: -15 } },
   ],
 
   // випадкові "флейвор" події — не впливають критично на геймплей, тримають цікавість
@@ -151,7 +161,10 @@ const CONFIG = {
      Відкриваються СТРОГО по черзі: наступного можна купити за бали, тільки
      коли попередній уже відкритий. Перший (price: 0) — стартовий.
      Щоб додати нового персонажа: покласти картинку в img/ і додати один рядок
-     у кінець масиву. Більше нічого міняти не треба. */
+     у кінець масиву. Більше нічого міняти не треба.
+     premium: 'ototo.pack.…' — друг із платного набору (shop.js): за зірки не
+     купується, відкривається покупкою батьків (поза чергою). Зараз жоден із 5
+     друзів НЕ преміум — набір друзів з'явиться разом із новими малюнками. */
   characters: [
     // ім'я і підпис — у мовному файлі: 'char.<id>.name', 'char.<id>.title'
     { id: 'gecko',    img: 'img/gecko.png',    price: 0 },
@@ -1259,6 +1272,7 @@ function isWardrobeUnlocked(w) {
       const until = u.until ? new Date(u.until).getTime() : Infinity;
       return now >= from && now <= until;
     }
+    case 'premium': return !!(window.BO && BO.shop && BO.shop.owns(u.product));
     default: return false;
   }
 }
@@ -1268,6 +1282,7 @@ function lockLabel(w) {
   if (u.type === 'streak') return t('lock.streak', { n: u.value });
   if (u.type === 'minigame') return t('lock.game');
   if (u.type === 'seasonal') return t('lock.season');
+  if (u.type === 'premium') return '🔒 ' + t('shop.lockTag');
   return '🔒';
 }
 
@@ -1283,12 +1298,17 @@ function renderWardrobe() {
   CONFIG.wardrobe
     .filter(w => w.unlock.type !== 'seasonal' || isWardrobeUnlocked(w)) // сезонні поза вікном — ховаються самі
     .filter(wardrobeGenderAllowed)
+    .filter(w => w.unlock.type !== 'premium' || isWardrobeUnlocked(w) || !(window.BO.shop && BO.shop.hideLocked()))
     .forEach(w => {
       const locked = !isWardrobeUnlocked(w);
+      const premium = w.unlock.type === 'premium';
       const div = document.createElement('div');
-      div.className = 'wardrobeItem' + (locked ? ' locked' : '') + (state.equipped === w.id ? ' equipped' : '');
+      div.className = 'wardrobeItem' + (locked ? ' locked' : '') + (locked && premium ? ' premium' : '') + (state.equipped === w.id ? ' equipped' : '');
+      div.dataset.id = w.id;
       div.innerHTML = (w.emoji || '🚫') + '<span class="wLabel">' + (locked ? lockLabel(w) : t('wardrobe.' + w.id)) + '</span>';
       if (!locked) div.addEventListener('click', () => { state.equipped = w.id; saveState(); renderWardrobe(); render(); });
+      // зачинена преміум-річ: лише пояснення (без магазину і без закликів купити)
+      else if (premium && window.BO.shop) div.addEventListener('click', () => BO.shop.lockedInfo(w.unlock.product));
       grid.appendChild(div);
     });
 }
@@ -1313,7 +1333,7 @@ function setActiveCharacter(id) {
   saveState(); render();
 }
 function buyCharacter(c) {
-  if (state.points < c.price) return;
+  if (c.premium || state.points < c.price) return;   // преміум-друга за зірки не купити
   state.points -= c.price;
   state.ownedChars.push(c.id);
   setActiveCharacter(c.id);
@@ -1323,13 +1343,22 @@ function buyCharacter(c) {
 function renderCharacters() {
   const grid = $('charGrid'); grid.innerHTML = '';
   $('charPoints').textContent = t('chars.points', { n: state.points });
-  CONFIG.characters.forEach((c, i) => {
-    const owned = state.ownedChars.includes(c.id);
-    const prevOwned = i === 0 || state.ownedChars.includes(CONFIG.characters[i - 1].id);
+  const shop = window.BO.shop;
+  const premiumOwned = c => !!(c && c.premium && shop && shop.owns(c.premium));
+  const charOwned = c => state.ownedChars.includes(c.id) || premiumOwned(c);
+  const free = CONFIG.characters.filter(c => !c.premium || charOwned(c) || !(shop && shop.hideLocked()));
+  free.forEach((c) => {
+    const owned = charOwned(c);
+    const lockedPremium = !!c.premium && !owned;
+    // черга «відкривай по порядку» — лише серед друзів за зірки (преміум поза чергою)
+    const starChars = CONFIG.characters.filter(x => !x.premium);
+    const si = starChars.indexOf(c);
+    const prevOwned = !!c.premium || si <= 0 || state.ownedChars.includes(starChars[si - 1].id);
     const card = document.createElement('div');
-    card.className = 'charCard' + (owned ? '' : ' locked') + (state.activeChar === c.id ? ' active' : '');
+    card.className = 'charCard' + (owned ? '' : ' locked') + (lockedPremium ? ' premium' : '') + (state.activeChar === c.id ? ' active' : '');
     let footer;
     if (owned) footer = '<span class="cTag">' + t(state.activeChar === c.id ? 'chars.active' : 'chars.choose') + '</span>';
+    else if (lockedPremium) footer = '<span class="cTag cPremium">🔒 ' + t('shop.lockTag') + '</span>';
     else if (!prevOwned) footer = '<span class="cTag">' + t('chars.prevFirst') + '</span>';
     else if (state.points >= c.price) footer = '<button class="cBuy">' + t('chars.buy', { n: c.price }) + '</button>';
     else footer = '<span class="cTag">' + t('chars.need', { price: c.price, left: c.price - state.points }) + '</span>';
@@ -1337,6 +1366,7 @@ function renderCharacters() {
       '<span class="cName">' + (owned ? charName(c.id) : t('char.' + c.id + '.name')) + '</span>' +
       '<span class="cTitle">' + t('char.' + c.id + '.title') + '</span>' + footer;
     if (owned) card.addEventListener('click', () => { setActiveCharacter(c.id); renderCharacters(); });
+    else if (lockedPremium) card.addEventListener('click', () => shop.lockedInfo(c.premium));
     const buy = card.querySelector('.cBuy');
     if (buy) buy.addEventListener('click', (e) => { e.stopPropagation(); buyCharacter(c); });
     grid.appendChild(card);

@@ -287,7 +287,7 @@ window.BO_LANG.nl = {
   "ach.record15.desc": "Verbeter je records {n} keer",
   "ach.score10.name": "Raak!",
   "ach.score10.desc": "Haal {n} punten in één spel",
-  "ach.score25.name": "Spelster",
+  "ach.score25.name": "Spelkampioen",
   "ach.score25.desc": "Haal {n} punten in één spel",
   "ach.score50.name": "Legende",
   "ach.score50.desc": "Haal {n} punten in één spel",
@@ -305,7 +305,7 @@ window.BO_LANG.nl = {
   "ach.decor12.desc": "Verzamel {n} dingen voor je kamer",
   "ach.decor21.name": "Droomkamer",
   "ach.decor21.desc": "Verzamel alle dingen voor je kamer",
-  "ach.outfit.name": { m: "Modester", f: "Modester" },
+  "ach.outfit.name": { m: "Modeheld", f: "Modeheld" },
   "ach.outfit.desc": "Kleed je vriendje aan in de kledingkast",
   "ach.level5.name": "Eerste stapjes",
   "ach.level5.desc": "Haal level {n} op de kaart",
@@ -464,7 +464,7 @@ window.BO_LANG.nl = {
   "edu.logic.name": "Logica",
   "edu.read.name": "Lezen en letters",
   "edu.world.name": "De wereld om ons heen",
-  // ---- edu.math (rekenen) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Spelen",
   "edu.math.next": "Verder",
   "edu.math.exit": "Stoppen",
@@ -529,7 +529,8 @@ window.BO_LANG.nl = {
   "edu.math.medal.level50": "Level 50",
   "edu.math.medal.level100": "Level 100",
   "edu.math.medal.speed20": "Bliksem: 20 per minuut",
-  // ---- edu.logic (logica) ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "Wat komt hierna?",
   "edu.logic.how.odd": "Wat hoort er niet bij?",
   "edu.logic.how.pairs": "Zoek de paren",
@@ -560,7 +561,8 @@ window.BO_LANG.nl = {
   "edu.logic.mLevel25": "Level 25",
   "edu.logic.mLevel50": "Level 50",
   "edu.logic.mLevel100": "Level 100",
-  // ---- edu.read (lezen en letters) ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Zoek de letter",
   "edu.read.task.first": "Met welke letter begint het woord?",
   "edu.read.task.build": "Maak het woord",
@@ -579,7 +581,8 @@ window.BO_LANG.nl = {
   "edu.read.mStreak": "10 op rij zonder fouten",
   "edu.read.mLevel5": "Level 5",
   "edu.read.mSolved": "50 opdrachten",
-  // ---- edu.world (de wereld om ons heen) ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "Level {n}",
   "edu.world.listen": "Luister",
   "edu.world.right": "Goed!",
@@ -790,7 +793,8 @@ window.BO_LANG.nl = {
   "edu.world.f.boil": "Op zeeniveau kookt water bij 100 °C.",
   "edu.world.f.sunEarth": "De zon draait om de aarde.",
   "edu.world.f.insect": "Insecten hebben acht poten.",
-  // ---- edu.draw (tekenen) ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Volg de stippen",
   "edu.draw.do.mirror": "Teken de andere helft",
   "edu.draw.do.memory": "Onthoud het plaatje!",
@@ -864,11 +868,13 @@ window.BO_LANG.nl = {
   "edu.draw.mLvl50": "Level 50",
   "edu.draw.mLvl100": "Level 100",
   "edu.draw.mSniper": "Scherpschutter",
-  // ---- prijzen: medailles van leren ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Leren",
   "ach.edu.unlocked": "Nieuwe medaille!",
   "ach.edu.hint": "Speel “{game}” om hem te verdienen",
-  // ---- prijzen: voorwaarden medailles van leren ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Maak je eerste ronde af",
   "edu.math.medal.tasks10.desc": "Los 10 sommen op",
   "edu.math.medal.tasks50.desc": "Los 50 sommen op",
@@ -921,7 +927,8 @@ window.BO_LANG.nl = {
   "edu.world.paw.desc": "20 goede antwoorden over dieren",
   "edu.world.globe.desc": "20 goed over landen (vanaf 7 jaar)",
   "edu.world.rocket.desc": "15 goed over de lucht en wetenschap (vanaf 6 jaar)",
-  // ---- voor ouders: slot en scherm (parent.js) ----
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "Voor ouders",
   "parent.gateHint": "Los de som op om verder te gaan",
   "parent.wrong": "Onjuist. Probeer het opnieuw.",
@@ -937,4 +944,51 @@ window.BO_LANG.nl = {
   "parent.reset": "Het spel opnieuw beginnen",
   "parent.shop": "Winkel (binnenkort)",
   "parent.shopNote": "Aankopen zijn, zodra ze er zijn, alleen beschikbaar na de controle voor ouders.",
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Winkel",
+  "shop.entryNote": "Geen reclame, geen abonnementen. Elke betaling pas na de oudercontrole.",
+  "shop.title": "Winkel",
+  "shop.intro": "Eenmalige aankopen met echt geld, betaald via Google Play of de App Store. Gekochte spullen blijven voor altijd.",
+  "shop.starsNote": "Punten ⭐ worden in het spel alleen met spelen verdiend — ze worden nooit voor geld verkocht. Leren en het hoofdspel zijn gratis.",
+  "shop.noneInfo": "Aankopen zijn straks mogelijk in de app uit Google Play / App Store.",
+  "shop.testBanner": "TEST — testmodus, geen echte betalingen",
+  "shop.buy": "Kopen",
+  "shop.owned": "Gekocht ✓",
+  "shop.inFull": "Zit in de volledige versie ✓",
+  "shop.allOwned": "Alle pakketten al gekocht ✓",
+  "shop.priceSoon": "Prijs in de appwinkel",
+  "shop.restore": "Aankopen herstellen",
+  "shop.restoring": "Aankopen controleren…",
+  "shop.restored": "Herstelde aankopen: {n}",
+  "shop.restoredNone": "Geen aankopen gevonden",
+  "shop.thanks": "Bedankt! Ontgrendeld: ‘{name}’.",
+  "shop.cancelled": "Aankoop geannuleerd",
+  "shop.error": "Kan de winkel niet bereiken. Probeer het later opnieuw.",
+  "shop.reason": "Aankoop bevestigen: ‘{name}’",
+  "shop.includes": "Wat zit erin:",
+  "shop.hideLocked": "Spullen uit niet-gekochte pakketten verbergen voor het kind",
+  "shop.family": "Terugbetalingen en gezinsdelen lopen via Google Play of de App Store, volgens hun regels.",
+  "shop.lockedText": "Dit hoort bij een extra pakket en is nog dicht. Probeer de andere dingen — je hebt er heel veel!",
+  "shop.lockTag": "pakket",
+  "shop.p.full.name": "Volledige versie",
+  "shop.p.full.desc": "Alle pakketten in één aankoop — voor altijd.",
+  "shop.p.outfits1.name": "Modieuze kledingkast",
+  "shop.p.outfits1.desc": "Nieuwe spullen voor de kledingkast.",
+  "shop.p.room1.name": "Ruimtekamer",
+  "shop.p.room1.desc": "Ruimteversiering voor de kamer — voor elke plek één.",
+  "wardrobe.goggles": "Pilotenbril",
+  "wardrobe.grad_cap": "Afstudeerhoed",
+  "wardrobe.headphones": "Koptelefoon",
+  "wardrobe.star_clip": "Sterretje",
+  "wardrobe.flower_clip": "Bloem",
+  "wardrobe.butterfly": "Vlinder",
+  "decor.item.win_space": "Sterrenhemel",
+  "decor.item.pic_comet": "Komeet",
+  "decor.item.shelf_telescope": "Telescoop",
+  "decor.item.lamp_star": "Sterrenlamp",
+  "decor.item.rocket": "Raket",
+  "decor.item.ufo": "Vliegende schotel",
+  "decor.item.rug_space": "Ruimtekleed",
+  // <<< i18n:shop
 };

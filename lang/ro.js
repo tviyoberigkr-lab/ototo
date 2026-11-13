@@ -215,7 +215,7 @@ window.BO_LANG.ro = {
   "bonus.aria": "Bulă cu surpriză — atinge-o!",
   "bonus.plus": "+{n} ⭐",
   "bonus.pet.1": "Poc! Mulțumesc! 🫧",
-  "bonus.pet.2": "Ura, o mică comoară!",
+  "bonus.pet.2": "Ura, o comoară mică!",
   "bonus.pet.3": "Uau, ce bulă frumoasă!",
   "bonus.gold": "O bulă de aur! ✨",
 
@@ -455,7 +455,7 @@ window.BO_LANG.ro = {
   "edu.logic.name": "Logică",
   "edu.read.name": "Citire și litere",
   "edu.world.name": "Lumea din jur",
-  // ---- edu.math (математика) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Joacă",
   "edu.math.next": "Mai departe",
   "edu.math.exit": "Ieșire",
@@ -465,7 +465,7 @@ window.BO_LANG.ro = {
   "edu.math.best": "Record: {n}",
   "edu.math.newBest": "Record nou!",
   "edu.math.score": "Corecte: {n}",
-  "edu.math.timeUp": "Timpul a expirat!",
+  "edu.math.timeUp": "Timpul s-a terminat!",
   "edu.math.solvedTotal": "Rezolvate: {n}",
   "edu.math.streakLine": "Serie: {n}",
   "edu.math.roundDone": "Rundă terminată!",
@@ -520,7 +520,8 @@ window.BO_LANG.ro = {
   "edu.math.medal.level50": "Nivelul 50",
   "edu.math.medal.level100": "Nivelul 100",
   "edu.math.medal.speed20": "Fulger: 20 pe minut",
-  // ---- edu.logic (логіка) ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "Ce urmează?",
   "edu.logic.how.odd": "Găsește intrusul",
   "edu.logic.how.pairs": "Găsește perechile",
@@ -551,12 +552,13 @@ window.BO_LANG.ro = {
   "edu.logic.mLevel25": "Nivelul 25",
   "edu.logic.mLevel50": "Nivelul 50",
   "edu.logic.mLevel100": "Nivelul 100",
-  // ---- edu.read (читання і літери (пілот)) ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Găsește litera",
   "edu.read.task.first": "Cu ce literă începe cuvântul?",
   "edu.read.task.build": "Formează cuvântul",
   "edu.read.task.miss": "Ce literă lipsește?",
-  "edu.read.task.scram": "Descurcă cuvântul",
+  "edu.read.task.scram": "Aranjează cuvântul",
   "edu.read.task.spell": "Care cuvânt este scris corect?",
   "edu.read.task.sent": "Citește și alege imaginea",
   "edu.read.listen": "Ascultă",
@@ -570,7 +572,8 @@ window.BO_LANG.ro = {
   "edu.read.mStreak": "10 la rând fără greșeli",
   "edu.read.mLevel5": "Nivelul 5",
   "edu.read.mSolved": "50 de sarcini",
-  // ---- edu.world (світ навколо (пілот)) ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "Nivelul {n}",
   "edu.world.listen": "Ascultă",
   "edu.world.right": "Corect!",
@@ -739,7 +742,7 @@ window.BO_LANG.ro = {
   "edu.world.c.ie": "Irlanda",
   "edu.world.c.hu": "Ungaria",
   "edu.world.c.lt": "Lituania",
-  "edu.world.cap.ua": "Kiev",
+  "edu.world.cap.ua": "Kyiv",
   "edu.world.cap.pl": "Varșovia",
   "edu.world.cap.de": "Berlin",
   "edu.world.cap.fr": "Paris",
@@ -781,7 +784,8 @@ window.BO_LANG.ro = {
   "edu.world.f.boil": "La nivelul mării, apa fierbe la 100 °C.",
   "edu.world.f.sunEarth": "Soarele se învârte în jurul Pământului.",
   "edu.world.f.insect": "Insectele au opt picioare.",
-  // ---- edu.draw (Малювалка) ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Urmărește punctele",
   "edu.draw.do.mirror": "Desenează cealaltă jumătate",
   "edu.draw.do.memory": "Ține minte desenul!",
@@ -855,11 +859,13 @@ window.BO_LANG.ro = {
   "edu.draw.mLvl50": "Nivelul 50",
   "edu.draw.mLvl100": "Nivelul 100",
   "edu.draw.mSniper": "Lunetist al preciziei",
-  // ---- нагороди: медалі навчання ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Învățare",
   "ach.edu.unlocked": "Medalie nouă!",
   "ach.edu.hint": "Joacă „{game}” ca s-o primești",
-  // ---- нагороди: умови медалей навчання ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Termină prima rundă",
   "edu.math.medal.tasks10.desc": "Rezolvă 10 probleme",
   "edu.math.medal.tasks50.desc": "Rezolvă 50 de probleme",
@@ -912,8 +918,8 @@ window.BO_LANG.ro = {
   "edu.world.paw.desc": "20 de răspunsuri corecte despre animale",
   "edu.world.globe.desc": "20 corecte despre țări (de la 7 ani)",
   "edu.world.rocket.desc": "15 corecte despre cer și știință (de la 6 ani)",
-  // ---- кінець умов медалей навчання (згенеровано з i18n_edu_medal_desc.json) ----,
-  // ---- для батьків: замок і екран (parent.js) ----
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "Pentru părinți",
   "parent.gateHint": "Ca să continuați, rezolvați exercițiul",
   "parent.wrong": "Răspuns greșit. Încercați din nou.",
@@ -929,5 +935,51 @@ window.BO_LANG.ro = {
   "parent.reset": "Începe jocul de la capăt",
   "parent.shop": "Magazin (în curând)",
   "parent.shopNote": "Cumpărăturile, când vor apărea, vor fi disponibile doar după verificarea părintelui.",
-  // ---- кінець текстів для батьків (згенеровано з i18n_parent.json) ----
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Magazin",
+  "shop.entryNote": "Fără reclame și abonamente. Orice plată doar după verificarea pentru părinți.",
+  "shop.title": "Magazin",
+  "shop.intro": "Cumpărături unice cu bani reali, plătite prin Google Play sau App Store. Ce se cumpără rămâne pentru totdeauna.",
+  "shop.starsNote": "Punctele ⭐ din joc se câștigă doar jucând — nu se vând pe bani. Învățarea și jocul de bază sunt gratuite.",
+  "shop.noneInfo": "Cumpărăturile vor fi disponibile în aplicația din Google Play / App Store.",
+  "shop.testBanner": "TEST — mod de testare, fără plăți reale",
+  "shop.buy": "Cumpără",
+  "shop.owned": "Cumpărat ✓",
+  "shop.inFull": "Inclus în versiunea completă ✓",
+  "shop.allOwned": "Toate pachetele sunt deja cumpărate ✓",
+  "shop.priceSoon": "Prețul — în magazinul de aplicații",
+  "shop.restore": "Restabilește cumpărăturile",
+  "shop.restoring": "Verificăm cumpărăturile…",
+  "shop.restored": "Cumpărături restabilite: {n}",
+  "shop.restoredNone": "Nu s-au găsit cumpărături",
+  "shop.thanks": "Mulțumim! Deblocat: „{name}”.",
+  "shop.cancelled": "Cumpărare anulată",
+  "shop.error": "Nu ne-am putut conecta la magazin. Încercați mai târziu.",
+  "shop.reason": "Confirmarea cumpărării: „{name}”",
+  "shop.includes": "Ce conține:",
+  "shop.hideLocked": "Nu-i arăta copilului obiectele din pachetele necumpărate",
+  "shop.family": "Rambursările și partajarea în familie — prin Google Play sau App Store, după regulile lor.",
+  "shop.lockedText": "Acest lucru e dintr-un pachet suplimentar, deocamdată e închis. Încearcă altele — ai o mulțime!",
+  "shop.lockTag": "pachet",
+  "shop.p.full.name": "Versiunea completă",
+  "shop.p.full.desc": "Toate pachetele dintr-o singură cumpărare — pentru totdeauna.",
+  "shop.p.outfits1.name": "Garderobă la modă",
+  "shop.p.outfits1.desc": "Lucruri noi pentru garderobă.",
+  "shop.p.room1.name": "Camera spațială",
+  "shop.p.room1.desc": "Decorațiuni spațiale pentru cameră — câte una pentru fiecare loc.",
+  "wardrobe.goggles": "Ochelari de pilot",
+  "wardrobe.grad_cap": "Tocă de absolvent",
+  "wardrobe.headphones": "Căști",
+  "wardrobe.star_clip": "Steluță",
+  "wardrobe.flower_clip": "Floare",
+  "wardrobe.butterfly": "Fluture",
+  "decor.item.win_space": "Cer înstelat",
+  "decor.item.pic_comet": "Cometă",
+  "decor.item.shelf_telescope": "Telescop",
+  "decor.item.lamp_star": "Lampă cu stele",
+  "decor.item.rocket": "Rachetă",
+  "decor.item.ufo": "Farfurie zburătoare",
+  "decor.item.rug_space": "Covoraș spațial",
+  // <<< i18n:shop
 };

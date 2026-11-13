@@ -111,7 +111,7 @@ window.BO_LANG.it = {
   "chars.need": "🔒 ⭐ {price} (mancano {left})",
   "chars.newFriend": "Nuovo amico! {name} ora è con te.",
   "char.gecko.name": "Brillino",     "char.gecko.title": "Geco arcobaleno",
-  "char.mushroom.name": "Funghetto", "char.mushroom.title": "Fungo morbidoso",
+  "char.mushroom.name": "Funghetto", "char.mushroom.title": "Fungo soffice",
   "char.robot.name": "Bullone",      "char.robot.title": "Robot di rame",
   "char.whale.name": "Stellino",     "char.whale.title": "Balena stellata",
   "char.cactus.name": "Pungino",     "char.cactus.title": "Cactus fiorito",
@@ -382,7 +382,7 @@ window.BO_LANG.it = {
   "hol.greet.befana": "È arrivata la Befana! 🧹 {name} guarda nella calza: ci sono dolcetti per te!",
   "hol.greet.easter_w": "Buona Pasqua! 🐣 {name} sta dipingendo le uova: facciamolo insieme!",
   "hol.greet.easter_o": "Buona Pasqua! 🐣 {name} sta dipingendo le uova: facciamolo insieme!",
-  "hol.greet.pancake_day": "Oggi è il giorno dei pancake! 🥞 {name} lancia in aria un pancake: op-là!",
+  "hol.greet.pancake_day": "Oggi è il giorno dei pancake! 🥞 {name} lancia in aria un pancake: oplà!",
   "hol.greet.valentine": "Buon San Valentino! 💗 {name} sussurra: ti voglio tanto tanto bene!",
   "hol.greet.martisor": "Buon Mărțișor! 🌼 {name} ti regala un filo bianco e rosso, per la fortuna e la primavera.",
   "hol.greet.womens_day": "Oggi è l'8 marzo! 💐 {name} propone di dire parole gentili alla mamma, alla nonna e a tutte le persone care.",
@@ -464,7 +464,7 @@ window.BO_LANG.it = {
   "edu.logic.name": "Logica",
   "edu.read.name": "Lettere e lettura",
   "edu.world.name": "Il mondo intorno",
-  // ---- edu.math ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Gioca",
   "edu.math.next": "Avanti",
   "edu.math.exit": "Esci",
@@ -529,7 +529,8 @@ window.BO_LANG.it = {
   "edu.math.medal.level50": "Livello 50",
   "edu.math.medal.level100": "Livello 100",
   "edu.math.medal.speed20": "Fulmine: 20 in un minuto",
-  // ---- edu.logic ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "Cosa viene dopo?",
   "edu.logic.how.odd": "Trova l'intruso",
   "edu.logic.how.pairs": "Trova le coppie",
@@ -560,7 +561,8 @@ window.BO_LANG.it = {
   "edu.logic.mLevel25": "Livello 25",
   "edu.logic.mLevel50": "Livello 50",
   "edu.logic.mLevel100": "Livello 100",
-  // ---- edu.read ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Trova la lettera",
   "edu.read.task.first": "Con quale lettera inizia la parola?",
   "edu.read.task.build": "Componi la parola",
@@ -579,7 +581,8 @@ window.BO_LANG.it = {
   "edu.read.mStreak": "10 di fila senza errori",
   "edu.read.mLevel5": "Livello 5",
   "edu.read.mSolved": "50 attività",
-  // ---- edu.world ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "Livello {n}",
   "edu.world.listen": "Ascolta",
   "edu.world.right": "Giusto!",
@@ -790,7 +793,8 @@ window.BO_LANG.it = {
   "edu.world.f.boil": "Al livello del mare l'acqua bolle a 100 °C.",
   "edu.world.f.sunEarth": "Il Sole gira intorno alla Terra.",
   "edu.world.f.insect": "Gli insetti hanno otto zampe.",
-  // ---- edu.draw ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Ripassa i puntini",
   "edu.draw.do.mirror": "Disegna l'altra metà",
   "edu.draw.do.memory": "Ricorda il disegno!",
@@ -864,11 +868,13 @@ window.BO_LANG.it = {
   "edu.draw.mLvl50": "Livello 50",
   "edu.draw.mLvl100": "Livello 100",
   "edu.draw.mSniper": "Cecchino della precisione",
-  // ---- achievements: learning medals ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Impara",
   "ach.edu.unlocked": "Nuova medaglia!",
   "ach.edu.hint": "Gioca a «{game}» per ottenerla",
-  // ---- achievements: learning medal conditions ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Completa il primo round",
   "edu.math.medal.tasks10.desc": "Risolvi 10 problemi",
   "edu.math.medal.tasks50.desc": "Risolvi 50 problemi",
@@ -921,8 +927,8 @@ window.BO_LANG.it = {
   "edu.world.paw.desc": "20 risposte giuste sugli animali",
   "edu.world.globe.desc": "20 risposte giuste sui Paesi (dai 7 anni)",
   "edu.world.rocket.desc": "15 risposte giuste su cielo e scienza (dai 6 anni)",
-  // ---- end of learning medal conditions (generated from i18n_edu_medal_desc.json) ----
-  // ---- for parents: gate and screen (parent.js) ----
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "Per i genitori",
   "parent.gateHint": "Per continuare, risolva il calcolo",
   "parent.wrong": "Risposta errata. Riprovi.",
@@ -938,5 +944,51 @@ window.BO_LANG.it = {
   "parent.reset": "Ricomincia il gioco da capo",
   "parent.shop": "Negozio (presto)",
   "parent.shopNote": "Gli acquisti, quando arriveranno, saranno disponibili solo dopo la verifica per i genitori.",
-  // ---- end of parent texts (generated from i18n_parent.json) ----
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Negozio",
+  "shop.entryNote": "Niente pubblicità né abbonamenti. Ogni pagamento solo dopo la verifica per i genitori.",
+  "shop.title": "Negozio",
+  "shop.intro": "Acquisti una tantum con denaro vero, pagati tramite Google Play o App Store. Ciò che si acquista resta per sempre.",
+  "shop.starsNote": "I punti ⭐ del gioco si guadagnano solo giocando: non si vendono mai per soldi. L’apprendimento e il gioco base sono gratuiti.",
+  "shop.noneInfo": "Gli acquisti saranno disponibili nell’app di Google Play / App Store.",
+  "shop.testBanner": "TEST — modalità di prova, nessun pagamento reale",
+  "shop.buy": "Acquista",
+  "shop.owned": "Acquistato ✓",
+  "shop.inFull": "Incluso nella versione completa ✓",
+  "shop.allOwned": "Tutti i pacchetti già acquistati ✓",
+  "shop.priceSoon": "Prezzo nello store delle app",
+  "shop.restore": "Ripristina acquisti",
+  "shop.restoring": "Controllo degli acquisti…",
+  "shop.restored": "Acquisti ripristinati: {n}",
+  "shop.restoredNone": "Nessun acquisto trovato",
+  "shop.thanks": "Grazie! Sbloccato: «{name}».",
+  "shop.cancelled": "Acquisto annullato",
+  "shop.error": "Impossibile collegarsi allo store. Riprovi più tardi.",
+  "shop.reason": "Conferma acquisto: «{name}»",
+  "shop.includes": "Cosa contiene:",
+  "shop.hideLocked": "Non mostrare al bambino gli oggetti dei pacchetti non acquistati",
+  "shop.family": "Rimborsi e condivisione in famiglia tramite Google Play o App Store, secondo le loro regole.",
+  "shop.lockedText": "Questo oggetto è di un pacchetto extra, per ora è chiuso. Prova le altre cose: ne hai tantissime!",
+  "shop.lockTag": "extra",
+  "shop.p.full.name": "Versione completa",
+  "shop.p.full.desc": "Tutti i pacchetti con un solo acquisto, per sempre.",
+  "shop.p.outfits1.name": "Guardaroba alla moda",
+  "shop.p.outfits1.desc": "Nuovi oggetti per il guardaroba.",
+  "shop.p.room1.name": "Stanza spaziale",
+  "shop.p.room1.desc": "Decorazioni spaziali per la stanza, una per ogni posto.",
+  "wardrobe.goggles": "Occhiali da pilota",
+  "wardrobe.grad_cap": "Tocco da laureato",
+  "wardrobe.headphones": "Cuffie",
+  "wardrobe.star_clip": "Stellina",
+  "wardrobe.flower_clip": "Fiore",
+  "wardrobe.butterfly": "Farfalla",
+  "decor.item.win_space": "Cielo stellato",
+  "decor.item.pic_comet": "Cometa",
+  "decor.item.shelf_telescope": "Telescopio",
+  "decor.item.lamp_star": "Lampada stellata",
+  "decor.item.rocket": "Razzo",
+  "decor.item.ufo": "Disco volante",
+  "decor.item.rug_space": "Tappeto spaziale",
+  // <<< i18n:shop
 };

@@ -272,9 +272,9 @@ window.BO_LANG.cs = {
   "ach.sleep30.name": {"m": "Pohádkář", "f": "Pohádkářka"},
   "ach.sleep30.desc": "Ulož kamaráda ke spánku {n}×",
   "ach.heal1.name": {"m": "Malý doktor", "f": "Malá doktorka"},
-  "ach.heal1.desc": "Vyléč kamaráda, když onemocní",
+  "ach.heal1.desc": "Vyleč kamaráda, když onemocní",
   "ach.heal10.name": "Dobré srdce",
-  "ach.heal10.desc": "Vyléč kamaráda {n}×",
+  "ach.heal10.desc": "Vyleč kamaráda {n}×",
   "ach.game1.name": "První hra",
   "ach.game1.desc": "Zahraj si jakoukoli minihru",
   "ach.game25.name": "Hrajeme spolu",
@@ -466,7 +466,7 @@ window.BO_LANG.cs = {
   "edu.logic.name": "Logika",
   "edu.read.name": "Čtení a písmena",
   "edu.world.name": "Svět kolem nás",
-  // ---- edu.math (matematika) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Hrát",
   "edu.math.next": "Dál",
   "edu.math.exit": "Konec",
@@ -531,7 +531,8 @@ window.BO_LANG.cs = {
   "edu.math.medal.level50": "Úroveň 50",
   "edu.math.medal.level100": "Úroveň 100",
   "edu.math.medal.speed20": "Blesk: 20 za minutu",
-  // ---- edu.logic (logika) ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "Co bude dál?",
   "edu.logic.how.odd": "Najdi, co sem nepatří",
   "edu.logic.how.pairs": "Najdi dvojice",
@@ -562,7 +563,8 @@ window.BO_LANG.cs = {
   "edu.logic.mLevel25": "Úroveň 25",
   "edu.logic.mLevel50": "Úroveň 50",
   "edu.logic.mLevel100": "Úroveň 100",
-  // ---- edu.read (čtení a písmena (pilot)) ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Najdi písmeno",
   "edu.read.task.first": "Jakým písmenem začíná slovo?",
   "edu.read.task.build": "Slož slovo",
@@ -581,7 +583,8 @@ window.BO_LANG.cs = {
   "edu.read.mStreak": "10 v řadě bez chyby",
   "edu.read.mLevel5": "Úroveň 5",
   "edu.read.mSolved": "50 úkolů",
-  // ---- edu.world (svět kolem nás (pilot)) ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "Úroveň {n}",
   "edu.world.listen": "Poslechnout",
   "edu.world.right": "Správně!",
@@ -792,7 +795,8 @@ window.BO_LANG.cs = {
   "edu.world.f.boil": "U hladiny moře se voda vaří při 100 °C.",
   "edu.world.f.sunEarth": "Slunce obíhá kolem Země.",
   "edu.world.f.insect": "Hmyz má osm nohou.",
-  // ---- edu.draw (Kreslení) ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Obtáhni podle teček",
   "edu.draw.do.mirror": "Dokresli druhou polovinu",
   "edu.draw.do.memory": "Zapamatuj si obrázek!",
@@ -866,11 +870,13 @@ window.BO_LANG.cs = {
   "edu.draw.mLvl50": "Úroveň 50",
   "edu.draw.mLvl100": "Úroveň 100",
   "edu.draw.mSniper": "Mistr přesnosti",
-  // ---- odměny: medaile za učení ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Učení",
   "ach.edu.unlocked": "Nová medaile!",
   "ach.edu.hint": "Hraj „{game}“ a získáš ji",
-  // ---- нагороди: умови медалей навчання ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Dokonči první kolo",
   "edu.math.medal.tasks10.desc": "Vyřeš 10 úloh",
   "edu.math.medal.tasks50.desc": "Vyřeš 50 úloh",
@@ -923,8 +929,8 @@ window.BO_LANG.cs = {
   "edu.world.paw.desc": "20 správných odpovědí o zvířatech",
   "edu.world.globe.desc": "20 správných odpovědí o zemích (od 7 let)",
   "edu.world.rocket.desc": "15 správných odpovědí o nebi a vědě (od 6 let)",
-  // ---- кінець умов медалей навчання (згенеровано з i18n_edu_medal_desc.json) ----
-  // ---- для батьків: замок і екран (parent.js) ----
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "Pro rodiče",
   "parent.gateHint": "Pro pokračování vyřešte příklad",
   "parent.wrong": "Špatně. Zkuste to znovu.",
@@ -940,5 +946,51 @@ window.BO_LANG.cs = {
   "parent.reset": "Začít hru znovu",
   "parent.shop": "Obchod (brzy)",
   "parent.shopNote": "Nákupy, až budou k dispozici, půjdou provést jen po ověření rodičem.",
-  // ---- кінець текстів для батьків (згенеровано з i18n_parent.json) ----
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Obchod",
+  "shop.entryNote": "Bez reklam a předplatného. Každá platba až po kontrole pro rodiče.",
+  "shop.title": "Obchod",
+  "shop.intro": "Jednorázové nákupy za skutečné peníze, placené přes Google Play nebo App Store. Co koupíte, zůstane navždy.",
+  "shop.starsNote": "Body ⭐ se ve hře získávají jen hraním — za peníze se nikdy neprodávají. Učení a hlavní hra jsou zdarma.",
+  "shop.noneInfo": "Nákupy budou dostupné v aplikaci z Google Play / App Store.",
+  "shop.testBanner": "TEST — testovací režim, žádné skutečné platby",
+  "shop.buy": "Koupit",
+  "shop.owned": "Koupeno ✓",
+  "shop.inFull": "Součást plné verze ✓",
+  "shop.allOwned": "Všechny balíčky už jsou koupené ✓",
+  "shop.priceSoon": "Cena v obchodě s aplikacemi",
+  "shop.restore": "Obnovit nákupy",
+  "shop.restoring": "Kontrolujeme nákupy…",
+  "shop.restored": "Obnovené nákupy: {n}",
+  "shop.restoredNone": "Žádné nákupy nenalezeny",
+  "shop.thanks": "Děkujeme! Odemčeno: „{name}“.",
+  "shop.cancelled": "Nákup zrušen",
+  "shop.error": "Nepodařilo se spojit s obchodem. Zkuste to později.",
+  "shop.reason": "Potvrzení nákupu: „{name}“",
+  "shop.includes": "Co obsahuje:",
+  "shop.hideLocked": "Neukazovat dítěti věci z nekoupených balíčků",
+  "shop.family": "Vrácení peněz a rodinné sdílení — přes Google Play nebo App Store, podle jejich pravidel.",
+  "shop.lockedText": "Tahle věc je z extra balíčku, zatím je zamčená. Zkus jiné věci — máš jich spoustu!",
+  "shop.lockTag": "balíček",
+  "shop.p.full.name": "Plná verze",
+  "shop.p.full.desc": "Všechny balíčky jedním nákupem — navždy.",
+  "shop.p.outfits1.name": "Módní šatník",
+  "shop.p.outfits1.desc": "Nové věci do šatníku.",
+  "shop.p.room1.name": "Vesmírný pokoj",
+  "shop.p.room1.desc": "Vesmírné ozdoby do pokoje — na každé místo jedna.",
+  "wardrobe.goggles": "Pilotní brýle",
+  "wardrobe.grad_cap": "Absolventská čepice",
+  "wardrobe.headphones": "Sluchátka",
+  "wardrobe.star_clip": "Hvězdička",
+  "wardrobe.flower_clip": "Květina",
+  "wardrobe.butterfly": "Motýlek",
+  "decor.item.win_space": "Hvězdné nebe",
+  "decor.item.pic_comet": "Kometa",
+  "decor.item.shelf_telescope": "Dalekohled",
+  "decor.item.lamp_star": "Hvězdná lampa",
+  "decor.item.rocket": "Raketa",
+  "decor.item.ufo": "Létající talíř",
+  "decor.item.rug_space": "Vesmírný koberec",
+  // <<< i18n:shop
 };

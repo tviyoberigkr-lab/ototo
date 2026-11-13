@@ -1,6 +1,8 @@
 /* OTOTO — модуль «Звук + вібрація». CoLaba Production.
-   Усі звуки синтезуються Web Audio API (осцилятори, обвідні, фільтрований шум):
-   жодних аудіофайлів, жодних ліцензій, кілька кілобайт коду. Тихо, м'яко, коротко.
+   Усі звуки синтезуються Web Audio API (осцилятори, обвідні, фільтрований шум). Тихо, м'яко, коротко.
+   Виняток — 15 радісних реакцій персонажа: це короткі голосові вигуки без слів
+   (reactions/react_01..15.mp3, ~80 КБ разом, ліцензії — reactions/LICENSES.txt);
+   якщо файл не завантажився — грає синтезована заглушка.
    Вібрація — navigator.vibrate (Android); де її немає (iOS Safari) — тихо пропускаємо.
    Кнопка 🔊/🔇 у #navRow вимикає і звук, і вібрацію (BO.state.sound.muted).
    Ядро (app.js) та інші модулі не правляться: тільки BO.on(...), делеговані
@@ -286,17 +288,41 @@
     const last = +st.reactionIndex || 0;          // 0 = ще жодної; 1..15 = остання зіграна
     return (last % REACT_COUNT) + 1;
   }
+  // Голос персонажа: той самий запис, але «як плівка» — повільніше = нижче (кит, грибочок),
+  // швидше = вище (кактус); робот — ще й металевий відтінок (кільцева модуляція).
+  // Хлопчик (bo) трохи нижче, дівчинка (mimi) трохи вище.
+  const VOICE_RATE = { gecko: 1, mushroom: 0.9, robot: 0.97, whale: 0.82, cactus: 1.08 };
+  const PERSONA_RATE = { bo: 0.97, mimi: 1.03 };
+  function voiceRate() {
+    const s = BO.state || {};
+    return (VOICE_RATE[s.activeChar] || 1) * (PERSONA_RATE[s.persona] || 1);
+  }
+  const isRobot = () => (BO.state || {}).activeChar === 'robot';
   function playReaction(i) {
     if (isMuted() || document.visibilityState === 'hidden') return;
     const f = files[i], c = ready();
     if (f && f.buf && c) {
       const src = c.createBufferSource(), g = c.createGain();
-      src.buffer = f.buf; g.gain.value = 0.9; src.connect(g); g.connect(c.destination); src.start();
+      src.buffer = f.buf; src.playbackRate.value = voiceRate();
+      g.gain.value = REACT_FILE_GAIN; g.connect(out || c.destination);
+      if (isRobot()) { // робот: 50 % чистого голосу + 50 % голосу × синус 70 Гц
+        const dry = c.createGain(), ring = c.createGain(), osc = c.createOscillator(), t0 = c.currentTime;
+        dry.gain.value = 0.55; ring.gain.value = 0; osc.frequency.value = 70;
+        g.gain.value = REACT_FILE_GAIN * 1.3; // модуляція «з'їдає» ~2,5 дБ — компенсуємо (виміряно)
+        const depth = c.createGain(); depth.gain.value = 0.75; osc.connect(depth); depth.connect(ring.gain);
+        src.connect(dry); src.connect(ring); dry.connect(g); ring.connect(g);
+        osc.start(t0); osc.stop(t0 + f.buf.duration / src.playbackRate.value + 0.05);
+      } else src.connect(g);
+      src.start();
       vibrate('react'); if (BO_SOUND.onplay) BO_SOUND.onplay('reactFile', i);
       return;
     }
     if (f && f.el) {
-      try { f.el.currentTime = 0; const pr = f.el.play(); if (pr && pr.catch) pr.catch(() => {}); } catch (e) {}
+      try {
+        f.el.preservesPitch = false; f.el.webkitPreservesPitch = false; f.el.mozPreservesPitch = false;
+        f.el.playbackRate = voiceRate();
+        f.el.currentTime = 0; const pr = f.el.play(); if (pr && pr.catch) pr.catch(() => {});
+      } catch (e) {}
       vibrate('react'); if (BO_SOUND.onplay) BO_SOUND.onplay('reactFile', i);
       return;
     }
@@ -330,7 +356,13 @@
   let filesProbed = false;
   // Поки справжніх записів немає — нічого не шукаємо (інакше в консолі помилки "файл не знайдено").
   // Коли записи покладено в reactions/, тут пишеться їхній формат: 'mp3', 'ogg' або 'wav'.
-  const REACT_FILES_EXT = null;
+  const REACT_FILES_EXT = 'mp3'; // 15 голосових вигуків без слів (tools/voice/make_reactions.py), однакові для всіх мов
+  // Записи нормалізовані до ≈ −16 LUFS; грають через той самий вихід, що й синтез (MASTER + компресор),
+  // множник підібрано вимірюванням (OfflineAudioContext + EBU R128): синтезовані заглушки ≈ −31,5 LUFS,
+  // записи з множником 0,65 ≈ −29,8 LUFS — голос-нагорода на ~2 дБ виразніший, але не гучніший за гру.
+  // (Раніше тут було 0,9 повз MASTER — це було б на ~14 дБ гучніше за решту звуків.)
+  const REACT_FILE_GAIN = 0.65;
+  const REACT_EL_VOLUME = 0.21; // запасний шлях file:// (HTMLAudio повз Web Audio) — той самий рівень ≈ −29,8 LUFS
   function probeFiles() {
     if (filesProbed) return; filesProbed = true;
     if (!REACT_FILES_EXT) return;
@@ -346,7 +378,7 @@
     const url = REACT_DIR + 'react_' + String(i).padStart(2, '0') + '.' + ext;
     if (location.protocol === 'file:' || !window.fetch) { // file:// і старі WebView: fetch не працює
       const el = new Audio();
-      el.preload = 'auto'; el.volume = 0.8;
+      el.preload = 'auto'; el.volume = REACT_EL_VOLUME;
       el.addEventListener('canplaythrough', () => { if (!files[i]) { files[i] = { el, url }; ok(); } }, { once: true });
       el.addEventListener('error', fail, { once: true });
       el.src = url;
@@ -546,6 +578,7 @@
       g.connect(comp); comp.connect(c.destination);
       SOUNDS[name](c, g, 0.01 + (when || 0), arg);
     },
+    voiceRate,
     get muted() { return isMuted(); },
     toggle: toggleMute,
     get ctx() { return ctx; },

@@ -7,7 +7,11 @@
    Речі з price: 0 вважаються своїми завжди (навіть у старих збереженнях).
 
    Щоб додати нову річ: один рядок у DECOR_ITEMS + назва 'decor.item.<id>'
-   у кожній мові. Більше нічого міняти не треба. */
+   у кожній мові. Більше нічого міняти не треба.
+
+   premium: 'ototo.pack.…' — річ із платного набору (shop.js). За зірки НЕ
+   купується; поки набору немає — замочок і лагідне пояснення (без магазину).
+   Такі речі не пишуться в decor.owned (значки «Колекція» лишаються за гру). */
 (function () {
   'use strict';
   if (!window.BO) return;
@@ -38,6 +42,14 @@
     { id: 'rug_blue',     slot: 'rug',    emoji: '🔵', price: 0,   bg: 'radial-gradient(ellipse at center,#5d7fd6 0 38%,#4363b3 39% 62%,#5d7fd6 63%)' },
     { id: 'rug_pink',     slot: 'rug',    emoji: '🌸', price: 50,  bg: 'radial-gradient(ellipse at center,#f59ac8 0 30%,#d873ab 31% 55%,#f59ac8 56%)' },
     { id: 'rug_rainbow',  slot: 'rug',    emoji: '🌈', price: 340, bg: 'radial-gradient(ellipse at center,#ffd86b 0 18%,#7fe0a6 19% 36%,#6fb8ff 37% 54%,#b48cff 55% 72%,#ff8fb8 73%)' },
+    // набір «Космічна кімната» (ototo.pack.room1) — по одній речі в кожне місце
+    { id: 'win_space',       slot: 'window', emoji: '🌌', price: 0, premium: 'ototo.pack.room1', bg: 'radial-gradient(circle at 30% 30%,#fff 0 1px,transparent 2px),radial-gradient(circle at 70% 60%,#fff 0 1px,transparent 2px),linear-gradient(#0b0630,#3a1a6e)' },
+    { id: 'pic_comet',       slot: 'wall',   emoji: '☄️', price: 0, premium: 'ototo.pack.room1' },
+    { id: 'shelf_telescope', slot: 'shelf',  emoji: '🔭', price: 0, premium: 'ototo.pack.room1' },
+    { id: 'lamp_star',       slot: 'lamp',   emoji: '💫', price: 0, premium: 'ototo.pack.room1' },
+    { id: 'rocket',          slot: 'floorL', emoji: '🚀', price: 0, premium: 'ototo.pack.room1' },
+    { id: 'ufo',             slot: 'floorR', emoji: '🛸', price: 0, premium: 'ototo.pack.room1' },
+    { id: 'rug_space',       slot: 'rug',    emoji: '🪐', price: 0, premium: 'ototo.pack.room1', bg: 'radial-gradient(ellipse at center,#ffd86b 0 10%,#2c2a7a 11% 40%,#7b5cd6 41% 60%,#1a1850 61%)' },
   ];
 
   const BO = window.BO;
@@ -55,21 +67,31 @@
     if (!s.decor.placed || typeof s.decor.placed !== 'object') s.decor.placed = {};
     return s.decor;
   }
-  function isOwned(it) { return it.price === 0 || ds().owned.includes(it.id); }
+  const premiumOwned = it => !!(BO.shop && BO.shop.owns(it.premium));
+  function isOwned(it) { return it.premium ? premiumOwned(it) : (it.price === 0 || ds().owned.includes(it.id)); }
+  const hideItem = it => !!it.premium && !premiumOwned(it) && !!(BO.shop && BO.shop.hideLocked());
 
   function ensureState() {
     const fresh = !BO.state.decor;
     const d = ds();
     if (fresh) {
       // новий гравець або старе збереження: стартові речі одразу в кімнаті
-      DECOR_ITEMS.filter(i => i.price === 0).forEach(i => {
+      DECOR_ITEMS.filter(i => i.price === 0 && !i.premium).forEach(i => {
         if (!d.owned.includes(i.id)) d.owned.push(i.id);
         if (!d.placed[i.slot]) d.placed[i.slot] = i.id;
       });
     }
     // прибрати з кімнати те, чого вже немає в каталозі
     Object.keys(d.placed).forEach(sl => { const it = byId(d.placed[sl]); if (!it || it.slot !== sl) delete d.placed[sl]; });
+    dropLocked();
     BO.saveState();
+  }
+  // преміум-річ без набору (напр. вимкнули тестовий режим) — прибрати з кімнати
+  function dropLocked() {
+    const d = ds();
+    let changed = false;
+    Object.keys(d.placed).forEach(sl => { const it = byId(d.placed[sl]); if (it && it.premium && !premiumOwned(it)) { delete d.placed[sl]; changed = true; } });
+    return changed;
   }
 
   /* ---------- кімната (одна функція для головного екрана і прев'ю) ---------- */
@@ -189,6 +211,7 @@
     const pts = BO.state.points || 0;
     if (d.placed[it.slot] === it.id) return '<span class="dTag on">' + t('placed') + '</span>';
     if (isOwned(it)) return '<span class="dTag">' + t('place') + '</span>';
+    if (it.premium) return '<span class="dTag dPremium">🔒 ' + BO.t('shop.lockTag') + '</span>';
     if (pts < it.price) return '<span class="dTag need">' + t('need', { left: it.price - pts }) + '</span>';
     if (armedId === it.id) return '<button class="dBuy" type="button">' + t('buy', { n: it.price }) + '</button>';
     return '<span class="dTag price">' + t('price', { n: it.price }) + '</span>';
@@ -201,7 +224,7 @@
     const list = view.querySelector('.decorList');
     list.innerHTML = '';
     DECOR_SLOTS.forEach(sl => {
-      const items = DECOR_ITEMS.filter(i => i.slot === sl);
+      const items = DECOR_ITEMS.filter(i => i.slot === sl && !hideItem(i));
       if (!items.length) return;
       const group = document.createElement('div');
       group.className = 'decorGroup';
@@ -212,7 +235,7 @@
         const card = document.createElement('div');
         card.className = 'decorCard' +
           (d.placed[sl] === it.id ? ' placed' : '') +
-          (owned ? ' owned' : (pts >= it.price ? ' canBuy' : ' locked')) +
+          (owned ? ' owned' : (it.premium ? ' locked premium' : (pts >= it.price ? ' canBuy' : ' locked'))) +
           (armedId === it.id ? ' armed' : '');
         card.innerHTML =
           '<span class="dEmoji' + (sl === 'rug' ? ' dRug' : '') + '"' + (sl === 'rug' ? ' style="background:' + it.bg + '"' : '') + '>' +
@@ -239,6 +262,7 @@
       renderList();
       return;
     }
+    if (it.premium) { armedId = null; renderList(); if (BO.shop) BO.shop.lockedInfo(it.premium); return; }   // лише пояснення, не магазин
     if ((BO.state.points || 0) < it.price) { armedId = null; renderList(); return; }
     armedId = (armedId === it.id) ? null : it.id; // тап удруге по картці — скасувати
     renderList();
@@ -246,7 +270,7 @@
 
   function buyItem(it) {
     const d = ds();
-    if (isOwned(it) || (BO.state.points || 0) < it.price) return;
+    if (it.premium || isOwned(it) || (BO.state.points || 0) < it.price) return;
     BO.addPoints(-it.price);
     d.owned.push(it.id);
     d.placed[it.slot] = it.id; // щойно куплене одразу ставимо в кімнату
@@ -302,5 +326,13 @@
   });
 
   // для інших модулів / налагодження
+  // покупка / відновлення / вимкнення тестового режиму — перемалювати
+  window.addEventListener('bo:shopchange', () => {
+    if (!BO.state) return;
+    if (dropLocked()) BO.saveState();
+    updateRoom(mainRoom);
+    if (view && !view.classList.contains('hidden')) { updateRoom(previewRoom); renderList(); }
+  });
+
   BO.decor = { items: DECOR_ITEMS, slots: DECOR_SLOTS };
 })();

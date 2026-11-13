@@ -463,7 +463,7 @@ window.BO_LANG.bg = {
   "edu.logic.name": "Логика",
   "edu.read.name": "Четене и букви",
   "edu.world.name": "Светът около нас",
-  // ---- edu.math (математика) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Играй",
   "edu.math.next": "Напред",
   "edu.math.exit": "Изход",
@@ -528,7 +528,8 @@ window.BO_LANG.bg = {
   "edu.math.medal.level50": "Ниво 50",
   "edu.math.medal.level100": "Ниво 100",
   "edu.math.medal.speed20": "Светкавица: 20 за минута",
-  // ---- edu.logic (логіка) ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "Какво следва?",
   "edu.logic.how.odd": "Намери излишното",
   "edu.logic.how.pairs": "Намери двойките",
@@ -559,7 +560,8 @@ window.BO_LANG.bg = {
   "edu.logic.mLevel25": "Ниво 25",
   "edu.logic.mLevel50": "Ниво 50",
   "edu.logic.mLevel100": "Ниво 100",
-  // ---- edu.read (читання і літери (пілот)) ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Намери буквата",
   "edu.read.task.first": "С коя буква започва думата?",
   "edu.read.task.build": "Състави думата",
@@ -578,7 +580,8 @@ window.BO_LANG.bg = {
   "edu.read.mStreak": "10 подред без грешка",
   "edu.read.mLevel5": "Ниво 5",
   "edu.read.mSolved": "50 задачи",
-  // ---- edu.world (світ навколо (пілот)) ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "Ниво {n}",
   "edu.world.listen": "Чуй",
   "edu.world.right": "Правилно!",
@@ -789,7 +792,8 @@ window.BO_LANG.bg = {
   "edu.world.f.boil": "На морското равнище водата кипи при 100 °C.",
   "edu.world.f.sunEarth": "Слънцето обикаля около Земята.",
   "edu.world.f.insect": "Насекомите имат осем крака.",
-  // ---- edu.draw (Малювалка) ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Обиколи по точките",
   "edu.draw.do.mirror": "Дорисувай другата половинка",
   "edu.draw.do.memory": "Запомни рисунката!",
@@ -863,11 +867,13 @@ window.BO_LANG.bg = {
   "edu.draw.mLvl50": "Ниво 50",
   "edu.draw.mLvl100": "Ниво 100",
   "edu.draw.mSniper": "Снайперист",
-  // ---- нагороди: медалі навчання ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Учене",
   "ach.edu.unlocked": "Нов медал!",
   "ach.edu.hint": "Играй „{game}“, за да го получиш",
-  // ---- нагороди: умови медалей навчання ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Мини първия рунд",
   "edu.math.medal.tasks10.desc": "Реши 10 задачи",
   "edu.math.medal.tasks50.desc": "Реши 50 задачи",
@@ -920,8 +926,8 @@ window.BO_LANG.bg = {
   "edu.world.paw.desc": "20 верни отговора за животни",
   "edu.world.globe.desc": "20 верни за страни (от 7 години)",
   "edu.world.rocket.desc": "15 верни за небето и науката (от 6 години)",
-  // ---- кінець умов медалей навчання (згенеровано з i18n_edu_medal_desc.json) ----,
-  // ---- для батьків: замок і екран (parent.js) ----
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "За родители",
   "parent.gateHint": "За да продължите, решете задачата",
   "parent.wrong": "Грешно. Опитайте отново.",
@@ -937,5 +943,51 @@ window.BO_LANG.bg = {
   "parent.reset": "Започни играта отначало",
   "parent.shop": "Магазин (скоро)",
   "parent.shopNote": "Покупките, когато се появят, ще са достъпни само след проверка за родители.",
-  // ---- кінець текстів для батьків (згенеровано з i18n_parent.json) ----
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Магазин",
+  "shop.entryNote": "Без реклами и абонаменти. Всяко плащане — само след проверката за родители.",
+  "shop.title": "Магазин",
+  "shop.intro": "Еднократни покупки с истински пари, платени чрез Google Play или App Store. Купеното остава завинаги.",
+  "shop.starsNote": "Точките ⭐ в играта се печелят само с игра — никога не се продават за пари. Ученето и основната игра са безплатни.",
+  "shop.noneInfo": "Покупките ще са достъпни в приложението от Google Play / App Store.",
+  "shop.testBanner": "TEST — тестов режим, без истински плащания",
+  "shop.buy": "Купи",
+  "shop.owned": "Купено ✓",
+  "shop.inFull": "Включено в пълната версия ✓",
+  "shop.allOwned": "Всички пакети вече са купени ✓",
+  "shop.priceSoon": "Цената — в магазина за приложения",
+  "shop.restore": "Възстанови покупките",
+  "shop.restoring": "Проверяваме покупките…",
+  "shop.restored": "Възстановени покупки: {n}",
+  "shop.restoredNone": "Няма намерени покупки",
+  "shop.thanks": "Благодарим! Отключено: „{name}“.",
+  "shop.cancelled": "Покупката е отказана",
+  "shop.error": "Няма връзка с магазина. Опитайте по-късно.",
+  "shop.reason": "Потвърждение на покупка: „{name}“",
+  "shop.includes": "Какво съдържа:",
+  "shop.hideLocked": "Не показвай на детето неща от некупени пакети",
+  "shop.family": "Възстановяване на суми и семейно споделяне — чрез Google Play или App Store, по техните правила.",
+  "shop.lockedText": "Това е от допълнителен пакет и засега е заключено. Пробвай другите неща — имаш много!",
+  "shop.lockTag": "пакет",
+  "shop.p.full.name": "Пълна версия",
+  "shop.p.full.desc": "Всички пакети с една покупка — завинаги.",
+  "shop.p.outfits1.name": "Моден гардероб",
+  "shop.p.outfits1.desc": "Нови неща за гардероба.",
+  "shop.p.room1.name": "Космическа стая",
+  "shop.p.room1.desc": "Космически украси за стаята — по една за всяко място.",
+  "wardrobe.goggles": "Пилотски очила",
+  "wardrobe.grad_cap": "Абсолвентска шапка",
+  "wardrobe.headphones": "Слушалки",
+  "wardrobe.star_clip": "Звездичка",
+  "wardrobe.flower_clip": "Цвете",
+  "wardrobe.butterfly": "Пеперуда",
+  "decor.item.win_space": "Звездно небе",
+  "decor.item.pic_comet": "Комета",
+  "decor.item.shelf_telescope": "Телескоп",
+  "decor.item.lamp_star": "Звездна лампа",
+  "decor.item.rocket": "Ракета",
+  "decor.item.ufo": "Летяща чиния",
+  "decor.item.rug_space": "Космическо килимче",
+  // <<< i18n:shop
 };

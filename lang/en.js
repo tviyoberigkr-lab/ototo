@@ -144,7 +144,7 @@ window.BO_LANG.en = {
   'game.odd': 'Odd one out',           'game.odd.prompt': 'Find the one that\'s different!',
   'game.shrink': 'Quick tap',          'game.shrink.prompt': 'Tap while the ring is still big!',
   'game.dodge': 'Safe path',           'game.dodge.prompt': 'Tap the SAFE path!',
-  'game.color': 'Match the color',     'game.color.prompt': 'Tap the same color!',
+  'game.color': 'Match the colour',     'game.color.prompt': 'Tap the same colour!',
   'game.rhythm': 'On the beat',          'game.rhythm.prompt': 'Tap when the circle is biggest!',
   'game.numbers': 'Bigger number?',    'game.numbers.prompt': 'Tap the BIGGER number!',
   'game.mood': 'What mood?',           'game.mood.prompt': 'Happy or sad? Tap the right one!',
@@ -450,12 +450,12 @@ window.BO_LANG.en = {
   "edu.level": "Level {n}",
   "edu.soon": "Soon",
   "edu.pilot": "Pilot",
-  "edu.math.name": "Math",
+  "edu.math.name": "Maths",
   "edu.draw.name": "Drawing",
   "edu.logic.name": "Logic",
   "edu.read.name": "Reading & letters",
   "edu.world.name": "World around us",
-  // ---- edu.math (математика) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Play",
   "edu.math.next": "Next",
   "edu.math.exit": "Exit",
@@ -520,7 +520,8 @@ window.BO_LANG.en = {
   "edu.math.medal.level50": "Level 50",
   "edu.math.medal.level100": "Level 100",
   "edu.math.medal.speed20": "Lightning: 20 a minute",
-  // ---- edu.logic (логіка) ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "What comes next?",
   "edu.logic.how.odd": "Find the odd one out",
   "edu.logic.how.pairs": "Find the pairs",
@@ -551,7 +552,8 @@ window.BO_LANG.en = {
   "edu.logic.mLevel25": "Level 25",
   "edu.logic.mLevel50": "Level 50",
   "edu.logic.mLevel100": "Level 100",
-  // ---- edu.read (читання і літери (пілот)) ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Find the letter",
   "edu.read.task.first": "Which letter does the word start with?",
   "edu.read.task.build": "Build the word",
@@ -570,7 +572,8 @@ window.BO_LANG.en = {
   "edu.read.mStreak": "10 in a row, no mistakes",
   "edu.read.mLevel5": "Level 5",
   "edu.read.mSolved": "50 tasks",
-  // ---- edu.world (світ навколо (пілот)) ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "Level {n}",
   "edu.world.listen": "Listen",
   "edu.world.right": "Correct!",
@@ -781,7 +784,8 @@ window.BO_LANG.en = {
   "edu.world.f.boil": "At sea level, water boils at 100 °C.",
   "edu.world.f.sunEarth": "The Sun goes around the Earth.",
   "edu.world.f.insect": "Insects have eight legs.",
-  // ---- edu.draw (Малювалка) ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Trace the dots",
   "edu.draw.do.mirror": "Draw the other half",
   "edu.draw.do.memory": "Remember the picture!",
@@ -855,11 +859,13 @@ window.BO_LANG.en = {
   "edu.draw.mLvl50": "Level 50",
   "edu.draw.mLvl100": "Level 100",
   "edu.draw.mSniper": "Precision sniper",
-  // ---- нагороди: медалі навчання ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Learning",
   "ach.edu.unlocked": "New medal!",
   "ach.edu.hint": "Play “{game}” to earn it",
-  // ---- нагороди: умови медалей навчання ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Finish your first round",
   "edu.math.medal.tasks10.desc": "Solve 10 problems",
   "edu.math.medal.tasks50.desc": "Solve 50 problems",
@@ -912,8 +918,8 @@ window.BO_LANG.en = {
   "edu.world.paw.desc": "20 correct answers about animals",
   "edu.world.globe.desc": "20 correct about countries (age 7+)",
   "edu.world.rocket.desc": "15 correct about sky and science (age 6+)",
-  // ---- кінець умов медалей навчання (згенеровано з i18n_edu_medal_desc.json) ----,
-  // ---- для батьків: замок і екран (parent.js) ----
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "For parents",
   "parent.gateHint": "To continue, solve the problem",
   "parent.wrong": "Wrong answer. Please try again.",
@@ -929,5 +935,51 @@ window.BO_LANG.en = {
   "parent.reset": "Start the game over",
   "parent.shop": "Shop (coming soon)",
   "parent.shopNote": "Purchases, when they arrive, will only be available after the parent check.",
-  // ---- кінець текстів для батьків (згенеровано з i18n_parent.json) ----
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Shop",
+  "shop.entryNote": "No ads, no subscriptions. Every payment needs the parent check first.",
+  "shop.title": "Shop",
+  "shop.intro": "One-time purchases with real money, paid through Google Play or the App Store. Purchases stay yours forever.",
+  "shop.starsNote": "Points ⭐ in the game are earned only by playing — they are never sold for money. Learning and the main game are free.",
+  "shop.noneInfo": "Purchases will be available in the app from Google Play / App Store.",
+  "shop.testBanner": "TEST — test mode, no real payments",
+  "shop.buy": "Buy",
+  "shop.owned": "Purchased ✓",
+  "shop.inFull": "Included in the full version ✓",
+  "shop.allOwned": "All packs already purchased ✓",
+  "shop.priceSoon": "Price shown in the app store",
+  "shop.restore": "Restore purchases",
+  "shop.restoring": "Checking purchases…",
+  "shop.restored": "Purchases restored: {n}",
+  "shop.restoredNone": "No purchases found",
+  "shop.thanks": "Thank you! Unlocked: “{name}”.",
+  "shop.cancelled": "Purchase cancelled",
+  "shop.error": "Couldn’t reach the store. Please try again later.",
+  "shop.reason": "Confirm purchase: “{name}”",
+  "shop.includes": "What’s inside:",
+  "shop.hideLocked": "Hide items from packs you haven’t bought",
+  "shop.family": "Refunds and family sharing are handled by Google Play or the App Store under their rules.",
+  "shop.lockedText": "This item is from an extra pack, so it’s locked for now. Try the other things — you have lots!",
+  "shop.lockTag": "pack",
+  "shop.p.full.name": "Full version",
+  "shop.p.full.desc": "All packs in one purchase — forever.",
+  "shop.p.outfits1.name": "Fashion wardrobe",
+  "shop.p.outfits1.desc": "New items for the wardrobe.",
+  "shop.p.room1.name": "Space room",
+  "shop.p.room1.desc": "Space decorations for the room — one for every spot.",
+  "wardrobe.goggles": "Pilot goggles",
+  "wardrobe.grad_cap": "Graduation cap",
+  "wardrobe.headphones": "Headphones",
+  "wardrobe.star_clip": "Little star",
+  "wardrobe.flower_clip": "Flower",
+  "wardrobe.butterfly": "Butterfly",
+  "decor.item.win_space": "Starry sky",
+  "decor.item.pic_comet": "Comet",
+  "decor.item.shelf_telescope": "Telescope",
+  "decor.item.lamp_star": "Star lamp",
+  "decor.item.rocket": "Rocket",
+  "decor.item.ufo": "Flying saucer",
+  "decor.item.rug_space": "Space rug",
+  // <<< i18n:shop
 };

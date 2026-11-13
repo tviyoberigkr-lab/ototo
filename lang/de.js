@@ -120,7 +120,7 @@ window.BO_LANG.de = {
   'wardrobe.crown': 'Krone',
   'wardrobe.medal_tap': 'Treffer-Medaille',
   'wardrobe.hat_santa': 'Weihnachtsmütze',
-  'lock.streak': '🔒 {n} Tg.',
+  'lock.streak': '🔒 {n} Tage',
   'lock.game': '🔒 Spiel',
   'lock.season': '🔒 Saison',
   'common.back': 'Zurück',
@@ -386,7 +386,7 @@ window.BO_LANG.de = {
   "hol.greet.midsummer": "Fröhlichen Mittsommer! 🌼 {name} flicht einen Kranz aus Wiesenblumen.",
   "hol.greet.knowledge_day": "Fröhlichen Tag des Wissens! 🎒 {name} wünscht dir spannende Stunden und neue Freunde.",
   "hol.greet.national": "Heute feiert unser Land! 🎉 {name} freut sich mit dir.",
-  "hol.greet.thanksgiving": "Happy Thanksgiving! 🥧 {name} sagt: Danke, dass es dich gibt!",
+  "hol.greet.thanksgiving": "Frohes Thanksgiving! 🥧 {name} sagt: Danke, dass es dich gibt!",
   "hol.greet.halloween": "Buh! 🎃 Fröhliches Halloween! {name} teilt Süßigkeiten mit dir.",
   "hol.season.winter.greet": "Der Winter ist da! ❄️ {name} fängt Schneeflocken.",
   "hol.season.spring.greet": "Hallo, Frühling! 🌸 {name} schnuppert an den ersten Blumen.",
@@ -454,7 +454,7 @@ window.BO_LANG.de = {
   "edu.logic.name": "Logik",
   "edu.read.name": "Lesen & Buchstaben",
   "edu.world.name": "Die Welt um uns",
-  // ---- edu.math (математика) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Spielen",
   "edu.math.next": "Weiter",
   "edu.math.exit": "Beenden",
@@ -519,7 +519,8 @@ window.BO_LANG.de = {
   "edu.math.medal.level50": "Level 50",
   "edu.math.medal.level100": "Level 100",
   "edu.math.medal.speed20": "Blitz: 20 pro Minute",
-  // ---- edu.logic (логіка) ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "Was kommt als Nächstes?",
   "edu.logic.how.odd": "Was passt nicht?",
   "edu.logic.how.pairs": "Finde die Paare",
@@ -550,7 +551,8 @@ window.BO_LANG.de = {
   "edu.logic.mLevel25": "Level 25",
   "edu.logic.mLevel50": "Level 50",
   "edu.logic.mLevel100": "Level 100",
-  // ---- edu.read (читання і літери (пілот)) ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Finde den Buchstaben",
   "edu.read.task.first": "Mit welchem Buchstaben beginnt das Wort?",
   "edu.read.task.build": "Bilde das Wort",
@@ -569,7 +571,8 @@ window.BO_LANG.de = {
   "edu.read.mStreak": "10 richtig in Folge",
   "edu.read.mLevel5": "Level 5",
   "edu.read.mSolved": "50 Aufgaben",
-  // ---- edu.world (світ навколо (пілот)) ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "Level {n}",
   "edu.world.listen": "Anhören",
   "edu.world.right": "Richtig!",
@@ -780,7 +783,8 @@ window.BO_LANG.de = {
   "edu.world.f.boil": "Auf Meereshöhe kocht Wasser bei 100 °C.",
   "edu.world.f.sunEarth": "Die Sonne kreist um die Erde.",
   "edu.world.f.insect": "Insekten haben acht Beine.",
-  // ---- edu.draw (Малювалка) ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Fahre die Punkte nach",
   "edu.draw.do.mirror": "Male die andere Hälfte",
   "edu.draw.do.memory": "Merk dir das Bild!",
@@ -854,11 +858,13 @@ window.BO_LANG.de = {
   "edu.draw.mLvl50": "Level 50",
   "edu.draw.mLvl100": "Level 100",
   "edu.draw.mSniper": "Präzisions-Ass",
-  // ---- нагороди: медалі навчання ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Lernen",
   "ach.edu.unlocked": "Neue Medaille!",
   "ach.edu.hint": "Spiele „{game}“, um sie zu bekommen",
-  // ---- нагороди: умови медалей навчання ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Schaffe deine erste Runde",
   "edu.math.medal.tasks10.desc": "Löse 10 Aufgaben",
   "edu.math.medal.tasks50.desc": "Löse 50 Aufgaben",
@@ -909,10 +915,10 @@ window.BO_LANG.de = {
   "edu.read.mSolved.desc": "Löse 50 Aufgaben",
   "edu.world.compass.desc": "Gib 25 richtige Antworten",
   "edu.world.paw.desc": "20 richtige Antworten über Tiere",
-  "edu.world.globe.desc": "20 richtige über Länder (ab 7 Jahren)",
-  "edu.world.rocket.desc": "15 richtige über Himmel und Wissenschaft (ab 6)",
-  // ---- кінець умов медалей навчання (згенеровано з i18n_edu_medal_desc.json) ----,
-  // ---- для батьків: замок і екран (parent.js) ----
+  "edu.world.globe.desc": "20 Richtige über Länder (ab 7 Jahren)",
+  "edu.world.rocket.desc": "15 Richtige über Himmel und Wissenschaft (ab 6)",
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "Für Eltern",
   "parent.gateHint": "Lösen Sie die Aufgabe, um fortzufahren",
   "parent.wrong": "Falsche Antwort. Bitte erneut versuchen.",
@@ -928,5 +934,51 @@ window.BO_LANG.de = {
   "parent.reset": "Spiel neu beginnen",
   "parent.shop": "Shop (bald)",
   "parent.shopNote": "Käufe sind – sobald es sie gibt – nur nach der Eltern-Prüfung möglich.",
-  // ---- кінець текстів для батьків (згенеровано з i18n_parent.json) ----
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Shop",
+  "shop.entryNote": "Keine Werbung, keine Abos. Jede Zahlung erst nach der Elternprüfung.",
+  "shop.title": "Shop",
+  "shop.intro": "Einmalige Käufe mit echtem Geld, bezahlt über Google Play oder den App Store. Gekauftes bleibt für immer.",
+  "shop.starsNote": "Sterne ⭐ gibt es im Spiel nur fürs Spielen – sie werden nie für Geld verkauft. Lernen und das Hauptspiel sind kostenlos.",
+  "shop.noneInfo": "Käufe gibt es in der App aus Google Play / dem App Store.",
+  "shop.testBanner": "TEST – Testmodus, keine echten Zahlungen",
+  "shop.buy": "Kaufen",
+  "shop.owned": "Gekauft ✓",
+  "shop.inFull": "In der Vollversion enthalten ✓",
+  "shop.allOwned": "Alle Pakete schon gekauft ✓",
+  "shop.priceSoon": "Preis im App-Store",
+  "shop.restore": "Käufe wiederherstellen",
+  "shop.restoring": "Käufe werden geprüft …",
+  "shop.restored": "Wiederhergestellte Käufe: {n}",
+  "shop.restoredNone": "Keine Käufe gefunden",
+  "shop.thanks": "Danke! Freigeschaltet: „{name}“.",
+  "shop.cancelled": "Kauf abgebrochen",
+  "shop.error": "Keine Verbindung zum Store. Bitte später erneut versuchen.",
+  "shop.reason": "Kauf bestätigen: „{name}“",
+  "shop.includes": "Enthalten:",
+  "shop.hideLocked": "Sachen aus nicht gekauften Paketen vor dem Kind ausblenden",
+  "shop.family": "Erstattungen und Familienfreigabe laufen über Google Play oder den App Store nach deren Regeln.",
+  "shop.lockedText": "Das ist aus einem Extra-Paket und noch zu. Probier die anderen Sachen aus – du hast ganz viele!",
+  "shop.lockTag": "Paket",
+  "shop.p.full.name": "Vollversion",
+  "shop.p.full.desc": "Alle Pakete mit einem Kauf – für immer.",
+  "shop.p.outfits1.name": "Mode-Garderobe",
+  "shop.p.outfits1.desc": "Neue Sachen für die Garderobe.",
+  "shop.p.room1.name": "Weltraumzimmer",
+  "shop.p.room1.desc": "Weltraum-Deko fürs Zimmer – für jeden Platz eine.",
+  "wardrobe.goggles": "Fliegerbrille",
+  "wardrobe.grad_cap": "Absolventenhut",
+  "wardrobe.headphones": "Kopfhörer",
+  "wardrobe.star_clip": "Sternchen",
+  "wardrobe.flower_clip": "Blume",
+  "wardrobe.butterfly": "Schmetterling",
+  "decor.item.win_space": "Sternenhimmel",
+  "decor.item.pic_comet": "Komet",
+  "decor.item.shelf_telescope": "Teleskop",
+  "decor.item.lamp_star": "Sternenlampe",
+  "decor.item.rocket": "Rakete",
+  "decor.item.ufo": "Fliegende Untertasse",
+  "decor.item.rug_space": "Weltraumteppich",
+  // <<< i18n:shop
 };

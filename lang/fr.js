@@ -455,12 +455,12 @@ window.BO_LANG.fr = {
   "edu.logic.name": "Logique",
   "edu.read.name": "Lecture et lettres",
   "edu.world.name": "Le monde autour de nous",
-  // ---- edu.math (математика) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Jouer",
   "edu.math.next": "Suivant",
   "edu.math.exit": "Quitter",
   "edu.math.again": "Encore",
-  "edu.math.speed": "Contre la montre",
+  "edu.math.speed": "Contre-la-montre",
   "edu.math.speedHint": "60 secondes : combien en feras-tu ?",
   "edu.math.best": "Record : {n}",
   "edu.math.newBest": "Nouveau record !",
@@ -520,7 +520,8 @@ window.BO_LANG.fr = {
   "edu.math.medal.level50": "Niveau 50",
   "edu.math.medal.level100": "Niveau 100",
   "edu.math.medal.speed20": "Éclair : 20 par minute",
-  // ---- edu.logic (логіка) ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "Et ensuite ?",
   "edu.logic.how.odd": "Trouve l'intrus",
   "edu.logic.how.pairs": "Trouve les paires",
@@ -551,7 +552,8 @@ window.BO_LANG.fr = {
   "edu.logic.mLevel25": "Niveau 25",
   "edu.logic.mLevel50": "Niveau 50",
   "edu.logic.mLevel100": "Niveau 100",
-  // ---- edu.read (читання і літери (пілот)) ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Trouve la lettre",
   "edu.read.task.first": "Par quelle lettre commence le mot ?",
   "edu.read.task.build": "Forme le mot",
@@ -570,7 +572,8 @@ window.BO_LANG.fr = {
   "edu.read.mStreak": "10 d’affilée sans faute",
   "edu.read.mLevel5": "Niveau 5",
   "edu.read.mSolved": "50 exercices",
-  // ---- edu.world (світ навколо (пілот)) ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "Niveau {n}",
   "edu.world.listen": "Écouter",
   "edu.world.right": "Bravo !",
@@ -739,7 +742,7 @@ window.BO_LANG.fr = {
   "edu.world.c.ie": "Irlande",
   "edu.world.c.hu": "Hongrie",
   "edu.world.c.lt": "Lituanie",
-  "edu.world.cap.ua": "Kyiv",
+  "edu.world.cap.ua": "Kyïv",
   "edu.world.cap.pl": "Varsovie",
   "edu.world.cap.de": "Berlin",
   "edu.world.cap.fr": "Paris",
@@ -781,7 +784,8 @@ window.BO_LANG.fr = {
   "edu.world.f.boil": "Au niveau de la mer, l'eau bout à 100 °C.",
   "edu.world.f.sunEarth": "Le Soleil tourne autour de la Terre.",
   "edu.world.f.insect": "Les insectes ont huit pattes.",
-  // ---- edu.draw (Малювалка) ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Repasse sur les points",
   "edu.draw.do.mirror": "Dessine l’autre moitié",
   "edu.draw.do.memory": "Retiens le dessin !",
@@ -855,11 +859,13 @@ window.BO_LANG.fr = {
   "edu.draw.mLvl50": "Niveau 50",
   "edu.draw.mLvl100": "Niveau 100",
   "edu.draw.mSniper": "As de la précision",
-  // ---- нагороди: медалі навчання ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Apprendre",
   "ach.edu.unlocked": "Nouvelle médaille !",
   "ach.edu.hint": "Joue à « {game} » pour la gagner",
-  // ---- нагороди: умови медалей навчання ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Termine ta première manche",
   "edu.math.medal.tasks10.desc": "Résous 10 exercices",
   "edu.math.medal.tasks50.desc": "Résous 50 exercices",
@@ -912,8 +918,8 @@ window.BO_LANG.fr = {
   "edu.world.paw.desc": "20 bonnes réponses sur les animaux",
   "edu.world.globe.desc": "20 bonnes réponses sur les pays (dès 7 ans)",
   "edu.world.rocket.desc": "15 bonnes réponses : ciel et science (dès 6 ans)",
-  // ---- кінець умов медалей навчання (згенеровано з i18n_edu_medal_desc.json) ----,
-  // ---- для батьків: замок і екран (parent.js) ----
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "Pour les parents",
   "parent.gateHint": "Pour continuer, résolvez le calcul",
   "parent.wrong": "Mauvaise réponse. Veuillez réessayer.",
@@ -929,5 +935,51 @@ window.BO_LANG.fr = {
   "parent.reset": "Recommencer le jeu",
   "parent.shop": "Boutique (bientôt)",
   "parent.shopNote": "Les achats, quand ils arriveront, ne seront accessibles qu’après la vérification parentale.",
-  // ---- кінець текстів для батьків (згенеровано з i18n_parent.json) ----
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Boutique",
+  "shop.entryNote": "Sans pub ni abonnement. Chaque paiement passe d’abord par la vérification parentale.",
+  "shop.title": "Boutique",
+  "shop.intro": "Achats uniques avec de l’argent réel, payés via Google Play ou l’App Store. Ce qui est acheté reste acquis pour toujours.",
+  "shop.starsNote": "Les points ⭐ du jeu se gagnent uniquement en jouant : ils ne sont jamais vendus contre de l’argent. L’apprentissage et le jeu de base sont gratuits.",
+  "shop.noneInfo": "Les achats seront disponibles dans l’application Google Play / App Store.",
+  "shop.testBanner": "TEST — mode test, aucun vrai paiement",
+  "shop.buy": "Acheter",
+  "shop.owned": "Acheté ✓",
+  "shop.inFull": "Inclus dans la version complète ✓",
+  "shop.allOwned": "Tous les packs sont déjà achetés ✓",
+  "shop.priceSoon": "Prix affiché dans la boutique d’applications",
+  "shop.restore": "Restaurer les achats",
+  "shop.restoring": "Vérification des achats…",
+  "shop.restored": "Achats restaurés : {n}",
+  "shop.restoredNone": "Aucun achat trouvé",
+  "shop.thanks": "Merci ! Débloqué : « {name} ».",
+  "shop.cancelled": "Achat annulé",
+  "shop.error": "Impossible de joindre la boutique. Réessayez plus tard.",
+  "shop.reason": "Confirmer l’achat : « {name} »",
+  "shop.includes": "Contenu :",
+  "shop.hideLocked": "Masquer à l’enfant les objets des packs non achetés",
+  "shop.family": "Les remboursements et le partage familial passent par Google Play ou l’App Store, selon leurs règles.",
+  "shop.lockedText": "Cet objet vient d’un pack en plus, il est fermé pour l’instant. Essaie les autres, tu en as plein !",
+  "shop.lockTag": "pack",
+  "shop.p.full.name": "Version complète",
+  "shop.p.full.desc": "Tous les packs en un seul achat, pour toujours.",
+  "shop.p.outfits1.name": "Garde-robe tendance",
+  "shop.p.outfits1.desc": "De nouveaux objets pour la garde-robe.",
+  "shop.p.room1.name": "Chambre de l’espace",
+  "shop.p.room1.desc": "Des décorations spatiales pour la chambre, une pour chaque place.",
+  "wardrobe.goggles": "Lunettes d’aviateur",
+  "wardrobe.grad_cap": "Toque de diplômé",
+  "wardrobe.headphones": "Casque audio",
+  "wardrobe.star_clip": "Petite étoile",
+  "wardrobe.flower_clip": "Fleur",
+  "wardrobe.butterfly": "Papillon",
+  "decor.item.win_space": "Ciel étoilé",
+  "decor.item.pic_comet": "Comète",
+  "decor.item.shelf_telescope": "Télescope",
+  "decor.item.lamp_star": "Lampe étoile",
+  "decor.item.rocket": "Fusée",
+  "decor.item.ufo": "Soucoupe volante",
+  "decor.item.rug_space": "Tapis de l’espace",
+  // <<< i18n:shop
 };

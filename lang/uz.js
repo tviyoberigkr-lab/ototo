@@ -104,7 +104,7 @@ window.BO_LANG.uz = {
 
   // ---- друзі (персонажі) ----
   "chars.title": "Doʻstlarim",
-  "chars.points": "Sende ⭐ {n}",
+  "chars.points": "Senda ⭐ {n}",
   "chars.active": "hozir men bilan",
   "chars.choose": "tanlash",
   "chars.prevFirst": "🔒 avval oldingisini och",
@@ -465,7 +465,7 @@ window.BO_LANG.uz = {
   "edu.logic.name": "Mantiq",
   "edu.read.name": "Oʻqish va harflar",
   "edu.world.name": "Atrofimizdagi dunyo",
-  // ---- edu.math (математика) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Oʻynash",
   "edu.math.next": "Keyingi",
   "edu.math.exit": "Chiqish",
@@ -501,12 +501,12 @@ window.BO_LANG.uz = {
   "edu.math.q.calc": "Hisobla",
   "edu.math.q.groups": "Jami nechta?",
   "edu.math.q.share": "Teng boʻl: har biriga nechta?",
-  "edu.math.q.frac": "Pitssaning qaysi qismi boʻyalgan?",
+  "edu.math.q.frac": "Pitsaning qaysi qismi boʻyalgan?",
   "edu.math.q.x": "x ni top",
   "edu.math.q.seq": "Keyingi son qaysi?",
   "edu.math.of": "{b} ning {a} qismi",
   "edu.math.pct": "{b} ning {a}%",
-  "edu.math.m.left": "Sende {a} 💰 bor. {item} narxi {p} 💰. Qancha qoladi?",
+  "edu.math.m.left": "Senda {a} 💰 bor. {item} narxi {p} 💰. Qancha qoladi?",
   "edu.math.m.total": "{item} narxi {p} 💰. {n} ta {item} uchun qancha toʻlaysan?",
   "edu.math.m.share": "{a} ta 🍬 bor. Ularni {n} ta 🧒 teng boʻlishadi. Har biriga nechta tegadi?",
   "edu.math.m.two": "{i1} narxi {p1} 💰, {i2} narxi esa {p2} 💰. Hammasi boʻlib qancha?",
@@ -530,7 +530,8 @@ window.BO_LANG.uz = {
   "edu.math.medal.level50": "50-daraja",
   "edu.math.medal.level100": "100-daraja",
   "edu.math.medal.speed20": "Chaqmoq: daqiqada 20 ta",
-  // ---- edu.logic (логіка) ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "Keyingisi nima?",
   "edu.logic.how.odd": "Ortiqchasini top",
   "edu.logic.how.pairs": "Juftlarini top",
@@ -561,7 +562,8 @@ window.BO_LANG.uz = {
   "edu.logic.mLevel25": "25-daraja",
   "edu.logic.mLevel50": "50-daraja",
   "edu.logic.mLevel100": "100-daraja",
-  // ---- edu.read (читання і літери (пілот)) ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Harfni top",
   "edu.read.task.first": "Soʻz qaysi harf bilan boshlanadi?",
   "edu.read.task.build": "Soʻz tuz",
@@ -580,7 +582,8 @@ window.BO_LANG.uz = {
   "edu.read.mStreak": "Ketma-ket 10 ta xatosiz",
   "edu.read.mLevel5": "5-daraja",
   "edu.read.mSolved": "50 ta topshiriq",
-  // ---- edu.world (світ навколо (пілот)) ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "{n}-daraja",
   "edu.world.listen": "Tinglash",
   "edu.world.right": "Toʻgʻri!",
@@ -791,7 +794,8 @@ window.BO_LANG.uz = {
   "edu.world.f.boil": "Dengiz sathida suv 100 °C da qaynaydi.",
   "edu.world.f.sunEarth": "Quyosh Yer atrofida aylanadi.",
   "edu.world.f.insect": "Hasharotlarning sakkizta oyogʻi bor.",
-  // ---- edu.draw (Малювалка) ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Nuqtalar boʻylab chiz",
   "edu.draw.do.mirror": "Ikkinchi yarmini chizib qoʻy",
   "edu.draw.do.memory": "Rasmni eslab qol!",
@@ -865,11 +869,13 @@ window.BO_LANG.uz = {
   "edu.draw.mLvl50": "50-daraja",
   "edu.draw.mLvl100": "100-daraja",
   "edu.draw.mSniper": "Aniqlik mergani",
-  // ---- нагороди: медалі навчання ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Taʼlim",
   "ach.edu.unlocked": "Yangi medal!",
   "ach.edu.hint": "Olish uchun «{game}» oʻyinini oʻyna",
-  // ---- нагороди: умови медалей навчання ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Birinchi raundni oʻt",
   "edu.math.medal.tasks10.desc": "10 ta masala yech",
   "edu.math.medal.tasks50.desc": "50 ta masala yech",
@@ -922,8 +928,8 @@ window.BO_LANG.uz = {
   "edu.world.paw.desc": "Hayvonlar haqida 20 ta toʻgʻri javob",
   "edu.world.globe.desc": "Davlatlar haqida 20 ta toʻgʻri javob (7 yoshdan)",
   "edu.world.rocket.desc": "Osmon va fan haqida 15 ta toʻgʻri javob (6 yoshdan)",
-  // ---- кінець умов медалей навчання (згенеровано з i18n_edu_medal_desc.json) ----
-  // ---- для батьків: замок і екран (parent.js) ----
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "Ota-onalar uchun",
   "parent.gateHint": "Davom etish uchun misolni yeching",
   "parent.wrong": "Notoʻgʻri. Qaytadan urinib koʻring.",
@@ -939,5 +945,51 @@ window.BO_LANG.uz = {
   "parent.reset": "Oʻyinni boshidan boshlash",
   "parent.shop": "Doʻkon (tez orada)",
   "parent.shopNote": "Xaridlar paydo boʻlganda, ular faqat ota-onalar tekshiruvidan keyin ochiladi.",
-  // ---- кінець текстів для батьків (згенеровано з i18n_parent.json) ----
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Doʻkon",
+  "shop.entryNote": "Reklamasiz va obunasiz. Har bir toʻlov faqat ota-onalar tekshiruvidan keyin.",
+  "shop.title": "Doʻkon",
+  "shop.intro": "Haqiqiy pulga bir martalik xaridlar: toʻlov Google Play yoki App Store orqali. Sotib olingan narsa abadiy qoladi.",
+  "shop.starsNote": "Oʻyindagi ballar ⭐ faqat oʻynab yigʻiladi — ular hech qachon pulga sotilmaydi. Taʼlim va asosiy oʻyin bepul.",
+  "shop.noneInfo": "Xaridlar Google Play / App Store ilovasida mavjud boʻladi.",
+  "shop.testBanner": "TEST — sinov rejimi, haqiqiy toʻlovlar yoʻq",
+  "shop.buy": "Sotib olish",
+  "shop.owned": "Sotib olindi ✓",
+  "shop.inFull": "Toʻliq versiyada bor ✓",
+  "shop.allOwned": "Barcha toʻplamlar sotib olingan ✓",
+  "shop.priceSoon": "Narxi — ilovalar doʻkonida",
+  "shop.restore": "Xaridlarni tiklash",
+  "shop.restoring": "Xaridlar tekshirilmoqda…",
+  "shop.restored": "Tiklangan xaridlar: {n}",
+  "shop.restoredNone": "Xaridlar topilmadi",
+  "shop.thanks": "Rahmat! Ochildi: «{name}».",
+  "shop.cancelled": "Xarid bekor qilindi",
+  "shop.error": "Doʻkonga ulanib boʻlmadi. Keyinroq urinib koʻring.",
+  "shop.reason": "Xaridni tasdiqlash: «{name}»",
+  "shop.includes": "Ichida:",
+  "shop.hideLocked": "Sotib olinmagan toʻplamlardagi narsalarni bolaga koʻrsatmaslik",
+  "shop.family": "Pulni qaytarish va oilaviy foydalanish — Google Play yoki App Store orqali, ularning qoidalariga koʻra.",
+  "shop.lockedText": "Bu narsa qoʻshimcha toʻplamdan, hozircha yopiq. Boshqalarini sinab koʻr — sende ular juda koʻp!",
+  "shop.lockTag": "toʻplam",
+  "shop.p.full.name": "Toʻliq versiya",
+  "shop.p.full.desc": "Barcha toʻplamlar bitta xarid bilan — abadiy.",
+  "shop.p.outfits1.name": "Moda garderobi",
+  "shop.p.outfits1.desc": "Garderob uchun yangi narsalar.",
+  "shop.p.room1.name": "Kosmik xona",
+  "shop.p.room1.desc": "Xona uchun kosmik bezaklar — har bir joyga bittadan.",
+  "wardrobe.goggles": "Uchuvchi koʻzoynagi",
+  "wardrobe.grad_cap": "Bitiruvchi shapkasi",
+  "wardrobe.headphones": "Quloqchinlar",
+  "wardrobe.star_clip": "Yulduzcha",
+  "wardrobe.flower_clip": "Gul",
+  "wardrobe.butterfly": "Kapalak",
+  "decor.item.win_space": "Yulduzli osmon",
+  "decor.item.pic_comet": "Kometa",
+  "decor.item.shelf_telescope": "Teleskop",
+  "decor.item.lamp_star": "Yulduzli chiroq",
+  "decor.item.rocket": "Raketa",
+  "decor.item.ufo": "Uchar likopcha",
+  "decor.item.rug_space": "Kosmik gilamcha",
+  // <<< i18n:shop
 };

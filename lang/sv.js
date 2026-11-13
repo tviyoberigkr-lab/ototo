@@ -272,7 +272,7 @@ window.BO_LANG.sv = {
   "ach.cat.play": "Spel",
   "ach.cat.collection": "Samling",
   "ach.cat.journey": "Resa",
-  "ach.cat.loyalty": "Trogenhet",
+  "ach.cat.loyalty": "Trohet",
   "ach.cat.fun": "Hemligheter",
   "ach.feed10.name": "Smaklig måltid!",
   "ach.feed10.desc": "Mata din vän {n} gånger",
@@ -491,7 +491,7 @@ window.BO_LANG.sv = {
   "edu.read.name": "Läsa och bokstäver",
   "edu.world.name": "Världen runt oss",
 
-  // ---- edu.math (математика) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Spela",
   "edu.math.next": "Nästa",
   "edu.math.exit": "Avsluta",
@@ -556,8 +556,9 @@ window.BO_LANG.sv = {
   "edu.math.medal.level50": "Nivå 50",
   "edu.math.medal.level100": "Nivå 100",
   "edu.math.medal.speed20": "Blixten: 20 på en minut",
+  // <<< i18n:edu_math
 
-  // ---- edu.logic (логіка) ----
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "Vad kommer sedan?",
   "edu.logic.how.odd": "Hitta den som inte passar",
   "edu.logic.how.pairs": "Hitta paren",
@@ -588,8 +589,9 @@ window.BO_LANG.sv = {
   "edu.logic.mLevel25": "Nivå 25",
   "edu.logic.mLevel50": "Nivå 50",
   "edu.logic.mLevel100": "Nivå 100",
+  // <<< i18n:edu_logic
 
-  // ---- edu.read (читання і літери (пілот)) ----
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Hitta bokstaven",
   "edu.read.task.first": "Vilken bokstav börjar ordet på?",
   "edu.read.task.build": "Bygg ordet",
@@ -608,8 +610,9 @@ window.BO_LANG.sv = {
   "edu.read.mStreak": "10 i rad utan fel",
   "edu.read.mLevel5": "Nivå 5",
   "edu.read.mSolved": "50 uppgifter",
+  // <<< i18n:edu_read
 
-  // ---- edu.world (світ навколо (пілот)) ----
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "Nivå {n}",
   "edu.world.listen": "Lyssna",
   "edu.world.right": "Rätt!",
@@ -778,7 +781,7 @@ window.BO_LANG.sv = {
   "edu.world.c.ie": "Irland",
   "edu.world.c.hu": "Ungern",
   "edu.world.c.lt": "Litauen",
-  "edu.world.cap.ua": "Kyiv",
+  "edu.world.cap.ua": "Kyjiv",
   "edu.world.cap.pl": "Warszawa",
   "edu.world.cap.de": "Berlin",
   "edu.world.cap.fr": "Paris",
@@ -820,8 +823,9 @@ window.BO_LANG.sv = {
   "edu.world.f.boil": "Vid havsytan kokar vatten vid 100 °C.",
   "edu.world.f.sunEarth": "Solen går runt jorden.",
   "edu.world.f.insect": "Insekter har åtta ben.",
+  // <<< i18n:edu_world
 
-  // ---- edu.draw (Малювалка) ----
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Följ prickarna",
   "edu.draw.do.mirror": "Rita andra halvan",
   "edu.draw.do.memory": "Kom ihåg bilden!",
@@ -895,13 +899,15 @@ window.BO_LANG.sv = {
   "edu.draw.mLvl50": "Nivå 50",
   "edu.draw.mLvl100": "Nivå 100",
   "edu.draw.mSniper": "Precisionsskytt",
+  // <<< i18n:edu_draw
 
-  // ---- нагороди: медалі навчання ----
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Lära",
   "ach.edu.unlocked": "Ny medalj!",
   "ach.edu.hint": "Spela ”{game}” för att få den",
+  // <<< i18n:edu_medals
 
-  // ---- нагороди: умови медалей навчання ----
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Klara din första omgång",
   "edu.math.medal.tasks10.desc": "Lös 10 uppgifter",
   "edu.math.medal.tasks50.desc": "Lös 50 uppgifter",
@@ -954,9 +960,9 @@ window.BO_LANG.sv = {
   "edu.world.paw.desc": "20 rätta svar om djur",
   "edu.world.globe.desc": "20 rätta svar om länder (från 7 år)",
   "edu.world.rocket.desc": "15 rätta svar om rymden och vetenskap (från 6 år)",
-  // ---- кінець умов медалей навчання (згенеровано з i18n_edu_medal_desc.json) ----,
+  // <<< i18n:edu_medal_desc
 
-  // ---- для батьків: замок і екран (parent.js) ----
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "För föräldrar",
   "parent.gateHint": "Lös uppgiften för att fortsätta",
   "parent.wrong": "Fel svar. Försök igen.",
@@ -972,5 +978,51 @@ window.BO_LANG.sv = {
   "parent.reset": "Börja om spelet",
   "parent.shop": "Butik (kommer snart)",
   "parent.shopNote": "Köp blir, när de finns, tillgängliga först efter föräldrakontrollen.",
-  // ---- кінець текстів для батьків (згенеровано з i18n_parent.json) ----
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Butik",
+  "shop.entryNote": "Ingen reklam, inga prenumerationer. Varje betalning först efter föräldrakontrollen.",
+  "shop.title": "Butik",
+  "shop.intro": "Engångsköp med riktiga pengar, betalas via Google Play eller App Store. Det som köps finns kvar för alltid.",
+  "shop.starsNote": "Poäng ⭐ i spelet tjänas bara genom att spela — de säljs aldrig för pengar. Lärandet och huvudspelet är gratis.",
+  "shop.noneInfo": "Köp blir möjliga i appen från Google Play / App Store.",
+  "shop.testBanner": "TEST — testläge, inga riktiga betalningar",
+  "shop.buy": "Köp",
+  "shop.owned": "Köpt ✓",
+  "shop.inFull": "Ingår i fullversionen ✓",
+  "shop.allOwned": "Alla paket är redan köpta ✓",
+  "shop.priceSoon": "Priset visas i appbutiken",
+  "shop.restore": "Återställ köp",
+  "shop.restoring": "Kontrollerar köp…",
+  "shop.restored": "Återställda köp: {n}",
+  "shop.restoredNone": "Inga köp hittades",
+  "shop.thanks": "Tack! Upplåst: ”{name}”.",
+  "shop.cancelled": "Köpet avbröts",
+  "shop.error": "Kunde inte nå butiken. Försök igen senare.",
+  "shop.reason": "Bekräfta köp: ”{name}”",
+  "shop.includes": "Innehåll:",
+  "shop.hideLocked": "Dölj saker från paket som inte är köpta för barnet",
+  "shop.family": "Återbetalningar och familjedelning sköts av Google Play eller App Store enligt deras regler.",
+  "shop.lockedText": "Den här saken hör till ett extrapaket och är låst just nu. Testa de andra — du har jättemånga!",
+  "shop.lockTag": "paket",
+  "shop.p.full.name": "Fullversion",
+  "shop.p.full.desc": "Alla paket i ett köp — för alltid.",
+  "shop.p.outfits1.name": "Modegarderob",
+  "shop.p.outfits1.desc": "Nya saker till garderoben.",
+  "shop.p.room1.name": "Rymdrum",
+  "shop.p.room1.desc": "Rymddekorationer till rummet — en för varje plats.",
+  "wardrobe.goggles": "Pilotglasögon",
+  "wardrobe.grad_cap": "Examenshatt",
+  "wardrobe.headphones": "Hörlurar",
+  "wardrobe.star_clip": "Liten stjärna",
+  "wardrobe.flower_clip": "Blomma",
+  "wardrobe.butterfly": "Fjäril",
+  "decor.item.win_space": "Stjärnhimmel",
+  "decor.item.pic_comet": "Komet",
+  "decor.item.shelf_telescope": "Teleskop",
+  "decor.item.lamp_star": "Stjärnlampa",
+  "decor.item.rocket": "Raket",
+  "decor.item.ufo": "Flygande tefat",
+  "decor.item.rug_space": "Rymdmatta",
+  // <<< i18n:shop
 };

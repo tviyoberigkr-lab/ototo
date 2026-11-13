@@ -11,8 +11,9 @@
                                           відповіді. reason — необов'язковий
                                           (вже перекладений) рядок «навіщо».
      BO.parentGate.isOpen()             — чи відкрите вікно зараз.
-     BO.PRIVACY_URL                     — адреса політики приватності; поки
-                                          порожня — показуємо «скоро», без посилання.
+     BO.PRIVACY_URL                     — адреса політики приватності: 'privacy/'
+                                          (сторінка сайту поруч із грою) або повна
+                                          https://…; порожня — «скоро», без посилання.
 
    ПЕРЕВІРКА: двозначне × однозначне (напр. 23 × 4), числа щоразу нові,
    відповідь — на екранній цифровій клавіатурі (без варіантів, тож не вгадати).
@@ -23,7 +24,8 @@
 
    ЕКРАН «Для батьків» (кнопка 🔒 під кнопками модулів, поруч із «Як грати?»):
    коротко про дані/рекламу, політика приватності, «Почати гру спочатку»
-   (той самий діалог, що й кнопка ⟲) і заглушка «Магазин (скоро)».
+   (той самий діалог, що й кнопка ⟲) і «Магазин» (shop.js; якщо shop.js не
+   підключено — неактивна заглушка «Магазин (скоро)»).
 
    Стан: state.pgate = { fails: 0..2, until: мітка часу кінця паузи або 0 }.
    Тексти: ключі 'parent.*' (i18n_parent.json → tools/i18n_parent.py).
@@ -32,7 +34,7 @@
   'use strict';
   if (!window.BO) return;
   const BO = window.BO;
-  if (typeof BO.PRIVACY_URL !== 'string') BO.PRIVACY_URL = '';
+  if (typeof BO.PRIVACY_URL !== 'string') BO.PRIVACY_URL = 'privacy/';   // privacy/index.html поруч із грою
 
   const CFG = {
     maxFails: 3,          // скільки помилок поспіль до паузи
@@ -263,6 +265,8 @@
     // той самий діалог «Почати спочатку?», що й кнопка ⟲ угорі (resetGame у app.js)
     $('parReset').addEventListener('click', () => { const r = $('btnReset'); if (r) r.click(); });
     $('parBack').addEventListener('click', () => BO.backToMain());
+    // магазин — лише звідси, тобто вже після замка (shop.js ще раз питає замок перед кожною оплатою)
+    $('parShop').addEventListener('click', () => { if (BO.shop) BO.shop.open(); });
     renderView();
   }
 
@@ -272,13 +276,15 @@
     $('parInfo').textContent = T('info');
     $('parLocal').textContent = T('local');
     $('parResetTxt').textContent = T('reset');
-    $('parShopTxt').textContent = T('shop');
-    $('parShopNote').textContent = T('shopNote');
+    const shop = !!BO.shop;
+    $('parShop').disabled = !shop;
+    $('parShopTxt').textContent = shop ? BO.t('shop.entry') : T('shop');
+    $('parShopNote').textContent = shop ? BO.t('shop.entryNote') : T('shopNote');
     $('parBack').textContent = BO.t('common.back');
     const p = $('parPrivacy');
     p.innerHTML = '';
-    const url = BO.PRIVACY_URL;
-    if (url && /^https:\/\//i.test(url)) {
+    const url = privacyHref();
+    if (url) {
       const a = document.createElement('a');
       a.className = 'parLink';
       a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer';
@@ -292,6 +298,19 @@
       p.children[1].textContent = T('privacy');
       p.children[2].textContent = T('soon');
     }
+  }
+
+  // Відносна адреса ('privacy/') — відносно сторінки гри; дозволяємо лише https:// або
+  // свій же сайт (http://localhost під час перевірок), без javascript:, data: тощо.
+  function privacyHref() {
+    const raw = BO.PRIVACY_URL;
+    if (!raw || typeof raw !== 'string') return '';
+    let u;
+    try { u = new URL(raw, document.baseURI); } catch (e) { return ''; }
+    if (u.protocol === 'https:') return u.href;
+    if ((u.protocol === 'http:' || u.protocol === 'file:') && u.protocol === location.protocol &&
+        u.host === location.host) return u.href;
+    return '';
   }
 
   function openParents() {

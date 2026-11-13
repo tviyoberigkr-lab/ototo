@@ -18,13 +18,20 @@
    ── ЯК ДОДАТИ / РОЗШИРИТИ МОВУ (для носія мови) ──
    Один об'єкт на мову в READ_DATA нижче:
      speech:    код голосу для озвучки ('uk-UA')
-     alphabet:  усі літери ВЕЛИКИМИ, в порядку абетки (масив рядків)
+     alphabet:  усі літери ВЕЛИКИМИ, в порядку абетки (масив рядків). Літера з кількох знаків
+                (угор. CS, DZS…, чеське CH, узб. Oʻ Sh…) — один елемент: слова діляться на
+                літери за абеткою (найдовший збіг), тож «szem» = SZ+E+M, «choʻchqa» = Ch+Oʻ+Ch+Q+A.
+                Слова з подвоєним диграфом (угор. ssz, ccs, ggy…) або з апострофом ʼ ігри не беруть.
      vowels:    голосні ВЕЛИКИМИ (рядок) — для генерації помилок у «правильно написаному слові»
      words:     [[слово, емодзі], …] — прості іменники, які легко намалювати одним емодзі.
                 Слово пишеться як у словнику (німецькі іменники — з великої), без апострофів,
                 дефісів і пробілів. Перша літера (без наголосу/діакритики) має бути в alphabet.
      sentences: (необов'язково) [[речення, правильне емодзі, хибне, хибне], …] — для віку 9–14.
-   Код гри при цьому не міняється. Повні дані: uk, en, it, pt, nl, cs, el, sv, hu, bg, uz, az; решта — абетка + стартові слова. */
+     avoid:     (необов'язково) справжні слова мови, які генератор помилок у «правильно написаному
+                слові» міг би утворити з наших слів (Katze → Kotze, pato → puto, kura → kora): їх як
+                «помилку» не показуємо. Слова в words пишемо лише літерами з alphabet (без É, Ç, Á…,
+                якщо їх немає в абетці): інакше «Якої літери не вистачає?» дасть хибні варіанти.
+   Код гри при цьому не міняється. Повні дані (≈60–70 слів + 14 речень): усі 18 мов (pl, de, ro, kk, fr, es — дані чекають перевірки носієм мови, див. new_words_review.csv). */
 (function () {
   'use strict';
   const BO = window.BO;
@@ -99,9 +106,36 @@
       alphabet: ['A','Ą','B','C','Ć','D','E','Ę','F','G','H','I','J','K','L','Ł','M','N','Ń','O','Ó','P','R','S','Ś','T','U','W','Y','Z','Ź','Ż'],
       vowels: 'AĄEĘIOÓUY',
       words: [
-        ['kot','🐱'],['pies','🐶'],['dom','🏠'],['ser','🧀'],['lis','🦊'],['koń','🐴'],['ryba','🐟'],['sowa','🦉'],
-        ['żaba','🐸'],['tort','🎂'],['auto','🚗'],['krowa','🐄'],['banan','🍌'],['jabłko','🍎'],['słońce','☀️'],['drzewo','🌳'],
-        ['gwiazda','⭐'],
+        ['kot','🐱'],['dom','🏠'],['ser','🧀'],['lis','🦊'],['koń','🐴'],['lew','🦁'],['jeż','🦔'],['oko','👁️'],
+        ['nos','👃'],['but','👟'],['pies','🐶'],['ryba','🐟'],['sowa','🦉'],['żaba','🐸'],['tort','🎂'],['auto','🚗'],
+        ['ucho','👂'],['mysz','🐭'],['kura','🐔'],['owca','🐑'],['foka','🦭'],['ręka','✋'],['słoń','🐘'],['krowa','🐄'],
+        ['banan','🍌'],['małpa','🐒'],['zebra','🦓'],['motyl','🦋'],['indyk','🦃'],['grzyb','🍄'],['chleb','🍞'],['mleko','🥛'],
+        ['jajko','🥚'],['kwiat','🌸'],['śnieg','❄️'],['tęcza','🌈'],['rower','🚲'],['piłka','⚽'],['klucz','🔑'],['lampa','💡'],
+        ['łódka','⛵'],['jabłko','🍎'],['słońce','☀️'],['drzewo','🌳'],['kaczka','🦆'],['świnia','🐷'],['żyrafa','🦒'],['tygrys','🐯'],
+        ['królik','🐰'],['ślimak','🐌'],['wiśnia','🍒'],['chmura','☁️'],['ołówek','✏️'],['gwiazda','⭐'],['pingwin','🐧'],['gruszka','🍐'],
+        ['cytryna','🍋'],['marchew','🥕'],['księżyc','🌙'],['autobus','🚌'],['samolot','✈️'],['rakieta','🚀'],['książka','📖'],['parasol','☂️'],
+        ['pszczoła','🐝'],['latawiec','🪁'],['hipopotam','🦛'],['biedronka','🐞'],['czekolada','🍫'],['truskawka','🍓'],
+      ],
+      sentences: [
+        ['Jest żółta, kwaśna i rośnie na drzewie.','🍋','🍌','🍎'],
+        ['Żyje w morzu, pływa i ma płetwy.','🐟','🐦','🐸'],
+        ['Nocą świeci wysoko na niebie.','🌙','☀️','☁️'],
+        ['To zwierzę ma bardzo długą trąbę.','🐘','🦁','🐒'],
+        ['Pełza powoli i nosi swój domek na plecach.','🐌','🐝','🐸'],
+        ['Zimą pada z nieba, jest biały i zimny.','❄️','🌧️','🌸'],
+        ['Służy do otwierania drzwi.','🔑','📖','💡'],
+        ['Lata od kwiatka do kwiatka i robi miód.','🐝','🦋','🦉'],
+        ['Jest rudy, sprytny i ma puszysty ogon.','🦊','🐶','🐻'],
+        ['Służy do pisania i rysowania w zeszycie.','✏️','🔑','☂️'],
+        ['Leci aż do gwiazd, w kosmos.','🚀','🚗','⛵'],
+        ['Ten ptak nie śpi w nocy i ma duże oczy.','🦉','🦆','🐔'],
+        ['Ma kolce i chowa się w lesie pod liśćmi.','🦔','🐰','🐢'],
+        ['Otwieramy go, kiedy pada deszcz.','☂️','📖','⏰'],
+      ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку)
+      avoid: [
+        'kara','kora','siwa','masz','zera','mała','mapa','piła','półka','pałka','pułka','lama',
+        'łydka','kacza','motel','jako','klacz','kwit','chmara',
       ],
     },
     de: {
@@ -110,9 +144,39 @@
       alphabet: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','Ä','Ö','Ü'],
       vowels: 'AEIOUÄÖÜ',
       words: [
+        ['Ei','🥚'],['Bär','🐻'],['Kuh','🐄'],['Ohr','👂'],['Zug','🚂'],['Bus','🚌'],['Eis','🍦'],['Uhr','⏰'],
         ['Hund','🐶'],['Maus','🐭'],['Haus','🏠'],['Mond','🌙'],['Baum','🌳'],['Ente','🦆'],['Eule','🦉'],['Igel','🦔'],
-        ['Auto','🚗'],['Ball','⚽'],['Bär','🐻'],['Käse','🧀'],['Katze','🐱'],['Fisch','🐟'],['Sonne','☀️'],['Stern','⭐'],
-        ['Apfel','🍎'],['Birne','🍐'],['Banane','🍌'],['Kuchen','🍰'],
+        ['Auto','🚗'],['Ball','⚽'],['Käse','🧀'],['Auge','👁️'],['Nase','👃'],['Hand','✋'],['Boot','⛵'],['Huhn','🐔'],
+        ['Affe','🐒'],['Hase','🐰'],['Brot','🍞'],['Buch','📖'],['Löwe','🦁'],['Schaf','🐑'],['Katze','🐱'],['Fisch','🐟'],
+        ['Sonne','☀️'],['Stern','⭐'],['Apfel','🍎'],['Birne','🍐'],['Ziege','🐐'],['Pferd','🐴'],['Tiger','🐯'],['Zebra','🦓'],
+        ['Biene','🐝'],['Fuchs','🦊'],['Vogel','🐦'],['Milch','🥛'],['Möhre','🥕'],['Blume','🌸'],['Wolke','☁️'],['Regen','🌧️'],
+        ['Lampe','💡'],['Jacke','🧥'],['Stift','✏️'],['Banane','🍌'],['Kuchen','🍰'],['Frosch','🐸'],['Delfin','🐬'],['Traube','🍇'],
+        ['Schnee','❄️'],['Schirm','☂️'],['Rakete','🚀'],['Kirsche','🍒'],['Giraffe','🦒'],['Elefant','🐘'],['Pinguin','🐧'],['Zitrone','🍋'],
+        ['Gitarre','🎸'],['Fahrrad','🚲'],['Schwein','🐷'],['Schnecke','🐌'],['Erdbeere','🍓'],['Flugzeug','✈️'],['Schlüssel','🔑'],
+      ],
+      sentences: [
+        ['Sie ist gelb, sauer und wächst am Baum.','🍋','🍌','🍎'],
+        ['Er lebt im Meer, schwimmt und hat Flossen.','🐟','🐦','🐸'],
+        ['Nachts leuchtet er hoch am Himmel.','🌙','☀️','☁️'],
+        ['Dieses Tier hat einen sehr langen Rüssel.','🐘','🦁','🐒'],
+        ['Sie kriecht langsam und trägt ihr Haus auf dem Rücken.','🐌','🐝','🐸'],
+        ['Im Winter fällt er weiß und kalt vom Himmel.','❄️','🌧️','🌸'],
+        ['Damit schließt man die Tür auf.','🔑','📖','💡'],
+        ['Sie fliegt von Blüte zu Blüte und macht Honig.','🐝','🦋','🦉'],
+        ['Er ist rot, schlau und hat einen buschigen Schwanz.','🦊','🐶','🐻'],
+        ['Damit schreibt und malt man im Heft.','✏️','🔑','☂️'],
+        ['Sie fliegt bis zu den Sternen ins Weltall.','🚀','🚗','⛵'],
+        ['Dieser Vogel ist nachts wach und hat große Augen.','🦉','🦆','🐔'],
+        ['Er hat Stacheln und versteckt sich im Wald unter dem Laub.','🦔','🐰','🐢'],
+        ['Man spannt ihn auf, wenn es regnet.','☂️','📖','⏰'],
+      ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку)
+      avoid: [
+        'Maas','Mais','Mus','Hais','Heus','Mund','Eile','Bill','Bull','Aue','Nasse','Bot',
+        'Hahn','Hohn','Hasse','Hose','Brat','Brut','Brät','Bach','Schuf','Kotze','Fesch','Sinne',
+        'Stirn','Zeige','Tier','Beine','Fachs','Vögel','Mich','Mehre','Welke','Ragen','Regne','Rügen',
+        'Jucke','Stuft','Banne','Kochen','Köchen','Küchen','Forsch','Frisch','Taube','Trabe','Traue','Kirche',
+        'Schein','Schüssel',
       ],
     },
     ro: {
@@ -120,9 +184,37 @@
       alphabet: ['A','Ă','Â','B','C','D','E','F','G','H','I','Î','J','K','L','M','N','O','P','Q','R','S','Ș','T','Ț','U','V','W','X','Y','Z'],
       vowels: 'AĂÂEIÎOU',
       words: [
-        ['urs','🐻'],['măr','🍎'],['casă','🏠'],['lună','🌙'],['stea','⭐'],['pară','🍐'],['rață','🦆'],['tort','🎂'],
-        ['soare','☀️'],['copac','🌳'],['minge','⚽'],['lapte','🥛'],['pește','🐟'],['câine','🐶'],['pisică','🐱'],['floare','🌸'],
-        ['banană','🍌'],['mașină','🚗'],['bufniță','🦉'],
+        ['ou','🥚'],['urs','🐻'],['măr','🍎'],['nas','👃'],['cal','🐴'],['leu','🦁'],['porc','🐷'],['casă','🏠'],
+        ['lună','🌙'],['stea','⭐'],['pară','🍐'],['rață','🦆'],['tort','🎂'],['ochi','👁️'],['mână','✋'],['oaie','🐑'],
+        ['vacă','🐄'],['melc','🐌'],['tren','🚂'],['ceas','⏰'],['soare','☀️'],['copac','🌳'],['minge','⚽'],['lapte','🥛'],
+        ['pește','🐟'],['câine','🐶'],['capră','🐐'],['găină','🐔'],['tigru','🐯'],['zebră','🦓'],['vulpe','🦊'],['arici','🦔'],
+        ['koala','🐨'],['pâine','🍞'],['carte','📖'],['cheie','🔑'],['avion','✈️'],['barcă','⛵'],['pisică','🐱'],['floare','🌸'],
+        ['banană','🍌'],['mașină','🚗'],['ureche','👂'],['iepure','🐰'],['girafă','🦒'],['albină','🐝'],['balenă','🐳'],['delfin','🐬'],
+        ['morcov','🥕'],['brânză','🧀'],['zăpadă','❄️'],['ploaie','🌧️'],['creion','✏️'],['lămâie','🍋'],['bufniță','🦉'],['maimuță','🐒'],
+        ['elefant','🐘'],['broască','🐸'],['fluture','🦋'],['pinguin','🐧'],['cireașă','🍒'],['căpșună','🍓'],['umbrelă','☂️'],['rachetă','🚀'],
+        ['șoarece','🐭'],['țestoasă','🐢'],['struguri','🍇'],['ciupercă','🍄'],['curcubeu','🌈'],['ciocolată','🍫'],
+      ],
+      sentences: [
+        ['Este galbenă, acră și crește în copac.','🍋','🍌','🍎'],
+        ['Trăiește în mare, înoată și are înotătoare.','🐟','🐦','🐸'],
+        ['Noaptea strălucește sus pe cer.','🌙','☀️','☁️'],
+        ['Acest animal are o trompă foarte lungă.','🐘','🦁','🐒'],
+        ['Se târăște încet și își poartă casa în spate.','🐌','🐝','🐸'],
+        ['Iarna cade din cer, albă și rece.','❄️','🌧️','🌸'],
+        ['Cu ea descuiem ușa.','🔑','📖','💡'],
+        ['Zboară din floare în floare și face miere.','🐝','🦋','🦉'],
+        ['Este roșcată, isteață și are coada stufoasă.','🦊','🐶','🐻'],
+        ['Cu el scriem și desenăm în caiet.','✏️','🔑','☂️'],
+        ['Zboară până la stele, în spațiu.','🚀','🚗','⛵'],
+        ['Această pasăre stă trează noaptea și are ochi mari.','🦉','🦆','🐔'],
+        ['Are țepi și se ascunde în pădure, sub frunze.','🦔','🐰','🐢'],
+        ['O deschidem când plouă.','☂️','📖','⏰'],
+      ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку)
+      avoid: [
+        'parc','cosă','lână','lînă','sta','pură','tot','mînă','ten','tron','sare','mine',
+        'lupte','late','paște','cine','cîine','cară','arii','pîine','care','curte','certe','bară',
+        'lămîie','brînză','alină',
       ],
     },
     kk: {
@@ -130,9 +222,35 @@
       alphabet: ['А','Ә','Б','В','Г','Ғ','Д','Е','Ё','Ж','З','И','Й','К','Қ','Л','М','Н','Ң','О','Ө','П','Р','С','Т','У','Ұ','Ү','Ф','Х','Һ','Ц','Ч','Ш','Щ','Ъ','Ы','І','Ь','Э','Ю','Я'],
       vowels: 'АӘЕЁИІОӨҰҮЫЭЮЯУ',
       words: [
-        ['ит','🐶'],['үй','🏠'],['күн','☀️'],['ай','🌙'],['аю','🐻'],['нан','🍞'],['сүт','🥛'],['гүл','🌸'],
-        ['алма','🍎'],['ағаш','🌳'],['сиыр','🐄'],['қоян','🐰'],['мысық','🐱'],['балық','🐟'],['банан','🍌'],['үйрек','🦆'],
-        ['жылқы','🐴'],['алмұрт','🍐'],['жұлдыз','⭐'],['тышқан','🐭'],
+        ['ит','🐶'],['үй','🏠'],['ай','🌙'],['аю','🐻'],['күн','☀️'],['нан','🍞'],['сүт','🥛'],['гүл','🌸'],
+        ['көз','👁️'],['қол','✋'],['қой','🐑'],['піл','🐘'],['кит','🐳'],['үкі','🦉'],['ұлу','🐌'],['ара','🐝'],
+        ['қар','❄️'],['шам','💡'],['доп','⚽'],['тәж','👑'],['алма','🍎'],['ағаш','🌳'],['сиыр','🐄'],['қоян','🐰'],
+        ['ешкі','🐐'],['түйе','🐫'],['бақа','🐸'],['кілт','🔑'],['бұлт','☁️'],['әтеш','🐓'],['ұшақ','✈️'],['робот','🤖'],
+        ['мысық','🐱'],['балық','🐟'],['банан','🍌'],['үйрек','🦆'],['жылқы','🐴'],['мұрын','👃'],['құлақ','👂'],['тауық','🐔'],
+        ['зебра','🦓'],['жираф','🦒'],['түлкі','🦊'],['кірпі','🦔'],['лимон','🍋'],['жүзім','🍇'],['сәбіз','🥕'],['кітап','📖'],
+        ['сағат','⏰'],['алмұрт','🍐'],['жұлдыз','⭐'],['тышқан','🐭'],['маймыл','🐒'],['қарбыз','🍉'],['жаңбыр','🌧️'],['машина','🚗'],
+        ['арыстан','🦁'],['тасбақа','🐢'],['орындық','🪑'],['көбелек','🦋'],['пингвин','🐧'],['ірімшік','🧀'],['зымыран','🚀'],['жолбарыс','🐯'],
+        ['құлпынай','🍓'],['қарындаш','✏️'],['қолшатыр','☂️'],['фламинго','🦩'],['жұмыртқа','🥚'],['велосипед','🚲'],
+      ],
+      sentences: [
+        ['Ол сары, қышқыл және ағашта өседі.','🍋','🍌','🍎'],
+        ['Ол суда тұрады және жүзбеқанаттарымен жүзеді.','🐟','🐦','🐸'],
+        ['Түнде ол аспанда жоғары жарқырайды.','🌙','☀️','☁️'],
+        ['Бұл жануардың ұзын тұмсығы бар.','🐘','🦁','🐒'],
+        ['Ол баяу жорғалайды және үйін арқасында алып жүреді.','🐌','🐝','🐸'],
+        ['Қыста аспаннан ақ әрі суық нәрсе жауады.','❄️','🌧️','🌸'],
+        ['Онымен есікті ашады.','🔑','📖','💡'],
+        ['Ол гүлден гүлге ұшып, бал жинайды.','🐝','🦋','🦉'],
+        ['Ол қу, құйрығы ұзын әрі үлпілдек.','🦊','🐶','🐻'],
+        ['Онымен дәптерге жазамыз және сурет саламыз.','✏️','🔑','☂️'],
+        ['Ол жұлдыздарға, ғарышқа ұшады.','🚀','🚗','⛵'],
+        ['Бұл құс түнде ұйықтамайды және көздері үлкен.','🦉','🦆','🐔'],
+        ['Ол тікенді және орманда жапырақтардың астында тұрады.','🦔','🐰','🐢'],
+        ['Жаңбыр жауғанда оны ашамыз.','☂️','📖','⏰'],
+      ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку)
+      avoid: [
+        'ала','сыр','қоын','екі','буқа','болт','бұт','балақ','қалақ','құлық','лиман','қарыз',
       ],
     },
     fr: {
@@ -140,9 +258,38 @@
       alphabet: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
       vowels: 'AEIOUY',
       words: [
-        ['chat','🐱'],['ours','🐻'],['lune','🌙'],['lait','🥛'],['chien','🐶'],['pomme','🍎'],['poire','🍐'],['arbre','🌳'],
-        ['fleur','🌸'],['hibou','🦉'],['maison','🏠'],['soleil','☀️'],['étoile','⭐'],['canard','🦆'],['banane','🍌'],['gâteau','🎂'],
-        ['poisson','🐟'],['voiture','🚗'],
+        ['nez','👃'],['bus','🚌'],['jus','🧃'],['sac','🎒'],['chat','🐱'],['ours','🐻'],['lune','🌙'],['lait','🥛'],
+        ['main','✋'],['pied','🦶'],['lion','🦁'],['kiwi','🥝'],['pain','🍞'],['yoyo','🪀'],['chien','🐶'],['pomme','🍎'],
+        ['poire','🍐'],['arbre','🌳'],['fleur','🌸'],['hibou','🦉'],['vache','🐄'],['poule','🐔'],['lapin','🐰'],['tigre','🐯'],
+        ['singe','🐒'],['koala','🐨'],['glace','🍦'],['nuage','☁️'],['neige','❄️'],['pluie','🌧️'],['livre','📖'],['lampe','💡'],
+        ['train','🚂'],['avion','✈️'],['maison','🏠'],['soleil','☀️'],['canard','🦆'],['banane','🍌'],['cochon','🐷'],['mouton','🐑'],
+        ['cheval','🐴'],['souris','🐭'],['girafe','🦒'],['tortue','🐢'],['renard','🦊'],['citron','🍋'],['cerise','🍒'],['fraise','🍓'],
+        ['raisin','🍇'],['crayon','✏️'],['bateau','⛵'],['iguane','🦎'],['oignon','🧅'],['poisson','🐟'],['voiture','🚗'],['abeille','🐝'],
+        ['baleine','🐳'],['dauphin','🐬'],['carotte','🥕'],['fromage','🧀'],['horloge','🕰️'],['guitare','🎸'],['oreille','👂'],['papillon','🦋'],
+        ['pingouin','🐧'],['escargot','🐌'],['chocolat','🍫'],['couronne','👑'],['parapluie','☂️'],['chaussure','👟'],
+      ],
+      sentences: [
+        ['Il est jaune, acide et pousse sur un arbre.','🍋','🍌','🍎'],
+        ['Il vit dans la mer, nage et a des nageoires.','🐟','🐦','🐸'],
+        ['La nuit, elle brille haut dans le ciel.','🌙','☀️','☁️'],
+        ['Cet animal a une très longue trompe.','🐘','🦁','🐒'],
+        ['Il avance lentement et porte sa maison sur son dos.','🐌','🐝','🐸'],
+        ['En hiver, elle tombe du ciel, blanche et froide.','❄️','🌧️','🌸'],
+        ["On s'en sert pour ouvrir la porte.",'🔑','📖','💡'],
+        ['Elle vole de fleur en fleur et fabrique du miel.','🐝','🦋','🦉'],
+        ['Il est roux, rusé et a une queue touffue.','🦊','🐶','🐻'],
+        ["On s'en sert pour écrire et dessiner dans le cahier.",'✏️','🔑','☂️'],
+        ["Elle vole jusqu'aux étoiles, dans l'espace.",'🚀','🚗','⛵'],
+        ['Cet oiseau ne dort pas la nuit et a de grands yeux.','🦉','🦆','🐔'],
+        ['Il a des piquants et se cache dans la forêt sous les feuilles.','🦔','🐰','🐢'],
+        ["On l'ouvre quand il pleut.",'☂️','📖','⏰'],
+      ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку)
+      avoid: [
+        'chut','ors','lue','lit','luit','man','min','lien','lin','lino','loin','pan',
+        'paon','pin','chine','paire','pire','pore','lopin','lupin','tige','tire','signe','songe',
+        'kola','nage','plaie','plie','ploie','lire','lame','tain','cocon','crise','fraie','frise',
+        'raison','poison','crotte',
       ],
     },
     es: {
@@ -150,9 +297,38 @@
       alphabet: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
       vowels: 'AEIOU',
       words: [
-        ['sol','☀️'],['pez','🐟'],['oso','🐻'],['flor','🌸'],['gato','🐱'],['casa','🏠'],['luna','🌙'],['pera','🍐'],
-        ['pato','🦆'],['búho','🦉'],['perro','🐶'],['árbol','🌳'],['coche','🚗'],['leche','🥛'],['ratón','🐭'],['pastel','🎂'],
-        ['manzana','🍎'],['plátano','🍌'],['estrella','⭐'],
+        ['sol','☀️'],['pez','🐟'],['oso','🐻'],['ojo','👁️'],['pie','🦶'],['uva','🍇'],['pan','🍞'],['flor','🌸'],
+        ['gato','🐱'],['casa','🏠'],['luna','🌙'],['pera','🍐'],['pato','🦆'],['mano','✋'],['vaca','🐄'],['mono','🐒'],
+        ['rana','🐸'],['seta','🍄'],['nube','☁️'],['tren','🚂'],['piña','🍍'],['isla','🏝️'],['dado','🎲'],['kiwi','🥝'],
+        ['perro','🐶'],['coche','🚗'],['leche','🥛'],['nariz','👃'],['oreja','👂'],['cerdo','🐷'],['oveja','🐑'],['cabra','🐐'],
+        ['tigre','🐯'],['cebra','🦓'],['abeja','🐝'],['zorro','🦊'],['erizo','🦔'],['fresa','🍓'],['queso','🧀'],['huevo','🥚'],
+        ['nieve','❄️'],['libro','📖'],['llave','🔑'],['reloj','⏰'],['barco','⛵'],['pastel','🎂'],['conejo','🐰'],['jirafa','🦒'],
+        ['banana','🍌'],['cereza','🍒'],['helado','🍦'],['lluvia','🌧️'],['cohete','🚀'],['zapato','👟'],['manzana','🍎'],['caballo','🐴'],
+        ['gallina','🐔'],['tortuga','🐢'],['caracol','🐌'],['ballena','🐳'],['lechuza','🦉'],['estrella','⭐'],['elefante','🐘'],['mariposa','🦋'],
+        ['paraguas','☂️'],['guitarra','🎸'],['chocolate','🍫'],['zanahoria','🥕'],['mariquita','🐞'],['bicicleta','🚲'],
+      ],
+      sentences: [
+        ['Es amarillo, ácido y crece en un árbol.','🍋','🍌','🍎'],
+        ['Vive en el mar, nada y tiene aletas.','🐟','🐦','🐸'],
+        ['Por la noche brilla alta en el cielo.','🌙','☀️','☁️'],
+        ['Este animal tiene una trompa muy larga.','🐘','🦁','🐒'],
+        ['Se arrastra despacio y lleva su casa a cuestas.','🐌','🐝','🐸'],
+        ['En invierno cae del cielo, blanca y fría.','❄️','🌧️','🌸'],
+        ['Sirve para abrir la puerta.','🔑','📖','💡'],
+        ['Vuela de flor en flor y hace miel.','🐝','🦋','🦉'],
+        ['Es rojizo, astuto y tiene una cola muy peluda.','🦊','🐶','🐻'],
+        ['Sirve para escribir y dibujar en el cuaderno.','✏️','🔑','☂️'],
+        ['Vuela hasta las estrellas, al espacio.','🚀','🚗','⛵'],
+        ['Este pájaro no duerme de noche y tiene ojos grandes.','🦉','🦆','🐔'],
+        ['Tiene púas y se esconde en el bosque bajo las hojas.','🦔','🐰','🐢'],
+        ['Lo abrimos cuando llueve.','☂️','📖','⏰'],
+      ],
+      // справжні слова, які генератор помилок не має показувати як «помилку» (див. шапку)
+      avoid: [
+        'cosa','lana','lena','lona','para','pea','perra','pira','pora','prea','pura','peto',
+        'pito','puto','mino','runa','sita','sota','ten','peña','dedo','parro','pero','porro',
+        'coce','loche','luche','cardo','cedo','cedro','cero','credo','curdo','cara','cobra','ceba',
+        'cebar','cera','frisa','nueve','lave','cabello','cabillo','caracal','hilado',
       ],
     },
     it: {
@@ -249,7 +425,7 @@
     },
     cs: {
       speech: 'cs-CZ',
-      alphabet: ['A','Á','B','C','Č','D','Ď','E','É','Ě','F','G','H','I','Í','J','K','L','M','N','Ň','O','Ó','P','Q','R','Ř','S','Š','T','Ť','U','Ú','Ů','V','W','X','Y','Ý','Z','Ž'],
+      alphabet: ['A','Á','B','C','Č','D','Ď','E','É','Ě','F','G','H','CH','I','Í','J','K','L','M','N','Ň','O','Ó','P','Q','R','Ř','S','Š','T','Ť','U','Ú','Ů','V','W','X','Y','Ý','Z','Ž'],
       vowels: 'AÁEÉĚIÍOÓUÚŮYÝ',
       words: [
         ['pes','🐶'],['dům','🏠'],['sýr','🧀'],['lev','🦁'],['kůň','🐴'],['nos','👃'],['oko','👁️'],['myš','🐭'],
@@ -259,7 +435,7 @@
         ['kočka','🐱'],['liška','🦊'],['kráva','🐄'],['banán','🍌'],['jablko','🍎'],['slunce','☀️'],['hvězda','⭐'],['měsíc','🌙'],
         ['medvěd','🐻'],['ježek','🦔'],['kachna','🦆'],['prase','🐷'],['opice','🐒'],['hruška','🍐'],['citron','🍋'],['mrkev','🥕'],
         ['okurka','🥒'],['cibule','🧅'],['houba','🍄'],['kniha','📖'],['lampa','💡'],['květina','🌸'],['raketa','🚀'],['želva','🐢'],
-        ['motýl','🦋'],['deštník','☂️'],['tužka','✏️'],['hodiny','⏰'],['včela','🐝'],['vejce','🥚'],['mléko','🥛'],['ananas','🍍'],
+        ['motýl','🦋'],['deštník','☂️'],['tužka','✏️'],['hodiny','⏰'],['včela','🐝'],['vejce','🥚'],['mléko','🥛'],['chléb','🍞'],['ucho','👂'],['ananas','🍍'],
         ['meloun','🍉'],['žirafa','🦒'],['zebra','🦓'],['dveře','🚪'],['třešně','🍒'],['slepice','🐔'],['dinosaurus','🦕'],
       ],
       sentences: [
@@ -352,6 +528,9 @@
         ['virág','🌸'],['felhő','☁️'],['zebra','🦓'],['majom','🐒'],['tigris','🐯'],['tehén','🐄'],['bálna','🐳'],['polip','🐙'],
         ['malac','🐷'],['kakas','🐓'],['kalap','👒'],['gitár','🎸'],['vonat','🚂'],['lámpa','💡'],['citrom','🍋'],['ceruza','✏️'],
         ['teknős','🐢'],['uborka','🥒'],['pingvin','🐧'],['traktor','🚜'],['elefánt','🐘'],['űrhajó','🚀'],['pillangó','🦋'],
+        // слова з диграфами (CS, GY, LY, NY, SZ, TY, ZS — одна літера = одна плитка)
+        ['szem','👁️'],['szív','❤️'],['csiga','🐌'],['gyík','🦎'],['nyúl','🐰'],['tyúk','🐔'],['kutya','🐶'],['zsiráf','🦒'],
+        ['szőlő','🍇'],['kecske','🐐'],['hagyma','🧅'],['király','👑'],['csillag','⭐'],['gyertya','🕯️'],['sárkány','🐉'],
       ],
       sentences: [
         ['Sárga, savanyú, és fán terem.','🍋','🍌','🍎'],
@@ -414,6 +593,9 @@
         ['tovuq','🐔'],['burun','👃'],['yurak','❤️'],['zebra','🦓'],['akula','🦈'],['piyoz','🧅'],['jirafa','🦒'],['delfin','🐬'],
         ['daraxt','🌳'],['yulduz','⭐'],['tarvuz','🍉'],['ananas','🍍'],['maymun','🐒'],['raketa','🚀'],['avtobus','🚌'],['kapalak','🦋'],
         ['pomidor','🍅'],['soyabon','☂️'],['asalari','🐝'],['velosiped','🚲'],['muzqaymoq','🍦'],['tipratikan','🦔'],
+        // слова з Oʻ Gʻ Sh Ch Ng (одна літера = одна плитка; ʻ — U+02BB)
+        ['choy','🍵'],['sher','🦁'],['qoʻl','✋'],['koʻz','👁️'],['qoʻy','🐑'],['mushuk','🐱'],['oʻrdak','🦆'],['qoshiq','🥄'],
+        ['gʻisht','🧱'],['bodring','🥒'],['choʻchqa','🐷'],['shaftoli','🍑'],
       ],
       sentences: [
         ['U sariq, nordon va daraxtda oʻsadi.','🍋','🍌','🍎'],
@@ -514,15 +696,44 @@
   function el(tag, cls, txt) { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
 
   function dataFor(lang) { return READ_DATA[lang] || READ_DATA.en; }
+  // Літери з кількох знаків (CS, DZS, CH, Oʻ, Sh…): ВЕЛИКИМИ, найдовші — першими
+  const MARKS = /^[ʻʼ'’]/;
+  function multiOf(d) {
+    if (!d._multi) d._multi = d.alphabet.filter(x => [...x].length > 1).map(x => x.toUpperCase()).sort((a, b) => b.length - a.length);
+    return d._multi;
+  }
+  // слово → літери абетки (ВЕЛИКИМИ): найдовший збіг, але не забираємо знак, після якого йде ʻ
+  // (узб. «qoʻngʻiz» = … N + Gʻ …, а не Ng + ʻ)
+  function units(w, d) {
+    d = d || D;
+    const lang = Object.keys(READ_DATA).find(k => READ_DATA[k] === d) || 'en';
+    const W = w.toLocaleUpperCase(lang), multi = multiOf(d), out = [];
+    for (let i = 0; i < W.length;) {
+      const m = multi.find(x => W.startsWith(x, i) && !MARKS.test(W.slice(i + x.length)));
+      const u = m || String.fromCodePoint(W.codePointAt(i));
+      out.push(u); i += u.length;
+    }
+    return out;
+  }
+  // слово можна надійно поділити на літери? (угор. ssz/ccs/ggy… = подвоєний диграф; ʼ ' — роздільник)
+  function unitSafe(w, d) {
+    d = d || D;
+    if (/[ʼ'’]/.test(w)) return false;
+    if (multiOf(d).length && /(ssz|ccs|ggy|lly|nny|tty|zzs|ddz)/i.test(w)) return false;
+    return units(w, d).every(u => !MARKS.test(u));
+  }
+  function wordList() { return D.words.filter(x => unitSafe(x[0])); }
+  // літера абетки в тому вигляді, як вона записана в alphabet (SH → Sh)
+  function canon(u) { return D.alphabet.find(x => x.toUpperCase() === u.toUpperCase()) || u; }
   // перша літера слова як літера абетки (É → E, Á → A); Й, Ї, Ё лишаються, бо вони є в абетці
   function firstLetter(w) {
-    let L = up(w.charAt(0));
-    if (!D.alphabet.includes(L)) L = L.normalize('NFD').charAt(0);
+    let L = canon(units(w)[0]);
+    if (!D.alphabet.includes(L)) L = up(L).normalize('NFD').charAt(0);
     return L;
   }
   function wordsBy(min, max) {
-    let ws = D.words.filter(x => x[0].length >= min && x[0].length <= max);
-    if (ws.length < 3) ws = D.words.slice();
+    let ws = wordList().filter(x => { const n = units(x[0]).length; return n >= min && n <= max; });
+    if (ws.length < 3) ws = wordList();
     return ws;
   }
 
@@ -547,9 +758,9 @@
     },
     first() {
       const n = Math.min(4, 3 + Math.floor((lvl() - 1) / 3));
-      const w = pick(D.words.filter(x => D.alphabet.includes(firstLetter(x[0]))));
+      const w = pick(wordList().filter(x => D.alphabet.includes(firstLetter(x[0]))));
       const L = firstLetter(w[0]);
-      const firsts = [...new Set(D.words.map(x => firstLetter(x[0])))].filter(x => x !== L);
+      const firsts = [...new Set(wordList().map(x => firstLetter(x[0])))].filter(x => x !== L && D.alphabet.includes(x));
       const extra = sample(firsts.length >= n - 1 ? firsts : D.alphabet.filter(x => x.length === 1), n - 1, [L]);
       return { type: 'first', prompt: ctx.t('task.first'), big: w[1], bigCls: 'rdEmoji', say: w[0],
                opts: shuffle([L].concat(extra)), answer: L, cls: 'rdOptsLetters' };
@@ -557,15 +768,17 @@
     build() {
       const max = Math.min(6, 3 + Math.floor((lvl() - 1) / 2));
       const w = pick(wordsBy(3, max));
-      const letters = [...up(w[0])];
+      const letters = units(w[0]);
       return { type: 'build', prompt: ctx.t('task.build'), big: w[1], bigCls: 'rdEmoji', say: w[0],
                word: letters, tiles: shuffleNotSame(letters) };
     },
     miss() {
       const max = Math.min(7, 4 + Math.floor((lvl() - 1) / 2));
-      const w = pick(wordsBy(3, max));
-      const letters = [...up(w[0])];
-      const i = rnd(letters.length);
+      const w = pick(wordsBy(3, max).filter(x => units(x[0]).some(u => u.length === 1)));
+      const letters = units(w[0]);
+      // пропуск — лише на місці одиночної літери (диграф не вміщається в одну клітинку)
+      const single = letters.map((c, k) => c.length === 1 ? k : -1).filter(k => k >= 0);
+      const i = pick(single);
       const L = letters[i];
       const isV = D.vowels.includes(L);
       const pool = D.alphabet.filter(x => x.length === 1 && x !== L && (D.vowels.includes(x) === isV));   // диграфи (GY, Sh…) не пасують до однієї клітинки
@@ -579,11 +792,12 @@
     },
     scram() {
       const min = Math.min(7, 4 + Math.floor((lvl() - 1) / 3));
-      let ws = D.words.filter(x => x[0].length >= min);
-      if (ws.length < 3) ws = D.words.filter(x => x[0].length >= 4);
-      if (!ws.length) ws = D.words;
+      const all = wordList(), n = x => units(x[0]).length;
+      let ws = all.filter(x => n(x) >= min);
+      if (ws.length < 3) ws = all.filter(x => n(x) >= 4);
+      if (!ws.length) ws = all;
       const w = pick(ws);
-      const letters = [...up(w[0])];
+      const letters = units(w[0]);
       const tiles = shuffleNotSame(letters);
       if (lvl() >= 3) tiles.splice(rnd(tiles.length + 1), 0, pick(D.alphabet.filter(x => x.length === 1 && !letters.includes(x))));
       return { type: 'scram', prompt: ctx.t('task.scram'), big: w[1], bigCls: 'rdEmoji', say: w[0], word: letters, tiles };
@@ -610,7 +824,8 @@
   // помилкові варіанти слова: переставити сусідні літери / замінити голосну / подвоїти / пропустити літеру.
   // Першу й останню літеру не чіпаємо: заміна закінчення дає справжню форму слова (зірка → зірку).
   function misspell(word, n) {
-    const out = new Set(), all = new Set(D.words.map(x => x[0]));
+    // «помилка» не може збігатися зі словом зі списку чи зі справжнім словом із avoid (без різниці великі/малі)
+    const out = new Set(), all = new Set(D.words.map(x => x[0]).concat(D.avoid || []).map(x => x.toLocaleLowerCase(ctx.lang)));
     const lowV = [...D.vowels].map(v => v.toLocaleLowerCase(ctx.lang));
     const ops = [
       w => { const i = w.length > 2 ? 1 + rnd(w.length - 2) : 0; const a = [...w]; [a[i], a[i + 1]] = [a[i + 1], a[i]]; return a.join(''); },
@@ -622,7 +837,7 @@
     ];
     for (let k = 0; k < 60 && out.size < n; k++) {
       const v = pick(ops)(word);
-      if (v && v !== word && !all.has(v) && v.length >= 2) out.add(v);
+      if (v && v !== word && !all.has(v.toLocaleLowerCase(ctx.lang)) && v.length >= 2) out.add(v);
     }
     let pad = 0;
     while (out.size < n) out.add(word + word.charAt(word.length - 1).repeat(++pad)); // запасний варіант (дуже короткі слова)
@@ -653,10 +868,10 @@
     if (task.word) {   // скласти слово з плиток
       if (task.tiles.length > 7) root.classList.add('rdLong');
       const slots = el('div', 'rdSlots');
-      task.word.forEach(() => slots.appendChild(el('span', 'rdSlot')));
+      task.word.forEach(c => slots.appendChild(el('span', 'rdSlot' + (c.length > 1 ? ' rdMulti' : ''))));
       root.appendChild(slots);
       const tiles = el('div', 'rdTiles');
-      task.tiles.forEach(c => { const b = el('button', 'rdTile', c); b.type = 'button'; b.addEventListener('click', () => tapTile(b, c)); tiles.appendChild(b); });
+      task.tiles.forEach(c => { const b = el('button', 'rdTile' + (c.length > 1 ? ' rdMulti' : ''), c); b.type = 'button'; b.addEventListener('click', () => tapTile(b, c)); tiles.appendChild(b); });
       root.appendChild(tiles);
       task.pos = 0;
     } else {
@@ -767,5 +982,6 @@
   });
 
   // для тестів і для носіїв мов (перевірити свої дані в консолі)
-  BO.eduRead = { data: READ_DATA, medals: MEDALS.map(m => m.id), current: () => task };
+  BO.eduRead = { data: READ_DATA, medals: MEDALS.map(m => m.id), current: () => task,
+    units: (w, lang) => units(w, dataFor(lang)), unitSafe: (w, lang) => unitSafe(w, dataFor(lang)) };
 })();

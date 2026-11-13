@@ -360,7 +360,7 @@ window.BO_LANG.pt = {
   "hol.name.pancake_day": "Dia das Panquecas",
   "hol.name.valentine": "Dia de São Valentim",
   "hol.name.martisor": "Mărțișor",
-  "hol.name.womens_day": "8 de Março",
+  "hol.name.womens_day": "8 de março",
   "hol.name.st_patrick": "Dia de São Patrício",
   "hol.name.nowruz": "Nowruz",
   "hol.name.earth_day": "Dia da Terra",
@@ -368,7 +368,7 @@ window.BO_LANG.pt = {
   "hol.name.mothers_day": "Dia da Mãe",
   "hol.name.vyshyvanka": "Dia da Vyshyvanka",
   "hol.name.children_day": "Dia da Criança",
-  "hol.name.midsummer": "Festa do Verão",
+  "hol.name.midsummer": "Festa do verão",
   "hol.name.knowledge_day": "Dia do Conhecimento",
   "hol.name.national": "Dia do País",
   "hol.name.thanksgiving": "Dia de Ação de Graças",
@@ -385,15 +385,15 @@ window.BO_LANG.pt = {
   "hol.greet.pancake_day": "Hoje é Dia das Panquecas! 🥞 {name} atira a panqueca ao ar — hop!",
   "hol.greet.valentine": "Feliz Dia de São Valentim! 💗 {name} sussurra: gosto muito, muito de ti!",
   "hol.greet.martisor": "Feliz Mărțișor! 🌼 {name} oferece-te um fio vermelho e branco — para dar sorte e trazer a primavera.",
-  "hol.greet.womens_day": "Hoje é 8 de Março! 💐 {name} sugere dizer palavras carinhosas à mãe, à avó e a todas as pessoas de quem gostamos.",
-  "hol.greet.st_patrick": "Feliz Dia de São Patrício! 🍀 {name} procura um trevo de quatro folhas — para te dar sorte!",
+  "hol.greet.womens_day": "Hoje é 8 de março! 💐 {name} sugere dizer palavras carinhosas à mãe, à avó e a todas as pessoas de quem gostamos.",
+  "hol.greet.st_patrick": "Feliz Dia de São Patrício! 🍀 {name} procura um trevo-de-quatro-folhas — para te dar sorte!",
   "hol.greet.nowruz": "Feliz Nowruz! 🌷 Chegou a primavera e {name} deseja-te alegria e coisas boas.",
   "hol.greet.earth_day": "Hoje é Dia da Terra! 🌍 {name} diz: vamos cuidar do nosso planeta — só temos um.",
   "hol.greet.kings_day": "Hoje é Dia do Rei! 🧡 {name} veste-se de cor de laranja para festejar — vamos à festa!",
   "hol.greet.mothers_day": "Hoje é Dia da Mãe! 💐 {name} sugere abraçar quem cuida de ti.",
   "hol.greet.vyshyvanka": "Hoje é Dia da Vyshyvanka! 🌺 {name} também quer uma bonita camisa bordada!",
   "hol.greet.children_day": "Feliz Dia da Criança! 🎈 Hoje a festa é tua — {name} prepara-te um desfile de balões!",
-  "hol.greet.midsummer": "Feliz Festa do Verão! 🌼 {name} faz uma coroa de flores do campo.",
+  "hol.greet.midsummer": "Feliz Festa do verão! 🌼 {name} faz uma coroa de flores do campo.",
   "hol.greet.knowledge_day": "Feliz Dia do Conhecimento! 🎒 {name} deseja-te aulas giras e amigos novos.",
   "hol.greet.national": "Hoje é dia de festa no nosso país! 🎉 {name} festeja contigo.",
   "hol.greet.thanksgiving": "Feliz Dia de Ação de Graças! 🥧 {name} diz: obrigado por estares comigo!",
@@ -464,7 +464,7 @@ window.BO_LANG.pt = {
   "edu.logic.name": "Lógica",
   "edu.read.name": "Ler e letras",
   "edu.world.name": "O mundo à volta",
-  // ---- edu.math (matemática) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Jogar",
   "edu.math.next": "Seguinte",
   "edu.math.exit": "Sair",
@@ -529,7 +529,8 @@ window.BO_LANG.pt = {
   "edu.math.medal.level50": "Nível 50",
   "edu.math.medal.level100": "Nível 100",
   "edu.math.medal.speed20": "Relâmpago: 20 num minuto",
-  // ---- edu.logic (lógica) ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "O que vem a seguir?",
   "edu.logic.how.odd": "Encontra o intruso",
   "edu.logic.how.pairs": "Encontra os pares",
@@ -560,7 +561,8 @@ window.BO_LANG.pt = {
   "edu.logic.mLevel25": "Nível 25",
   "edu.logic.mLevel50": "Nível 50",
   "edu.logic.mLevel100": "Nível 100",
-  // ---- edu.read (ler e letras (piloto)) ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Encontra a letra",
   "edu.read.task.first": "Com que letra começa a palavra?",
   "edu.read.task.build": "Forma a palavra",
@@ -579,7 +581,8 @@ window.BO_LANG.pt = {
   "edu.read.mStreak": "10 seguidas sem erros",
   "edu.read.mLevel5": "Nível 5",
   "edu.read.mSolved": "50 tarefas",
-  // ---- edu.world (o mundo à volta (piloto)) ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "Nível {n}",
   "edu.world.listen": "Ouvir",
   "edu.world.right": "Certo!",
@@ -629,7 +632,7 @@ window.BO_LANG.pt = {
   "edu.world.a.goat": "Cabra",
   "edu.world.a.dog": "Cão",
   "edu.world.a.cat": "Gato",
-  "edu.world.a.hamster": "Hamster",
+  "edu.world.a.hamster": "Hámster",
   "edu.world.a.bear": "Urso",
   "edu.world.a.fox": "Raposa",
   "edu.world.a.hedgehog": "Ouriço",
@@ -790,7 +793,8 @@ window.BO_LANG.pt = {
   "edu.world.f.boil": "Ao nível do mar, a água ferve a 100 °C.",
   "edu.world.f.sunEarth": "O Sol anda à volta da Terra.",
   "edu.world.f.insect": "Os insetos têm oito patas.",
-  // ---- edu.draw (desenhar) ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Liga os pontinhos",
   "edu.draw.do.mirror": "Desenha a outra metade",
   "edu.draw.do.memory": "Memoriza o desenho!",
@@ -864,11 +868,13 @@ window.BO_LANG.pt = {
   "edu.draw.mLvl50": "Nível 50",
   "edu.draw.mLvl100": "Nível 100",
   "edu.draw.mSniper": "Pontaria certeira",
-  // ---- prémios: medalhas de aprender ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Aprender",
   "ach.edu.unlocked": "Medalha nova!",
   "ach.edu.hint": "Joga «{game}» para a ganhar",
-  // ---- prémios: condições das medalhas de aprender ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "Conclui a primeira ronda",
   "edu.math.medal.tasks10.desc": "Resolve 10 problemas",
   "edu.math.medal.tasks50.desc": "Resolve 50 problemas",
@@ -921,7 +927,8 @@ window.BO_LANG.pt = {
   "edu.world.paw.desc": "20 respostas certas sobre animais",
   "edu.world.globe.desc": "20 certas sobre países (a partir dos 7 anos)",
   "edu.world.rocket.desc": "15 certas sobre o céu e a ciência (a partir dos 6 anos)",
-  // ---- para os pais: bloqueio e ecrã (parent.js) ----
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "Para os pais",
   "parent.gateHint": "Para continuar, resolva a conta",
   "parent.wrong": "Resposta errada. Tente novamente.",
@@ -937,4 +944,51 @@ window.BO_LANG.pt = {
   "parent.reset": "Recomeçar o jogo",
   "parent.shop": "Loja (em breve)",
   "parent.shopNote": "As compras, quando existirem, só estarão disponíveis após a verificação parental.",
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Loja",
+  "shop.entryNote": "Sem anúncios nem subscrições. Cada pagamento só depois da verificação para pais.",
+  "shop.title": "Loja",
+  "shop.intro": "Compras únicas com dinheiro real, pagas através do Google Play ou da App Store. O que for comprado fica para sempre.",
+  "shop.starsNote": "Os pontos ⭐ do jogo só se ganham a jogar — nunca são vendidos por dinheiro. A aprendizagem e o jogo principal são gratuitos.",
+  "shop.noneInfo": "As compras estarão disponíveis na app do Google Play / App Store.",
+  "shop.testBanner": "TEST — modo de teste, sem pagamentos reais",
+  "shop.buy": "Comprar",
+  "shop.owned": "Comprado ✓",
+  "shop.inFull": "Incluído na versão completa ✓",
+  "shop.allOwned": "Todos os pacotes já comprados ✓",
+  "shop.priceSoon": "Preço na loja de apps",
+  "shop.restore": "Restaurar compras",
+  "shop.restoring": "A verificar compras…",
+  "shop.restored": "Compras restauradas: {n}",
+  "shop.restoredNone": "Nenhuma compra encontrada",
+  "shop.thanks": "Obrigado! Desbloqueado: «{name}».",
+  "shop.cancelled": "Compra cancelada",
+  "shop.error": "Não foi possível ligar à loja. Tente mais tarde.",
+  "shop.reason": "Confirmar compra: «{name}»",
+  "shop.includes": "O que inclui:",
+  "shop.hideLocked": "Não mostrar à criança artigos de pacotes não comprados",
+  "shop.family": "Reembolsos e partilha familiar — através do Google Play ou da App Store, segundo as regras deles.",
+  "shop.lockedText": "Isto é de um pacote extra e, por agora, está fechado. Experimenta outras coisas — tens imensas!",
+  "shop.lockTag": "pacote",
+  "shop.p.full.name": "Versão completa",
+  "shop.p.full.desc": "Todos os pacotes numa só compra — para sempre.",
+  "shop.p.outfits1.name": "Roupeiro da moda",
+  "shop.p.outfits1.desc": "Coisas novas para o roupeiro.",
+  "shop.p.room1.name": "Quarto espacial",
+  "shop.p.room1.desc": "Enfeites espaciais para o quarto — um para cada lugar.",
+  "wardrobe.goggles": "Óculos de piloto",
+  "wardrobe.grad_cap": "Barrete de finalista",
+  "wardrobe.headphones": "Auscultadores",
+  "wardrobe.star_clip": "Estrelinha",
+  "wardrobe.flower_clip": "Flor",
+  "wardrobe.butterfly": "Borboleta",
+  "decor.item.win_space": "Céu estrelado",
+  "decor.item.pic_comet": "Cometa",
+  "decor.item.shelf_telescope": "Telescópio",
+  "decor.item.lamp_star": "Candeeiro de estrela",
+  "decor.item.rocket": "Foguetão",
+  "decor.item.ufo": "Disco voador",
+  "decor.item.rug_space": "Tapete espacial",
+  // <<< i18n:shop
 };

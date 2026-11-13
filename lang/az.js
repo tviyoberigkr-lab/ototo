@@ -467,7 +467,7 @@ window.BO_LANG.az = {
   "edu.logic.name": "Məntiq",
   "edu.read.name": "Oxu və hərflər",
   "edu.world.name": "Ətraf aləm",
-  // ---- edu.math (математика) ----
+  // >>> i18n:edu_math (generated from i18n_edu_math.json) — do not edit by hand
   "edu.math.play": "Oyna",
   "edu.math.next": "Davam",
   "edu.math.exit": "Çıx",
@@ -532,7 +532,8 @@ window.BO_LANG.az = {
   "edu.math.medal.level50": "Səviyyə 50",
   "edu.math.medal.level100": "Səviyyə 100",
   "edu.math.medal.speed20": "İldırım: dəqiqədə 20",
-  // ---- edu.logic (логіка) ----
+  // <<< i18n:edu_math
+  // >>> i18n:edu_logic (generated from i18n_edu_logic.json) — do not edit by hand
   "edu.logic.how.pattern": "Sonra nə gəlir?",
   "edu.logic.how.odd": "Artığı tap",
   "edu.logic.how.pairs": "Cütləri tap",
@@ -563,7 +564,8 @@ window.BO_LANG.az = {
   "edu.logic.mLevel25": "Səviyyə 25",
   "edu.logic.mLevel50": "Səviyyə 50",
   "edu.logic.mLevel100": "Səviyyə 100",
-  // ---- edu.read (читання і літери (пілот)) ----
+  // <<< i18n:edu_logic
+  // >>> i18n:edu_read (generated from i18n_edu_read.json) — do not edit by hand
   "edu.read.task.find": "Hərfi tap",
   "edu.read.task.first": "Söz hansı hərflə başlayır?",
   "edu.read.task.build": "Sözü yığ",
@@ -582,7 +584,8 @@ window.BO_LANG.az = {
   "edu.read.mStreak": "Ardıcıl 10 səhvsiz",
   "edu.read.mLevel5": "Səviyyə 5",
   "edu.read.mSolved": "50 tapşırıq",
-  // ---- edu.world (світ навколо (пілот)) ----
+  // <<< i18n:edu_read
+  // >>> i18n:edu_world (generated from i18n_edu_world.json) — do not edit by hand
   "edu.world.lvl": "Səviyyə {n}",
   "edu.world.listen": "Dinlə",
   "edu.world.right": "Düzdür!",
@@ -793,7 +796,8 @@ window.BO_LANG.az = {
   "edu.world.f.boil": "Dəniz səviyyəsində su 100 °C-də qaynayır.",
   "edu.world.f.sunEarth": "Günəş Yerin ətrafında fırlanır.",
   "edu.world.f.insect": "Həşəratların səkkiz ayağı var.",
-  // ---- edu.draw (Малювалка) ----
+  // <<< i18n:edu_world
+  // >>> i18n:edu_draw (generated from i18n_edu_draw.json) — do not edit by hand
   "edu.draw.do.trace": "Nöqtələrin üstündən çək",
   "edu.draw.do.mirror": "İkinci yarısını çək",
   "edu.draw.do.memory": "Şəkli yadda saxla!",
@@ -867,11 +871,13 @@ window.BO_LANG.az = {
   "edu.draw.mLvl50": "Səviyyə 50",
   "edu.draw.mLvl100": "Səviyyə 100",
   "edu.draw.mSniper": "Dəqiqlik snayperi",
-  // ---- нагороди: медалі навчання ----
+  // <<< i18n:edu_draw
+  // >>> i18n:edu_medals (generated from i18n_edu_medals.json) — do not edit by hand
   "ach.cat.edu": "Dərslər",
   "ach.edu.unlocked": "Yeni medal!",
   "ach.edu.hint": "Qazanmaq üçün «{game}» oyna",
-  // ---- нагороди: умови медалей навчання ----
+  // <<< i18n:edu_medals
+  // >>> i18n:edu_medal_desc (generated from i18n_edu_medal_desc.json) — do not edit by hand
   "edu.math.medal.first.desc": "İlk raundu keç",
   "edu.math.medal.tasks10.desc": "10 məsələ həll et",
   "edu.math.medal.tasks50.desc": "50 məsələ həll et",
@@ -924,8 +930,8 @@ window.BO_LANG.az = {
   "edu.world.paw.desc": "Heyvanlar haqqında 20 düzgün cavab",
   "edu.world.globe.desc": "Ölkələr haqqında 20 düzgün cavab (7 yaşdan)",
   "edu.world.rocket.desc": "Səma və elm haqqında 15 düzgün cavab (6 yaşdan)",
-  // ---- кінець умов медалей навчання (згенеровано з i18n_edu_medal_desc.json) ----,
-  // ---- для батьків: замок і екран (parent.js) ----
+  // <<< i18n:edu_medal_desc
+  // >>> i18n:parent (generated from i18n_parent.json) — do not edit by hand
   "parent.title": "Valideynlər üçün",
   "parent.gateHint": "Davam etmək üçün misalı həll edin",
   "parent.wrong": "Səhvdir. Yenidən cəhd edin.",
@@ -941,5 +947,51 @@ window.BO_LANG.az = {
   "parent.reset": "Oyuna yenidən başla",
   "parent.shop": "Mağaza (tezliklə)",
   "parent.shopNote": "Alışlar əlavə olunduqda yalnız valideyn yoxlamasından sonra mümkün olacaq.",
-  // ---- кінець текстів для батьків (згенеровано з i18n_parent.json) ----
+  // <<< i18n:parent
+  // >>> i18n:shop (generated from i18n_shop.json) — do not edit by hand
+  "shop.entry": "Mağaza",
+  "shop.entryNote": "Reklamsız və abunəsiz. Hər ödəniş yalnız valideyn yoxlamasından sonra.",
+  "shop.title": "Mağaza",
+  "shop.intro": "Real pulla birdəfəlik alışlar: ödəniş Google Play və ya App Store vasitəsilə. Alınan əşyalar həmişəlik qalır.",
+  "shop.starsNote": "Oyundakı ballar ⭐ yalnız oynamaqla qazanılır — heç vaxt pula satılmır. Təhsil və əsas oyun pulsuzdur.",
+  "shop.noneInfo": "Alışlar Google Play / App Store tətbiqində mümkün olacaq.",
+  "shop.testBanner": "TEST — sınaq rejimi, real ödəniş yoxdur",
+  "shop.buy": "Al",
+  "shop.owned": "Alınıb ✓",
+  "shop.inFull": "Tam versiyaya daxildir ✓",
+  "shop.allOwned": "Bütün dəstlər artıq alınıb ✓",
+  "shop.priceSoon": "Qiymət — tətbiq mağazasında",
+  "shop.restore": "Alışları bərpa et",
+  "shop.restoring": "Alışlar yoxlanılır…",
+  "shop.restored": "Bərpa olunan alışlar: {n}",
+  "shop.restoredNone": "Alış tapılmadı",
+  "shop.thanks": "Təşəkkür edirik! Açıldı: «{name}».",
+  "shop.cancelled": "Alış ləğv edildi",
+  "shop.error": "Mağaza ilə əlaqə qurulmadı. Bir az sonra yenidən cəhd edin.",
+  "shop.reason": "Alışı təsdiqləyin: «{name}»",
+  "shop.includes": "İçində:",
+  "shop.hideLocked": "Alınmamış dəstlərin əşyalarını uşağa göstərmə",
+  "shop.family": "Pulun qaytarılması və ailə ilə paylaşma — Google Play və ya App Store vasitəsilə, onların qaydalarına görə.",
+  "shop.lockedText": "Bu əşya əlavə dəstdəndir, hələlik bağlıdır. Başqalarını yoxla — səndə onlardan çoxlu var!",
+  "shop.lockTag": "dəst",
+  "shop.p.full.name": "Tam versiya",
+  "shop.p.full.desc": "Bütün dəstlər bir alışla — həmişəlik.",
+  "shop.p.outfits1.name": "Dəbli qarderob",
+  "shop.p.outfits1.desc": "Qarderob üçün yeni əşyalar.",
+  "shop.p.room1.name": "Kosmik otaq",
+  "shop.p.room1.desc": "Otaq üçün kosmik bəzəklər — hər yerə bir dənə.",
+  "wardrobe.goggles": "Pilot eynəyi",
+  "wardrobe.grad_cap": "Məzun papağı",
+  "wardrobe.headphones": "Qulaqlıq",
+  "wardrobe.star_clip": "Ulduzcuq",
+  "wardrobe.flower_clip": "Gül",
+  "wardrobe.butterfly": "Kəpənək",
+  "decor.item.win_space": "Ulduzlu səma",
+  "decor.item.pic_comet": "Kometa",
+  "decor.item.shelf_telescope": "Teleskop",
+  "decor.item.lamp_star": "Ulduz lampası",
+  "decor.item.rocket": "Raket",
+  "decor.item.ufo": "Uçan boşqab",
+  "decor.item.rug_space": "Kosmik xalça",
+  // <<< i18n:shop
 };
