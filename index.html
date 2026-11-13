@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>ototo</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0d0f1a">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="img/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="decor.css">
+<link rel="stylesheet" href="map.css">
+<link rel="stylesheet" href="bonus.css">
+<link rel="stylesheet" href="sound.css">
+<link rel="stylesheet" href="anim.css">
+<link rel="stylesheet" href="splash.css">
+<link rel="stylesheet" href="achieve.css">
+<link rel="stylesheet" href="holidays.css">
+<link rel="stylesheet" href="tips.css">
+<link rel="stylesheet" href="edu.css">
+<link rel="stylesheet" href="edu_math.css">
+<link rel="stylesheet" href="edu_draw.css">
+<link rel="stylesheet" href="edu_logic.css">
+<link rel="stylesheet" href="edu_read.css">
+<link rel="stylesheet" href="edu_world.css">
+<link rel="stylesheet" href="parent.css">
+<link rel="preload" href="fonts/liberation-serif-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+  <script src="splash.js"></script>
+  <div id="screen">
+
+    <!-- Активація, крок 1: країна (прапор + назва мовою самої країни) -->
+    <section id="view-country" class="view">
+      <h1 class="logo">ototo</h1>
+      <h2 data-i18n="start.countryTitle">Звідки ти?</h2>
+      <p class="tagline" data-i18n="start.countryHint">Обери свою країну</p>
+      <div id="countryList"></div>
+    </section>
+
+    <!-- Активація, крок 2: мова (тільки якщо в країні кілька мов) -->
+    <section id="view-lang" class="view hidden">
+      <img id="langFlag" class="bigFlag" src="" alt="">
+      <h2 data-i18n="start.langTitle">Якою мовою граємо?</h2>
+      <div id="langList"></div>
+      <button id="btnLangBack" class="secondaryBtn" data-i18n="start.back">← Назад</button>
+    </section>
+
+    <!-- Активація, крок 3: знайомство (стать + вік + ім'я) -->
+    <section id="view-start" class="view hidden">
+      <h1 class="logo">ototo</h1>
+      <button id="btnStartCountry" class="countryChip"><img id="startFlag" src="" alt=""><span id="startCountryName"></span></button>
+      <p class="tagline" data-i18n="start.tagline">познайомся — це твій перший друг!</p>
+      <img class="startPet" src="img/gecko.png" alt="">
+
+      <div id="personaPick">
+        <button class="personaOpt selected" data-p="bo">⚡<br><span data-i18n="start.boy">Хлопчик</span></button>
+        <button class="personaOpt" data-p="mimi">🌸<br><span data-i18n="start.girl">Дівчинка</span></button>
+      </div>
+
+      <div id="agePick">
+        <p class="agePickLabel" data-i18n="start.age">Скільки тобі років?</p>
+        <div id="ageStrip" class="ageStrip" role="radiogroup"></div>
+      </div>
+
+      <input id="petNameInput" maxlength="12" placeholder="Як назвемо? (Сяйко)">
+      <button id="btnStart" data-i18n="start.go">Почати</button>
+    </section>
+
+    <!-- Яйце: народження Сяйка (показується один раз, перед view-main) -->
+    <section id="view-hatch" class="view hidden">
+      <div id="hatchStage">
+        <div id="eggAura" class="egg-idle">
+          <div id="eggGlow"></div>
+          <img id="hatchPetImg" src="img/gecko.png" alt="">
+          <div id="eggShellL" class="shell"></div>
+          <div id="eggShellR" class="shell"></div>
+        </div>
+        <div id="tapHint" data-i18n="hatch.tap">👉 Тапни яйце</div>
+      </div>
+    </section>
+
+    <!-- Main game view -->
+    <section id="view-main" class="view hidden">
+      <header id="topbar">
+        <div id="petName">mimi</div>
+        <div id="stageLabel">малюк</div>
+        <button id="btnWardrobe" class="iconBtn">👕</button>
+        <button id="btnCharacters" class="iconBtn">🦎</button>
+        <div id="points">⭐ 0</div>
+        <button id="streak" class="tapStat">🔥 0</button>
+        <button id="btnLang" class="iconBtn langBtn" data-i18n-title="main.lang"><img id="topFlag" src="" alt=""></button>
+        <button id="btnReset" class="iconBtn" data-i18n-title="main.reset">⟲</button>
+      </header>
+
+      <div id="stage">
+        <div id="pet"><img id="petImg" src="img/gecko.png" alt=""><span id="petEmoji"></span><span id="petAccessory"></span></div>
+        <div id="bubble" class="hidden"></div>
+      </div>
+
+      <div id="stats">
+        <div class="stat"><span class="stat-icon">🍎</span><div class="bar"><div id="barHunger" class="bar-fill"></div></div></div>
+        <div class="stat"><span class="stat-icon">😊</span><div class="bar"><div id="barMood" class="bar-fill"></div></div></div>
+        <div class="stat"><span id="iconEnergy" class="stat-icon tapStat">⚡</span><div class="bar"><div id="barEnergy" class="bar-fill"></div></div></div>
+        <div class="stat"><span class="stat-icon">🧼</span><div class="bar"><div id="barHygiene" class="bar-fill"></div></div></div>
+        <div class="stat"><span class="stat-icon">❤️</span><div class="bar"><div id="barHealth" class="bar-fill"></div></div></div>
+      </div>
+
+      <div id="actions">
+        <button id="btnFeed" class="actionBtn">🍎<br><span data-i18n="action.feed">Їсти</span></button>
+        <button id="btnWash" class="actionBtn">🧼<br><span data-i18n="action.wash">Мити</span></button>
+        <button id="btnPlay" class="actionBtn">🎮<br><span data-i18n="action.play">Грати</span></button>
+        <button id="btnSleep" class="actionBtn">💤<br><span data-i18n="action.sleep">Спати</span></button>
+        <button id="btnHeal" class="actionBtn">💊<br><span data-i18n="action.heal">Лікувати</span></button>
+      </div>
+
+      <!-- сюди модулі (мапа, декор …) додають свої кнопки -->
+      <div id="navRow"></div>
+
+      <div id="log"></div>
+    </section>
+
+    <!-- Characters -->
+    <section id="view-characters" class="view hidden">
+      <h2 data-i18n="chars.title">Мої друзі</h2>
+      <div id="charPoints">У тебе ⭐ 0</div>
+      <div id="charGrid"></div>
+      <button id="btnCharactersClose" class="secondaryBtn" data-i18n="common.back">Назад</button>
+    </section>
+
+    <!-- Game menu -->
+    <section id="view-gameMenu" class="view hidden">
+      <h2 data-i18n="games.title">У що пограємо?</h2>
+      <div id="gameMenuGrid"></div>
+      <button id="btnGameMenuClose" class="secondaryBtn" data-i18n="common.back">Назад</button>
+    </section>
+
+    <!-- Wardrobe -->
+    <section id="view-wardrobe" class="view hidden">
+      <h2 data-i18n="wardrobe.title">Гардероб</h2>
+      <div id="wardrobeGrid"></div>
+      <button id="btnWardrobeClose" class="secondaryBtn" data-i18n="common.back">Назад</button>
+    </section>
+
+    <!-- Mini-game view (generic container, populated by app.js per game type) -->
+    <section id="view-game" class="view hidden">
+      <p id="gamePrompt">Тап!</p>
+      <div id="gameArea"></div>
+      <div id="gameScore">Рахунок: 0</div>
+    </section>
+
+    <!-- Event modal -->
+    <div id="eventModal" class="hidden">
+      <div id="eventCard">
+        <div id="eventEmoji">🎁</div>
+        <div id="eventText"></div>
+        <button id="eventClose" class="secondaryBtn" data-i18n="event.ok">Супер!</button>
+      </div>
+    </div>
+
+    <!-- Інфо-попап для ⚡ енергії та 🔥 стрику -->
+    <div id="statModal" class="hidden">
+      <div id="statCard">
+        <div id="statEmoji">⚡</div>
+        <div id="statTitle" class="statTitle"></div>
+        <div id="statText"></div>
+        <button id="statAction" class="secondaryBtn hidden"></button>
+        <button id="statClose" class="secondaryBtn" data-i18n="stat.close">Закрити</button>
+      </div>
+    </div>
+
+    <!-- Зміна мови в грі (країна лишається та сама) -->
+    <div id="langModal" class="hidden">
+      <div id="langCard">
+        <img id="langModalFlag" class="bigFlag" src="" alt="">
+        <div class="statTitle" data-i18n="main.lang">Мова</div>
+        <div id="langModalList"></div>
+        <button id="langModalClose" class="secondaryBtn" data-i18n="stat.close">Закрити</button>
+      </div>
+    </div>
+
+    <!-- Мама: сцена теплоти (народження / щоденна / на новому етапі росту) -->
+    <div id="mamaOverlay" class="hidden">
+      <div id="mamaBox">
+        <div id="mamaHearts"></div>
+        <div id="mamaScene">
+          <img id="mamaSvg" class="mamaImg" src="img/mama.png" alt="">
+          <img id="mamaBabyImg" src="img/gecko.png" alt="">
+          <div id="mamaTapHint" class="hidden-hint" data-i18n="mama.tap">👉 тапни</div>
+        </div>
+        <div id="mamaCaption"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="countries.js"></script>
+  <!-- мовні файли: одна мова = один файл + один рядок тут -->
+  <script src="lang/uk.js"></script>
+  <script src="lang/en.js"></script>
+  <script src="lang/pl.js"></script>
+  <script src="lang/de.js"></script>
+  <script src="lang/ro.js"></script>
+  <script src="lang/kk.js"></script>
+  <script src="lang/fr.js"></script>
+  <script src="lang/es.js"></script>
+  <script src="app.js"></script>
+  <!-- модулі: кожен — окремий файл, підключаються через BO.on(...) -->
+  <script src="decor.js"></script>
+  <script src="rig_data.js"></script>
+  <script src="anim.js"></script>
+  <script src="map.js"></script>
+  <script src="bonus.js"></script>
+  <script src="sound.js"></script>
+  <script src="achieve.js"></script>
+  <script src="holidays.js"></script>
+  <script src="tips.js"></script>
+  <script src="edu.js"></script>
+  <script src="edu_math.js"></script>
+  <script src="edu_draw.js"></script>
+  <script src="edu_logic.js"></script>
+  <script src="edu_read.js"></script>
+  <script src="edu_world.js"></script>
+  <!-- освітні ігри (слоти 1–5): edu_math.js, edu_draw.js, edu_logic.js, edu_read.js, edu_world.js -->
+  <!-- «Для батьків»: батьківський замок (BO.parentGate) і екран для батьків -->
+  <script src="parent.js"></script>
+  <script src="fit.js"></script>
+  <script src="pwa.js"></script>
+</body>
+</html>

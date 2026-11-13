@@ -1,0 +1,164 @@
+/* OTOTO — модуль «Свята і пори року». CoLaba Production.
+   Шар прикрас над кімнатою (#decorRoom, z 0) і під улюбленцем (#pet, z 3).
+   Нічого не ловить дотиком (крім значка свята), нічого не зсуває. */
+
+#holLayer {
+  position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none;
+  border-radius: 20px; contain: layout paint;
+}
+.hol-p {
+  position: absolute; top: 0; left: var(--x, 50%); font-size: calc(18px * var(--s, 1)); line-height: 1;
+  opacity: 0; will-change: transform, opacity;
+  animation-duration: var(--d, 10s); animation-delay: var(--dl, 0s);
+  animation-iteration-count: infinite; animation-timing-function: linear;
+}
+
+/* сніжинки, зірочки — рівно падають з легким погойдуванням */
+.hol-fall { animation-name: holFall; color: #e8f2ff; text-shadow: 0 0 6px rgba(200,225,255,.6); }
+@keyframes holFall {
+  0%   { transform: translate(0, -24px) rotate(0deg); opacity: 0; }
+  10%  { opacity: .9; }
+  50%  { transform: translate(var(--sw, 12px), 90px) rotate(90deg); }
+  90%  { opacity: .85; }
+  100% { transform: translate(0, 210px) rotate(180deg); opacity: 0; }
+}
+/* пелюстки — повільно, хвилясто */
+.hol-drift { animation-name: holDrift; animation-timing-function: ease-in-out; }
+@keyframes holDrift {
+  0%   { transform: translate(0, -20px) rotate(-20deg); opacity: 0; }
+  12%  { opacity: .9; }
+  33%  { transform: translate(var(--sw, 16px), 60px) rotate(25deg); }
+  66%  { transform: translate(calc(var(--sw, 16px) * -1), 130px) rotate(-15deg); }
+  88%  { opacity: .8; }
+  100% { transform: translate(0, 205px) rotate(30deg); opacity: 0; }
+}
+/* листя — кружляє */
+.hol-leaf { animation-name: holLeaf; animation-timing-function: ease-in-out; }
+@keyframes holLeaf {
+  0%   { transform: translate(0, -24px) rotate(0deg); opacity: 0; }
+  10%  { opacity: .95; }
+  25%  { transform: translate(var(--sw, 20px), 40px) rotate(120deg); }
+  50%  { transform: translate(calc(var(--sw, 20px) * -1), 100px) rotate(220deg); }
+  75%  { transform: translate(var(--sw, 20px), 150px) rotate(320deg); }
+  92%  { opacity: .8; }
+  100% { transform: translate(0, 200px) rotate(400deg); opacity: 0; }
+}
+/* сердечка, кульки — піднімаються */
+.hol-rise { top: auto; bottom: 0; animation-name: holRise; animation-timing-function: ease-in-out; }
+@keyframes holRise {
+  0%   { transform: translate(0, 24px) scale(.8); opacity: 0; }
+  12%  { opacity: .9; }
+  50%  { transform: translate(var(--sw, 12px), -90px) scale(1); }
+  88%  { opacity: .7; }
+  100% { transform: translate(0, -200px) scale(1.05); opacity: 0; }
+}
+/* метелики, кажанчики — пролітають через кімнату */
+.hol-fly { left: 0; top: var(--y, 20%); font-size: 20px; animation-name: holFly; animation-timing-function: ease-in-out; }
+.hol-fly.rtl { animation-name: holFlyR; }
+@keyframes holFly {
+  0%   { transform: translate(-30px, 0); opacity: 0; }
+  8%   { opacity: .95; }
+  25%  { transform: translate(25vw, -14px); }
+  50%  { transform: translate(50vw, 8px); }
+  75%  { transform: translate(72vw, -10px); }
+  92%  { opacity: .9; }
+  100% { transform: translate(100vw, 0); opacity: 0; }
+}
+@keyframes holFlyR {
+  0%   { transform: translate(100vw, 0) scaleX(-1); opacity: 0; }
+  8%   { opacity: .95; }
+  50%  { transform: translate(50vw, -12px) scaleX(-1); }
+  92%  { opacity: .9; }
+  100% { transform: translate(-30px, 4px) scaleX(-1); opacity: 0; }
+}
+/* феєрверки — м'які спалахи (без різких мерехтінь) */
+.hol-burst { top: var(--y, 20%); font-size: 28px; animation-name: holBurst; animation-timing-function: ease-out; }
+@keyframes holBurst {
+  0%   { transform: scale(.2); opacity: 0; }
+  18%  { transform: scale(1.1); opacity: 1; }
+  45%  { transform: scale(1.25); opacity: .55; }
+  60%, 100% { transform: scale(1.3); opacity: 0; }
+}
+
+/* речі на підлозі: біля ніг улюбленця, між слотами декору */
+.hol-floor {
+  position: absolute; bottom: 10px; font-size: 26px; line-height: 1;
+  filter: drop-shadow(0 3px 3px rgba(0,0,0,.35));
+  animation: holFloorIn .6s ease-out both;
+}
+.hol-floor.l { left: calc(30% - var(--k, 0) * 26px); }
+.hol-floor.r { right: calc(30% - var(--k, 0) * 26px); }
+@keyframes holFloorIn { from { transform: translateY(8px) scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* гірлянда вгорі */
+.hol-garland {
+  position: absolute; left: 20%; right: 20%; top: 0; height: 22px;
+  border-bottom: 2px solid rgba(40,60,40,.8); border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  display: flex; justify-content: space-between; padding: 0 4px;
+}
+.hol-bulb {
+  width: 7px; height: 10px; border-radius: 50%; margin-top: calc(6px + (5 - (var(--i) - 5) * (var(--i) - 5) / 5) * 2.4px);
+  background: #ffd86b; box-shadow: 0 0 8px #ffd86b;
+  animation: holBulb 2.4s ease-in-out infinite; animation-delay: calc(var(--i) * -.4s);
+}
+.hol-bulb:nth-child(4n+1) { background: #ff7a8a; box-shadow: 0 0 8px #ff7a8a; }
+.hol-bulb:nth-child(4n+2) { background: #7fe0a6; box-shadow: 0 0 8px #7fe0a6; }
+.hol-bulb:nth-child(4n+3) { background: #7fc8ff; box-shadow: 0 0 8px #7fc8ff; }
+@keyframes holBulb { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+
+/* літнє сонечко */
+.hol-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 55% 55% at 50% 0%, rgba(255,222,120,.20), transparent 70%);
+}
+/* стрічки-орнаменти: мерцішор (червоно-біла), вишиванка */
+.hol-band { position: absolute; left: 0; right: 0; top: 0; height: 8px; opacity: .85; }
+.hol-band-martisor { background: repeating-linear-gradient(45deg, #e8384f 0 6px, #fff 6px 12px); }
+.hol-band-embroidery {
+  height: 12px;
+  background:
+    linear-gradient(45deg, transparent 33%, #d7263d 33% 45%, transparent 45% 55%, #d7263d 55% 67%, transparent 67%) 0 0 / 16px 12px,
+    linear-gradient(-45deg, transparent 40%, #1d1d1d 40% 60%, transparent 60%) 8px 0 / 16px 12px,
+    #fff6e8;
+}
+
+/* відтінки кімнати для деяких тем */
+#holLayer.hol-halloween { background: linear-gradient(180deg, rgba(255,140,40,.10), transparent 60%); }
+#holLayer.hol-valentine, #holLayer.hol-moms { background: linear-gradient(180deg, rgba(255,120,170,.08), transparent 60%); }
+#holLayer.hol-patrick { background: linear-gradient(180deg, rgba(80,200,120,.08), transparent 60%); }
+#holLayer.hol-orange { background: linear-gradient(180deg, rgba(255,150,40,.10), transparent 60%); }
+#holLayer.hol-winter, #holLayer.hol-christmas { background: linear-gradient(180deg, rgba(190,220,255,.06), transparent 50%); }
+
+/* значок свята: тап — привітання ще раз (або «скоро свято») */
+#holBadge {
+  position: absolute; left: 50%; top: 8px; transform: translateX(-50%); z-index: 4;
+  max-width: 46%; padding: 4px 10px; min-height: 30px; border-radius: 15px;
+  border: 1px solid rgba(255,255,255,.18); background: rgba(20,24,52,.72); color: #fff;
+  font: inherit; font-size: 11px; line-height: 1.2; cursor: pointer;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  box-shadow: 0 3px 10px rgba(0,0,0,.25); touch-action: manipulation;
+}
+#holBadge.pre { opacity: .85; }
+#holBadge.hidden { display: none; }
+#holBadge:active { transform: translateX(-50%) scale(.96); }
+
+/* святкове вікно привітання */
+#eventText.holText { white-space: pre-line; }
+#eventCard.holCard {
+  border: 2px solid rgba(255,216,107,.55);
+  box-shadow: 0 0 0 4px rgba(255,216,107,.12), 0 10px 30px rgba(0,0,0,.35);
+  background: radial-gradient(ellipse 90% 60% at 50% 0%, rgba(255,216,107,.16), transparent 70%), #1c2040;
+}
+#eventCard.holCard #eventEmoji { animation: holPop .7s ease-out; }
+#eventCard.holCard[data-hol-theme="valentine"], #eventCard.holCard[data-hol-theme="moms"] { border-color: rgba(255,140,190,.6); }
+#eventCard.holCard[data-hol-theme="halloween"], #eventCard.holCard[data-hol-theme="thanks"], #eventCard.holCard[data-hol-theme="autumn"] { border-color: rgba(255,160,60,.6); }
+#eventCard.holCard[data-hol-theme="winter"], #eventCard.holCard[data-hol-theme="christmas"] { border-color: rgba(170,215,255,.6); }
+#eventCard.holCard[data-hol-theme="spring"], #eventCard.holCard[data-hol-theme="nowruz"], #eventCard.holCard[data-hol-theme="easter"], #eventCard.holCard[data-hol-theme="earth"], #eventCard.holCard[data-hol-theme="patrick"] { border-color: rgba(130,230,160,.6); }
+@keyframes holPop { 0% { transform: scale(.4); } 60% { transform: scale(1.2); } 100% { transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hol-p { animation: none; opacity: .7; top: calc(10% + var(--sw, 0px)); }
+  .hol-rise { bottom: auto; top: 40%; }
+  .hol-fly, .hol-burst { display: none; }
+  .hol-bulb, #eventCard.holCard #eventEmoji { animation: none; }
+}

@@ -1,0 +1,7 @@
+Liberation Serif 2.1.5 (Regular), fonts/liberation-serif-regular.woff2
+Digitized data copyright (c) 2010 Google Corporation with Reserved Font Arimo, Tinos and Cousine.
+Copyright (c) 2012 Red Hat, Inc. with Reserved Font Name Liberation.
+Licensed under the SIL Open Font License, Version 1.1: https://openfontlicense.org
+The font file is unmodified (only repackaged to WOFF2). Free to embed and redistribute with the game,
+including commercially; the font may not be sold on its own.
+Metric-compatible with Times New Roman: used as the fallback where Times New Roman is not installed (Android).

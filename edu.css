@@ -1,0 +1,30 @@
+/* OTOTO — модуль «Навчання» (5 слотів освітніх ігор). CoLaba Production. */
+#view-edu { display: flex; flex-direction: column; gap: 10px; padding: 12px 14px 18px; min-height: 100%; }
+#view-edu.hidden { display: none; }
+.eduTop { display: flex; align-items: center; gap: 10px; }
+.eduTop.hidden, .eduAgeLine.hidden, .eduGrid.hidden, .eduAgeAsk.hidden, .eduPlay.hidden { display: none; }
+.eduTitle { font-size: 22px; margin: 0; }
+.eduAgeLine { font-size: 13px; opacity: .7; margin: -4px 0 2px; }
+.eduGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.eduCard { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  min-height: 118px; padding: 12px 8px; border-radius: 18px; border: 2px solid rgba(255,255,255,.1);
+  background: linear-gradient(160deg, rgba(126,240,200,.14), rgba(178,141,255,.14)); color: inherit; cursor: pointer; text-align: center; }
+.eduCard:nth-child(5) { grid-column: 1 / -1; min-height: 96px; }
+.eduCard:active { transform: scale(.97); }
+.eduIcon { font-size: 38px; line-height: 1; }
+.eduName { font-size: 16px; font-weight: 800; max-width: 100%; }
+.eduSub { font-size: 12px; opacity: .75; }
+.eduSoon { opacity: .45; cursor: default; filter: grayscale(.6); }
+.eduTag { position: absolute; top: 8px; right: 8px; font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 999px;
+  background: #ffcf5a; color: #3b2a00; text-transform: uppercase; letter-spacing: .04em; }
+.eduAgeAsk { text-align: center; padding-top: 30px; }
+.eduAgeAskText { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.eduPlay { display: flex; flex-direction: column; flex: 1; gap: 8px; min-height: 0; align-self: stretch; width: 100%; }
+.eduPlayTop { display: flex; align-items: center; gap: 10px; }
+.eduPlayTitle { flex: 1; font-weight: 800; font-size: 17px; }
+.eduPlayStars { font-weight: 800; }
+.eduHost { flex: 1; position: relative; min-height: 420px; border-radius: 18px; background: rgba(255,255,255,.04); overflow: hidden; }
+
+/* 5 кнопок у нижньому ряду (Кімната · Навчання · Мапа · Нагороди · Звук): усі однакової ширини */
+#navRow { gap: 6px; }
+#navRow .soundNav { flex: initial; min-width: 0; }

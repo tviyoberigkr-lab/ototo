@@ -1,0 +1,413 @@
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; user-select: none; }
+
+html, body { height: 100%; background: #0d0f1a; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; overflow: hidden; }
+
+:root { --accent: #4fc3ff; --accent2: #6bffd1; }
+body.theme-mimi { --accent: #ff7ac6; --accent2: #8a6bff; }
+
+#screen {
+  height: 100vh; width: 100vw; max-width: 480px; margin: 0 auto;
+  background: radial-gradient(circle at 50% 0%, #2a2f55 0%, #0d0f1a 70%);
+  position: relative; display: flex; flex-direction: column; color: #f4f1ff;
+}
+
+.view { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 20px; overflow-y: auto; }
+.hidden { display: none !important; }
+
+/* START VIEW */
+#view-start { justify-content: center; gap: 16px; text-align: center; }
+.logo { font-size: 52px; font-weight: 800; letter-spacing: 2px; color: var(--accent); text-shadow: 0 0 24px rgba(255,122,198,.5); }
+.tagline { opacity: .7; font-size: 14px; margin-bottom: 8px; }
+
+#personaPick { display: flex; gap: 10px; }
+.personaOpt {
+  width: 112px; padding: 12px 8px; border-radius: 14px; border: 2px solid transparent;
+  background: #1c2040; color: #fff; font-size: 13px; font-weight: 600; line-height: 1.6;
+  cursor: pointer; opacity: .55; transition: opacity .15s, border-color .15s, transform .15s;
+}
+.personaOpt.selected { opacity: 1; border-color: var(--accent); transform: translateY(-2px); }
+
+#petNameInput { width: 240px; padding: 14px 16px; border-radius: 14px; border: none; background: #1c2040; color: #fff; font-size: 16px; text-align: center; }
+#btnStart {
+  width: 240px; padding: 14px; border-radius: 14px; border: none;
+  background: linear-gradient(135deg,var(--accent),var(--accent2)); color: #fff;
+  font-size: 16px; font-weight: 700; cursor: pointer;
+}
+#btnStart:disabled { opacity: .4; cursor: not-allowed; }
+
+/* MAIN VIEW */
+#view-main { padding: 14px; gap: 8px; }
+#topbar { width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 13px; opacity: .9; gap: 6px; }
+#stageLabel { background: #1c2040; padding: 4px 10px; border-radius: 10px; font-size: 11px; }
+.iconBtn { background: #1c2040; border: none; border-radius: 10px; color: #fff; font-size: 16px; padding: 4px 8px; cursor: pointer; }
+#streak { font-size: 13px; }
+/* #streak і значок енергії тапабельні — показують попап з інфо та заповненням/захистом за бали */
+.tapStat { background: #1c2040; border: none; border-radius: 10px; color: #fff; font-size: 13px; padding: 4px 8px; cursor: pointer; }
+#iconEnergy.tapStat { font-size: 16px; padding: 2px 5px; }
+#btnReset { font-size: 14px; opacity: .6; }
+
+#stage { flex: 0 0 auto; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 10px 0; }
+#pet { font-size: 96px; animation: bob 2.4s ease-in-out infinite; filter: drop-shadow(0 10px 20px rgba(0,0,0,.4)); position: relative; transition: filter .4s, opacity .4s; }
+#petAccessory { position: absolute; top: -14px; right: -6px; font-size: 32px; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+/* Легка занедбаність: 1-2 шкали низькі, але гра не блокується — лише притлумлений вигляд */
+#pet.sad { filter: drop-shadow(0 10px 20px rgba(0,0,0,.4)) grayscale(35%) brightness(0.92); animation: bobSad 3.2s ease-in-out infinite; }
+@keyframes bobSad { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-4px) rotate(-3deg); } }
+
+#bubble { position: absolute; top: -4px; background: #fff; color: #222; padding: 8px 14px; border-radius: 14px; font-size: 12px; max-width: 220px; text-align: center; }
+
+#stats { width: 100%; display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+.stat { display: flex; align-items: center; gap: 10px; }
+.stat-icon { font-size: 16px; width: 22px; text-align: center; }
+.bar { flex: 1; height: 9px; border-radius: 6px; background: #1c2040; overflow: hidden; }
+.bar-fill { height: 100%; width: 70%; background: linear-gradient(90deg,var(--accent2),var(--accent)); transition: width .4s ease; }
+.bar-fill.low { background: linear-gradient(90deg,#ff4d4d,#ff884d); }
+
+#actions { width: 100%; display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.actionBtn { background: #1c2040; border: none; border-radius: 14px; color: #fff; padding: 10px 2px; font-size: 20px; cursor: pointer; }
+.actionBtn span { display: block; font-size: 10px; margin-top: 3px; opacity: .8; }
+.actionBtn:active { background: #2a2f55; }
+.actionBtn:disabled { opacity: .35; }
+
+#log { width: 100%; min-height: 18px; font-size: 11px; opacity: .65; text-align: center; margin-top: 6px; }
+
+/* WARDROBE */
+#view-wardrobe { gap: 14px; }
+#wardrobeGrid { width: 100%; display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.wardrobeItem { background: #1c2040; border-radius: 14px; padding: 14px 6px; text-align: center; font-size: 28px; cursor: pointer; border: 2px solid transparent; }
+.wardrobeItem.locked { opacity: .3; cursor: not-allowed; }
+.wardrobeItem.equipped { border-color: var(--accent); }
+.wardrobeItem .wLabel { display: block; font-size: 10px; margin-top: 4px; }
+.secondaryBtn { margin-top: 10px; background: #1c2040; border: none; color: #fff; padding: 10px 18px; border-radius: 12px; cursor: pointer; }
+
+/* MINI-GAME VIEW */
+#view-game { justify-content: center; gap: 16px; }
+#gamePrompt { font-size: 16px; font-weight: 600; text-align: center; }
+#gameArea { position: relative; width: 100%; max-width: 300px; height: 300px; background: #1c2040; border-radius: 20px; overflow: hidden; }
+#gameScore { font-size: 14px; opacity: .8; }
+
+.gameTarget { position: absolute; width: 54px; height: 54px; border-radius: 50%; border: none; background: var(--accent); font-size: 22px; cursor: pointer; }
+.fallItem { position: absolute; font-size: 30px; background: none; border: none; cursor: pointer; }
+
+/* Варіант 2 (символ-матчінг): ціль завжди видима зверху, нічого запам'ятовувати не треба */
+.matchWrap { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
+.matchTarget { font-size: 56px; }
+.matchOptions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; padding: 0 10px; }
+.matchOption { width: 62px; height: 62px; border-radius: 16px; border: none; background: #2a2f55; font-size: 30px; cursor: pointer; }
+.matchOption:active { background: var(--accent); }
+
+/* Варіант 6: рахуй та тапай */
+.countBadge { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+.countBtn { width: 110px; height: 110px; border-radius: 50%; border: none; background: var(--accent); font-size: 46px; cursor: pointer; }
+.countBtn:active { transform: scale(.96); }
+
+/* Варіант 7: хто більший */
+.biggerWrap { height: 100%; display: flex; align-items: center; justify-content: center; gap: 30px; }
+.biggerOpt { border: none; background: #2a2f55; border-radius: 16px; cursor: pointer; width: 110px; height: 160px; display: flex; align-items: center; justify-content: center; }
+
+/* Варіант 8: напрямок */
+.dirTarget { font-size: 56px; text-align: center; margin: 20px 0; }
+.dirOpts { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.dirBtn { width: 62px; height: 62px; border-radius: 16px; border: none; background: #2a2f55; font-size: 28px; cursor: pointer; }
+.dirBtn:active { background: var(--accent); }
+
+/* Варіант 9: знайди інше */
+.oddGrid { display: grid; gap: 6px; padding: 14px; height: 100%; align-content: center; justify-content: center; }
+.oddCell { width: 48px; height: 48px; border-radius: 10px; border: none; background: #2a2f55; font-size: 24px; cursor: pointer; }
+
+/* Варіант 10: встигни тапнути (кільце, що зменшується) */
+.shrinkRing {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(1);
+  width: 160px; height: 160px; border-radius: 50%; border: 10px solid var(--accent2);
+  background: rgba(79,195,255,.18); cursor: pointer;
+}
+
+/* Варіант 11: безпечна доріжка */
+.dodgeWrap { height: 100%; display: flex; align-items: center; justify-content: center; gap: 14px; }
+.dodgeLane { width: 70px; height: 190px; border-radius: 16px; border: none; background: #2a2f55; font-size: 32px; cursor: pointer; display: flex; align-items: flex-start; justify-content: center; padding-top: 14px; }
+
+/* Варіант 12: збери колір */
+.colorTarget { font-size: 54px; text-align: center; margin: 18px 0; }
+.colorOpts { display: flex; gap: 14px; justify-content: center; }
+.colorBtn { width: 64px; height: 64px; border-radius: 50%; border: none; background: #2a2f55; font-size: 28px; cursor: pointer; }
+
+/* Варіант 13: у ритм (пульсуючий кружечок) */
+.rhythmCircle {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(.4);
+  width: 150px; height: 150px; border-radius: 50%; border: none; background: var(--accent); cursor: pointer;
+}
+@keyframes rhythmPulse { 0%,100% { transform: translate(-50%,-50%) scale(.4); } 50% { transform: translate(-50%,-50%) scale(1); } }
+
+/* Варіант 14: число більше */
+.numWrap { height: 100%; display: flex; align-items: center; justify-content: center; gap: 24px; }
+.numBtn { width: 110px; height: 110px; border-radius: 20px; border: none; background: #2a2f55; font-size: 40px; font-weight: 700; cursor: pointer; }
+
+/* Варіант 15: настрій */
+.moodFace { font-size: 70px; text-align: center; margin: 20px 0; }
+.moodOpts { display: flex; gap: 24px; justify-content: center; }
+.moodBtn { width: 76px; height: 76px; border-radius: 50%; border: none; background: #2a2f55; font-size: 32px; cursor: pointer; }
+
+/* EVENT MODAL */
+#eventModal, #statModal { position: absolute; inset: 0; background: rgba(0,0,0,.65); display: flex; align-items: center; justify-content: center; z-index: 10; }
+#eventCard, #statCard { background: #1c2040; border-radius: 20px; padding: 26px; text-align: center; max-width: 260px; }
+#eventEmoji, #statEmoji { font-size: 48px; margin-bottom: 10px; }
+#eventText, #statText { font-size: 14px; margin-bottom: 16px; }
+
+/* GAME MENU */
+#view-gameMenu { gap: 14px; }
+#gameMenuGrid { width: 100%; display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+.gameMenuItem { background: #1c2040; border-radius: 16px; padding: 18px 8px; text-align: center; font-size: 40px; cursor: pointer; border: 2px solid transparent; color: inherit; font-family: inherit; }
+.gameMenuItem:active { border-color: var(--accent); transform: scale(.97); }
+.gameMenuItem .gLabel { display: block; font-size: 13px; margin-top: 6px; }
+.gameMenuItem .gBest { display: block; font-size: 11px; opacity: .7; margin-top: 3px; }
+
+/* CHARACTERS (картинки замість емодзі) */
+#petImg { display: block; width: 110px; height: auto; transition: width .6s; pointer-events: none; }
+#petEmoji { position: absolute; top: -6px; left: -10px; font-size: 34px; }
+#pet.sleeping #petImg { filter: brightness(.6) saturate(.6); }
+#pet.sad #petImg { filter: grayscale(35%) brightness(.92); }
+#petAccessory { z-index: 2; }
+#points { font-size: 13px; font-weight: 600; }
+.startPet { width: 150px; margin: 6px 0 4px; animation: bob 2.4s ease-in-out infinite; }
+#view-characters { gap: 12px; }
+#charPoints { font-size: 14px; opacity: .85; }
+#charGrid { width: 100%; display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+.charCard { background: #1c2040; border-radius: 16px; padding: 10px 6px 12px; text-align: center; border: 2px solid transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.charCard img { width: 92px; height: 92px; object-fit: contain; }
+.charCard.locked img { filter: brightness(.35) grayscale(.6); }
+.charCard.active { border-color: var(--accent); }
+.charCard .cName { font-size: 14px; font-weight: 700; }
+.charCard .cTitle { font-size: 11px; opacity: .7; }
+.charCard .cTag { font-size: 11px; margin-top: 4px; opacity: .85; }
+.charCard .cBuy { margin-top: 6px; border: none; border-radius: 10px; padding: 6px 10px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; }
+
+/* ============ НАРОДЖЕННЯ: яйце-ореол Сяйка ============ */
+#view-hatch { justify-content: center; }
+#hatchStage { position: relative; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+
+#eggAura {
+  position: relative; width: 150px; height: 180px;
+  border-radius: 50% 50% 48% 48% / 58% 58% 42% 42%;
+  background: radial-gradient(circle at 42% 35%, #fff9e6 0%, #ffe9b0 35%, #ffd37a 65%, #f3b94f 100%);
+  box-shadow: 0 0 40px 10px rgba(255,211,122,.55);
+  display: flex; align-items: center; justify-content: center; overflow: visible;
+  animation: eggPulse 2.6s ease-in-out infinite; cursor: pointer;
+}
+@keyframes eggPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+
+#eggGlow { position: absolute; inset: -16px; border-radius: 50%; background: radial-gradient(circle, rgba(255,229,160,.5), transparent 70%); animation: eggGlowPulse 2.6s ease-in-out infinite; pointer-events: none; z-index: 0; }
+@keyframes eggGlowPulse { 0%,100% { opacity: .5; } 50% { opacity: .9; } }
+
+#hatchPetImg { width: 72px; opacity: 0; transform: scale(.7); transition: opacity .5s, transform .5s; filter: brightness(.85); position: relative; z-index: 1; pointer-events: none; }
+#eggAura.tier1 #hatchPetImg, #eggAura.tier2 #hatchPetImg { opacity: .22; }
+#eggAura.tier3 #hatchPetImg, #eggAura.tier4 #hatchPetImg { opacity: .42; transform: scale(.82); }
+#eggAura.hatched #hatchPetImg { opacity: 1; transform: scale(1.4); filter: none; }
+
+#eggAura.tier1 { animation: eggPulse 2.6s ease-in-out infinite, eggBlink .35s ease; }
+@keyframes eggBlink { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.3); } }
+
+#eggAura.tier2 { animation: eggFlicker 1s ease-in-out infinite, eggTremor .3s ease-in-out infinite; }
+@keyframes eggFlicker { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.35); } }
+@keyframes eggTremor { 0%,100% { transform: translateX(0); } 50% { transform: translateX(1.5px); } }
+
+#eggAura.tier3 { animation: eggShake .5s ease-in-out infinite; }
+@keyframes eggShake { 0%,100% { transform: translateX(0) rotate(0); } 25% { transform: translateX(-4px) rotate(-2deg); } 75% { transform: translateX(4px) rotate(2deg); } }
+
+#eggAura.tier4 { animation: eggShakeHard .4s ease-in-out infinite; }
+@keyframes eggShakeHard { 0%,100% { transform: translateX(0) rotate(0); } 25% { transform: translateX(-7px) rotate(-4deg); } 75% { transform: translateX(7px) rotate(4deg); } }
+
+.shell { position: absolute; top: 0; width: 50%; height: 100%; background: linear-gradient(135deg,#fff3d6,#f3b94f); opacity: 0; pointer-events: none; transition: transform .5s ease, opacity .3s; z-index: 2; }
+#eggShellL { left: 0; border-radius: 50% 0 0 48% / 58% 0 0 42%; transform-origin: left center; }
+#eggShellR { right: 0; border-radius: 0 50% 48% 0 / 0 58% 42% 0; transform-origin: right center; }
+#eggAura.crack1 #eggShellL, #eggAura.crack1 #eggShellR { opacity: .9; }
+#eggAura.crack2 #eggShellL { opacity: .95; transform: translateX(-3px) rotate(-3deg); }
+#eggAura.crack2 #eggShellR { opacity: .95; transform: translateX(3px) rotate(3deg); }
+#eggAura.hatched #eggShellL { opacity: 1; transform: translateX(-70px) rotate(-38deg); }
+#eggAura.hatched #eggShellR { opacity: 1; transform: translateX(70px) rotate(38deg); }
+#eggAura.hatched { animation: none; box-shadow: none; background: transparent; }
+#eggAura.hatched #eggGlow { animation: none; opacity: 0; transition: opacity .6s; }
+
+#tapHint { font-size: 15px; opacity: .85; animation: hintBounce 1.2s ease-in-out infinite; transition: opacity .3s; }
+@keyframes hintBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+#tapHint.hint-fade { opacity: 0; }
+
+/* ============ МАМА: тепла сцена (народження / щоденна / ріст) ============ */
+/* Сцена з мамою — окрема повноекранна "локація" (не напівпрозорий попап):
+   мама й малий зустрічаються зліва, потім малюк біжить у правий бік сцени
+   туди, де починає блимати підказка. */
+#mamaOverlay { position: absolute; inset: 0; background: radial-gradient(circle at 50% 15%, #234a37 0%, #0d0f1a 72%); display: flex; align-items: center; justify-content: center; z-index: 14; flex-direction: column; gap: 16px; }
+#mamaBox { position: relative; width: 92%; max-width: 440px; }
+#mamaScene { position: relative; width: 100%; height: 190px; }
+#mamaSvg {
+  position: absolute; left: 0; bottom: 0; width: 205px; height: auto;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+  transform-origin: 40% 90%;
+  animation-name: mamaBob; animation-timing-function: ease-in-out; animation-iteration-count: infinite;
+}
+@keyframes mamaBob {
+  0%,100% { transform: translateY(0) rotate(calc(var(--mamaTilt,6deg) * -1)); }
+  50% { transform: translateY(calc(var(--mamaBounce,12px) * -1)) rotate(var(--mamaTilt,6deg)); }
+}
+#mamaBabyImg {
+  /* малюк стоїть перед мордочкою мами (мама дивиться праворуч, на нього) */
+  position: absolute; right: 26%; bottom: 4px; width: 62px; height: auto;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.3));
+  animation: babyNuzzle 1.7s ease-in-out infinite;
+  transition: right 1.05s cubic-bezier(.32,.7,.35,1);
+}
+#mamaBabyImg.running { right: 4%; animation: babyRun .3s ease-in-out infinite; }
+@keyframes babyNuzzle { 0%,100% { transform: translate(0,0) rotate(0deg); } 50% { transform: translate(-6px,-3px) rotate(-6deg); } }
+@keyframes babyRun { 0%,100% { transform: translateY(0) rotate(-5deg) scaleX(1); } 50% { transform: translateY(-10px) rotate(5deg) scaleX(1.06); } }
+#mamaHearts { position: absolute; inset: -20px; pointer-events: none; }
+.mamaParticle { position: absolute; font-size: 20px; opacity: 0; animation-name: mamaFloat; animation-timing-function: ease-out; animation-fill-mode: forwards; }
+@keyframes mamaFloat { 0% { opacity: 0; transform: translateY(0) scale(.6); } 15% { opacity: 1; } 100% { opacity: 0; transform: translateY(-70px) scale(1.1); } }
+.dustParticle { position: absolute; bottom: 4px; font-size: 15px; opacity: 0; animation: dustPuff .7s ease-out forwards; pointer-events: none; }
+@keyframes dustPuff { 0% { opacity: 0; transform: translate(0,0) scale(.5); } 25% { opacity: .85; } 100% { opacity: 0; transform: translate(14px,6px) scale(1.1); } }
+#mamaCaption { font-size: 14px; text-align: center; max-width: 92%; opacity: .9; }
+#mamaOverlay .secondaryBtn { margin-top: 2px; }
+#mamaTapHint {
+  position: absolute; right: 1%; bottom: 80px; font-size: 14px; white-space: nowrap;
+  background: rgba(0,0,0,.4); padding: 6px 11px; border-radius: 10px; cursor: pointer;
+  animation: hintBounce 1.1s ease-in-out infinite; transition: opacity .3s;
+}
+#mamaTapHint.hidden-hint { opacity: 0; pointer-events: none; }
+
+/* Інфо-попап для ⚡/🔥 */
+.statTitle { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+#statAction { background: var(--accent); color: #fff; margin-bottom: 8px; }
+
+/* АКТИВАЦІЯ: КРАЇНА І МОВА (CoLaba Production) */
+#view-country { gap: 8px; justify-content: flex-start; overflow-y: auto; }
+#view-country h2 { margin: 0; }
+#countryList { width: 100%; display: flex; flex-direction: column; gap: 8px; padding-bottom: 16px; }
+.countryGroup { font-size: 12px; opacity: .6; text-transform: uppercase; letter-spacing: .08em; margin: 10px 4px 0; }
+.countryBtn { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 14px; border: 2px solid transparent; border-radius: 14px; background: #1c2040; color: #fff; font-size: 16px; text-align: left; cursor: pointer; font-family: inherit; }
+.countryBtn img { width: 36px; height: 27px; border-radius: 4px; object-fit: cover; flex: 0 0 auto; box-shadow: 0 1px 3px rgba(0,0,0,.4); }
+.countryBtn:active, .countryBtn.suggested { border-color: var(--accent); }
+.bigFlag { width: 96px; height: 72px; border-radius: 8px; object-fit: cover; box-shadow: 0 4px 14px rgba(0,0,0,.45); }
+#langList, #langModalList { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+.langOpt { width: 100%; padding: 14px; border: 2px solid transparent; border-radius: 14px; background: #1c2040; color: #fff; cursor: pointer; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.langOpt.selected { border-color: var(--accent); }
+.langOpt .lName { font-size: 17px; font-weight: 700; }
+.langOpt .lSoon { font-size: 11px; opacity: .6; }
+.countryChip { display: inline-flex; align-items: center; gap: 8px; background: #1c2040; border: none; border-radius: 20px; padding: 6px 12px; color: #fff; font-size: 13px; cursor: pointer; font-family: inherit; }
+.countryChip img { width: 24px; height: 18px; border-radius: 3px; object-fit: cover; }
+.langBtn { padding: 4px 6px; display: inline-flex; align-items: center; }
+.langBtn img { width: 22px; height: 16px; border-radius: 3px; object-fit: cover; display: block; }
+#langModal { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; z-index: 50; }
+#langModal.hidden { display: none; }
+#langCard { background: #14173a; border-radius: 20px; padding: 20px; width: 86%; max-width: 340px; max-height: 80vh; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+/* Відновлено 13.11: ці два класи випали з файлу при паралельному редагуванні
+   (через це "Знайди предмет" збивав усі предмети в один рядок угорі, а кульки
+   не позиціонувались). */
+.hiddenItem { position: absolute; width: 56px; height: 56px; font-size: 26px; background: none; border: none; cursor: pointer; }
+.balloonItem { position: absolute; font-size: 30px; background: none; border: none; cursor: pointer; }
+
+/* Рядок кнопок модулів на головному екрані (мапа, декор …) */
+#navRow { width: 100%; display: flex; gap: 10px; justify-content: center; margin-top: 10px; flex-wrap: wrap; }
+#navRow:empty { display: none; }
+.navBtn { flex: 1; min-width: 90px; background: #1c2040; border: none; border-radius: 14px; color: #fff; padding: 10px 6px; font-size: 22px; cursor: pointer; font-family: inherit; }
+.navBtn span { display: block; font-size: 11px; margin-top: 2px; }
+
+/* =====================================================================
+   ТЕКСТ ВЛАЗИТЬ У КНОПКИ — у всіх 8 мовах (CoLaba Production)
+   Правило власника: кнопки в ряду/сітці однакові, підлаштовується ТЕКСТ.
+   1) до 2 рядків з переносом (hyphens за <html lang>, далі — розрив слова);
+   2) якщо й так не влазить — fit.js зменшує шрифт (до ~78%);
+   3) колонки сітки minmax(0,1fr): довге слово не розпирає свою кнопку.
+   ===================================================================== */
+.actionBtn > span, .navBtn > span, .gameMenuItem .gLabel, .gameMenuItem .gBest,
+.wardrobeItem .wLabel, .charCard .cName, .charCard .cTitle, .charCard .cTag, .charCard .cBuy,
+.personaOpt > span, #btnStart, .secondaryBtn, .langOpt .lName, .langOpt .lSoon,
+.countryBtn > span, .countryChip > span, .countryGroup, #gamePrompt, #gameScore, #bubble, #log,
+.statTitle, #statText, #eventText, #charPoints, .view > h2, .tagline, #tapHint, #mamaCaption {
+  overflow-wrap: anywhere; word-break: normal; hyphens: auto; -webkit-hyphens: auto;
+}
+.actionBtn > span, .navBtn > span, .gameMenuItem .gLabel, .wardrobeItem .wLabel,
+.charCard .cName, .charCard .cTitle, .charCard .cTag, .charCard .cBuy, .personaOpt > span,
+#btnStart, .secondaryBtn, .countryBtn > span, .langOpt .lName { line-height: 1.2; }
+.view > h2 { text-align: center; max-width: 100%; line-height: 1.2; }
+
+/* сітки: однакові колонки незалежно від довжини слів */
+#actions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#gameMenuGrid, #charGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#wardrobeGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.actionBtn, .gameMenuItem, .wardrobeItem, .charCard { min-width: 0; min-height: 44px; }
+.actionBtn { display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.15; }
+.actionBtn > span { max-width: 100%; padding: 0 2px; }
+.gameMenuItem { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; line-height: 1.15; }
+.gameMenuItem .gLabel, .gameMenuItem .gBest { max-width: 100%; }
+.wardrobeItem { display: flex; flex-direction: column; align-items: center; line-height: 1.15; }
+.wardrobeItem .wLabel { max-width: 100%; line-height: 1.2; }
+.charCard > span, .charCard .cBuy { max-width: 100%; }
+.charCard .cBuy { min-height: 44px; }
+
+/* модульні кнопки (мапа, декор, …): завжди один ряд, однакова ширина */
+#navRow { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+#navRow:empty { display: none; }
+.navBtn { min-width: 0; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.15; }
+.navBtn > span { max-width: 100%; }
+
+/* стартові кнопки */
+.personaOpt { min-height: 44px; }
+.personaOpt > span { display: inline-block; max-width: 100%; }
+#btnStart { min-height: 48px; line-height: 1.2; }
+.secondaryBtn { min-height: 44px; max-width: 100%; line-height: 1.2; }
+.countryChip { min-height: 44px; max-width: 100%; }
+.countryChip > span { min-width: 0; }
+.countryBtn { min-height: 48px; }
+.countryBtn > span { flex: 1 1 auto; min-width: 0; }
+.langOpt { min-height: 48px; }
+.langOpt > span { max-width: 100%; }
+
+/* попапи: кнопки на всю ширину картки, одна під одною */
+#eventCard, #statCard { width: 86%; max-width: 300px; }
+#eventCard .secondaryBtn, #statCard .secondaryBtn, #langCard .secondaryBtn { display: block; width: 100%; }
+
+#petNameInput { max-width: 100%; text-overflow: ellipsis; }
+
+/* міні-гра, бульбашка, підказка під кнопками */
+#gamePrompt { max-width: 100%; line-height: 1.25; }
+#bubble { max-width: min(300px, 88%); line-height: 1.3; }
+#log { min-height: 30px; line-height: 1.3; }
+
+/* ---------- ВЕРХНЯ ПАНЕЛЬ: завжди один ряд ----------
+   Ім'я і етап стоять одне над одним у першій (гнучкій) колонці й обрізаються
+   "…"; кожна кнопка — своя колонка авто-ширини (додана пізніше кнопка 🔊
+   автоматично отримає свою колонку, нічого правити не треба). */
+#topbar {
+  display: grid; grid-auto-flow: column; grid-template-columns: minmax(0, 1fr); grid-auto-columns: auto;
+  grid-template-rows: auto auto; align-items: center; column-gap: 4px; row-gap: 2px;
+  justify-content: stretch;
+}
+#topbar > * { grid-row: 1 / span 2; white-space: nowrap; }
+#topbar > #petName, #topbar > #stageLabel {
+  grid-column: 1; min-width: 0; max-width: 100%; justify-self: start;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+#topbar > #petName { grid-row: 1; align-self: end; font-weight: 600; line-height: 1.25; }
+#topbar > #stageLabel { grid-row: 2; align-self: start; padding: 2px 6px; line-height: 1.25; }
+#topbar > button { min-height: 44px; min-width: 34px; padding: 0 6px; display: inline-flex; align-items: center; justify-content: center; }
+#topbar > .langBtn { padding: 0 6px; }
+#topbar > #points { padding: 0 2px; }
+@media (max-width: 374px) {
+  #topbar { column-gap: 3px; }
+  #topbar > button { min-width: 32px; padding: 0 5px; }
+}
+/* ⚡ біля шкали енергії: більша невидима зона дотику, верстка не зсувається */
+#iconEnergy.tapStat { position: relative; }
+#iconEnergy.tapStat::after { content: ''; position: absolute; inset: -12px -10px; }
+
+/* ---- Вік гравця на екрані знайомства (крок 3 активації) ---- */
+#agePick { width: 100%; max-width: 340px; margin: 4px auto 10px; text-align: center; }
+.agePickLabel { font-size: 14px; opacity: .85; margin-bottom: 6px; }
+.ageStrip { display: flex; gap: 6px; overflow-x: auto; padding: 4px 2px 6px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.ageStrip::-webkit-scrollbar { display: none; }
+.ageOpt { flex: 0 0 auto; min-width: 44px; height: 44px; padding: 0 8px; border-radius: 12px; border: 2px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06); color: inherit; font-size: 17px; font-weight: 700; scroll-snap-align: center; cursor: pointer; }
+.ageOpt.selected { border-color: #6fc7ff; background: rgba(111,199,255,.18); box-shadow: 0 0 0 3px rgba(111,199,255,.18); }
+#agePick.ageNeed .ageStrip { animation: ageShake .45s ease; }
+#agePick.ageNeed .agePickLabel { color: #ffb36b; opacity: 1; }
+@keyframes ageShake { 0%,100% { transform: none; } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }

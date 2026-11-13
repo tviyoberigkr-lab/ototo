@@ -1,0 +1,98 @@
+/* OTOTO — модуль «Для батьків» (parent.js): батьківський замок і екран. CoLaba Production. */
+
+/* ---------- вікно-перевірка (поверх усього, крім заставки) ---------- */
+#pgModal {
+  position: absolute; inset: 0; z-index: 70; display: flex; align-items: center; justify-content: center;
+  background: rgba(5, 6, 16, .78); padding: 12px; overflow-y: auto;
+}
+#pgCard {
+  position: relative; width: 92%; max-width: 340px; margin: auto; padding: 18px 18px 14px;
+  background: #14173a; border-radius: 20px; box-shadow: 0 14px 40px rgba(0, 0, 0, .55);
+  display: flex; flex-direction: column; align-items: center; text-align: center; color: #f4f1ff;
+  outline: none;
+}
+#pgCard.pgShake { animation: pgShake .4s ease; }
+.pgClose {
+  position: absolute; top: 4px; right: 4px; width: 44px; height: 44px; border: none; border-radius: 50%;
+  background: transparent; color: #aab0d6; font-size: 18px; cursor: pointer; font-family: inherit;
+}
+.pgClose:active { background: rgba(255, 255, 255, .08); }
+.pgLock { font-size: 26px; line-height: 1; margin-top: 2px; }
+.pgTitle { margin-top: 6px; font-size: 18px; font-weight: 700; line-height: 1.2; padding: 0 34px; max-width: 100%; overflow-wrap: anywhere; }
+.pgHint { margin-top: 6px; font-size: 13px; line-height: 1.35; opacity: .85; max-width: 100%; overflow-wrap: anywhere; hyphens: auto; }
+.pgReason { margin-top: 4px; font-size: 12px; line-height: 1.3; opacity: .7; max-width: 100%; overflow-wrap: anywhere; }
+.pgTask {
+  margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-size: 30px; font-weight: 800; letter-spacing: .5px; font-variant-numeric: tabular-nums; line-height: 1.1;
+  transition: opacity .2s;
+}
+.pgAnswer {
+  min-width: 2.4em; padding: 4px 10px; border-radius: 12px; background: #0d0f1a;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .12); color: var(--accent);
+}
+.pgAnswer.pgEmpty { color: rgba(244, 241, 255, .35); }
+.pgMsg { min-height: 20px; margin-top: 8px; font-size: 13px; line-height: 1.3; max-width: 100%; overflow-wrap: anywhere; }
+.pgMsgErr { color: #ff9a8a; }
+.pgMsgWait { color: #ffcf6b; }
+#pgModal.pgWait .pgTask { opacity: .35; }
+
+.pgPad { width: 100%; max-width: 270px; margin-top: 6px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.pgKey {
+  min-height: 50px; border: none; border-radius: 14px; background: #262b57; color: #fff;
+  font-size: 22px; font-weight: 700; font-family: inherit; cursor: pointer; font-variant-numeric: tabular-nums;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, .3);
+}
+.pgKey:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0, 0, 0, .3); }
+.pgKey:disabled { opacity: .35; cursor: default; }
+.pgOk:disabled { background: #262b57; }
+.pgDel { background: #1c2040; font-size: 20px; }
+.pgOk { background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+.pgCancel { width: 100%; max-width: 270px; margin-top: 12px; }
+
+@keyframes pgShake { 0%, 100% { transform: none; } 25% { transform: translateX(-7px); } 75% { transform: translateX(7px); } }
+@media (prefers-reduced-motion: reduce) { #pgCard.pgShake { animation: none; } }
+@media (max-height: 640px) {
+  #pgCard { padding-top: 12px; }
+  .pgLock { display: none; }
+  .pgKey { min-height: 44px; }
+}
+
+/* ---------- кнопка на головному екрані: тихий ряд «? Як грати?» + «🔒 Для батьків» ---------- */
+#mainFoot { width: 100%; display: flex; justify-content: center; align-items: center; gap: 6px; flex-wrap: nowrap; min-width: 0; }
+#mainFoot > #btnTips { min-width: 0; max-width: 50%; }
+#btnParents {
+  flex: 0 1 auto; min-width: 0; max-width: 50%; margin-top: 2px;
+  min-height: 44px; padding: 0 12px 0 8px; border: none; border-radius: 22px;
+  background: transparent; color: #f4f1ff; opacity: .6; cursor: pointer; font-family: inherit;
+  display: inline-flex; align-items: center; gap: 7px; font-size: 12px;
+}
+#btnParents b {
+  flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; background: #1c2040;
+  display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 400;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .15);
+}
+#btnParents span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+#btnParents:active { opacity: .9; }
+
+/* ---------- екран «Для батьків» ---------- */
+#view-parents { gap: 12px; }
+#view-parents > h2 { margin-top: 4px; }
+.parCard, .parList { width: 100%; max-width: 380px; }
+.parCard { background: #14173a; border-radius: 16px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+.parLine { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.4; opacity: .9; }
+.parLine > span:last-child, .parRow > span:not([aria-hidden]), .parNote, .parLink > span:last-child { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
+.parList { display: flex; flex-direction: column; gap: 8px; }
+.parRow {
+  width: 100%; min-height: 48px; padding: 10px 14px; border: none; border-radius: 14px;
+  background: #1c2040; color: #f4f1ff; font-family: inherit; font-size: 14px; line-height: 1.25; text-align: left;
+  display: flex; align-items: center; gap: 10px;
+}
+.parRow > span[aria-hidden] { flex: 0 0 auto; width: 22px; text-align: center; }
+.parBtn { cursor: pointer; }
+.parBtn:active:not(:disabled) { transform: scale(.98); }
+.parBtn:disabled { opacity: .45; cursor: default; }
+.parGrow { flex: 1 1 auto; }
+.parSoon { flex: 0 0 auto; font-size: 11px; padding: 3px 8px; border-radius: 10px; background: rgba(255, 255, 255, .08); opacity: .8; white-space: nowrap; }
+.parHasLink { padding: 0; }
+.parLink { flex: 1 1 auto; min-height: 48px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.parNote { font-size: 11px; line-height: 1.35; opacity: .6; padding: 0 6px; }

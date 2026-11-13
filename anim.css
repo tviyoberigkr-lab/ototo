@@ -1,0 +1,54 @@
+/* OTOTO — АНІМАЦІЯ ПЕРСОНАЖІВ (скелетна "лялька" з шарів). CoLaba Production.
+   Розмітку й рух робить anim.js; тут лише структура шарів і дрібні ефекти. */
+
+/* Контейнер ляльки: позиціюється по точці "ноги, центр" (anim.js) */
+.boRig { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
+.boRig .rigBody { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.boRig .rigPart { position: absolute; display: block; max-width: none; user-select: none; -webkit-user-drag: none; will-change: transform; }
+.boRig.shadowed { filter: drop-shadow(0 6px 10px rgba(0,0,0,.3)); }
+.boRig.mamaRig { filter: drop-shadow(0 10px 18px rgba(0,0,0,.35)); }
+
+/* Оригінальні картинки сцени з мамою ховаємо, коли їх замінила лялька
+   (місце в розмітці лишається — по ньому ляльку і ставимо). */
+.animHidden { visibility: hidden !important; }
+
+/* Пилові хмаринки з-під лап під час бігу */
+.rigDust {
+  position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,246,220,.85) 0%, rgba(230,215,185,.55) 55%, rgba(230,215,185,0) 72%);
+  pointer-events: none; animation: rigDust .55s ease-out forwards;
+}
+@keyframes rigDust {
+  0% { opacity: 0; transform: translate(0,0) scale(.4); }
+  20% { opacity: .9; }
+  100% { opacity: 0; transform: translate(var(--dx,-14px), -9px) scale(1.5); }
+}
+
+/* Мапа: персонаж іде доріжкою від вузла до вузла */
+.mapPet.mapPetWalking { animation: none !important; transform: none !important; }
+.mapPetHop { position: absolute; z-index: 4; pointer-events: none; transform-origin: 50% 100%; filter: drop-shadow(0 6px 6px rgba(0,0,0,.45)); }
+.mapWalkRig { z-index: 4; filter: drop-shadow(0 6px 6px rgba(0,0,0,.45)); }
+
+/* Мапа: намальований декор (зона «Луг» і далі) */
+.mapDecoImg { position: absolute; transform: translate(-50%,-50%); pointer-events: none; height: auto; filter: drop-shadow(0 4px 6px rgba(0,0,0,.35)); z-index: 0; }
+.mapDecoImg.small { opacity: .95; filter: drop-shadow(0 2px 3px rgba(0,0,0,.3)); }
+.mapDecoImg.flutter { animation: mapFlutter 3.2s ease-in-out infinite; }
+@keyframes mapFlutter {
+  0%,100% { transform: translate(-50%,-50%) rotate(-4deg) scaleX(1); }
+  25% { transform: translate(-46%,-58%) rotate(3deg) scaleX(.82); }
+  50% { transform: translate(-54%,-54%) rotate(-2deg) scaleX(1); }
+  75% { transform: translate(-50%,-60%) rotate(4deg) scaleX(.85); }
+}
+
+/* Пара з димаря робота під час маршу (anim.js, puff) */
+.rigPuff {
+  position: absolute; margin: 0; border-radius: 50%; pointer-events: none; z-index: 5;
+  transform: translate(-50%,-50%);
+  background: radial-gradient(circle, rgba(255,255,255,.95) 0%, rgba(240,240,250,.7) 45%, rgba(240,240,250,0) 72%);
+  animation: rigPuff .85s ease-out forwards;
+}
+@keyframes rigPuff {
+  0% { opacity: 0; transform: translate(-50%,-50%) scale(.35); }
+  18% { opacity: .95; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx,0px)), calc(-50% + var(--dy,-20px))) scale(1.7); }
+}

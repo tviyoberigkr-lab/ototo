@@ -1,0 +1,37 @@
+{
+  "name": "ototo",
+  "short_name": "ototo",
+  "description": "ototo — free virtual pet game for kids. CoLaba Production.",
+  "id": ".",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d0f1a",
+  "theme_color": "#0d0f1a",
+  "lang": "uk",
+  "categories": [
+    "games",
+    "kids"
+  ],
+  "icons": [
+    {
+      "src": "img/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

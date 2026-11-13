@@ -1,0 +1,100 @@
+/* OTOTO — модуль «Бульбашки-бонуси». CoLaba Production. */
+
+/* Шар над кімнатою: нічого не ловить, нічого не зсуває, не дає прокрутки */
+#bonusLayer { position: absolute; left: 0; right: 0; top: -44px; bottom: -64px; overflow: hidden; pointer-events: none; contain: layout paint; }
+.bonusFloat { position: absolute; left: 0; top: 0; width: 68px; height: 68px; pointer-events: none; will-change: transform, opacity; }
+.bonusBob { width: 100%; height: 100%; pointer-events: none; animation: bonusBob 2.6s ease-in-out infinite; }
+@keyframes bonusBob {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50%      { transform: translateY(-9px) rotate(4deg); }
+}
+
+/* Сама бульбашка — єдине, що приймає дотик (68px ≥ 56px для дитячого пальця) */
+.bonusBubble {
+  position: relative; width: 68px; height: 68px; border-radius: 50%; padding: 0;
+  border: 2px solid rgba(255,255,255,.55); cursor: pointer; pointer-events: auto; touch-action: manipulation;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255,255,255,.75) 0 8%, rgba(255,255,255,0) 18%),
+    radial-gradient(circle at 50% 50%, rgba(160,220,255,.10) 0 55%, rgba(170,140,255,.28) 78%, rgba(120,255,220,.35) 100%);
+  box-shadow: inset 0 0 14px rgba(255,255,255,.35), inset -6px -8px 16px rgba(255,140,220,.22), 0 6px 18px rgba(0,0,0,.25), 0 0 16px rgba(140,200,255,.25);
+  display: flex; align-items: center; justify-content: center;
+  animation: bonusWobble 3.4s ease-in-out infinite;
+}
+.bonusBubble:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+@keyframes bonusWobble {
+  0%, 100% { transform: scale(1, 1); }
+  33%      { transform: scale(1.04, .97); }
+  66%      { transform: scale(.97, 1.04); }
+}
+.bonusItem { font-size: 32px; line-height: 1; filter: drop-shadow(0 2px 3px rgba(0,0,0,.25)); pointer-events: none; }
+.bonusShine { position: absolute; top: 9px; left: 14px; width: 16px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.7); transform: rotate(-30deg); pointer-events: none; }
+
+/* Золота — тепле сяйво й мерехтіння */
+.bonusBubble.gold {
+  border-color: rgba(255,226,140,.9);
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255,255,255,.85) 0 8%, rgba(255,255,255,0) 18%),
+    radial-gradient(circle at 50% 50%, rgba(255,230,150,.22) 0 50%, rgba(255,196,60,.45) 80%, rgba(255,160,40,.6) 100%);
+  box-shadow: inset 0 0 14px rgba(255,240,190,.5), 0 6px 18px rgba(0,0,0,.25), 0 0 22px rgba(255,205,80,.65);
+  animation: bonusWobble 3.4s ease-in-out infinite, bonusGlow 1.6s ease-in-out infinite;
+}
+@keyframes bonusGlow {
+  0%, 100% { box-shadow: inset 0 0 14px rgba(255,240,190,.5), 0 6px 18px rgba(0,0,0,.25), 0 0 18px rgba(255,205,80,.5); }
+  50%      { box-shadow: inset 0 0 14px rgba(255,240,190,.6), 0 6px 18px rgba(0,0,0,.25), 0 0 32px rgba(255,215,90,.9); }
+}
+.bonusTwinkle { position: absolute; font-size: 14px; pointer-events: none; animation: bonusTwinkle 1.4s ease-in-out infinite; }
+.bonusTwinkle.t1 { top: -6px; right: -2px; }
+.bonusTwinkle.t2 { bottom: -2px; left: -6px; animation-delay: .7s; }
+@keyframes bonusTwinkle {
+  0%, 100% { opacity: 0; transform: scale(.4) rotate(0deg); }
+  50%      { opacity: 1; transform: scale(1) rotate(30deg); }
+}
+
+/* Лопання */
+.bonusFloat.popping .bonusBob { animation-play-state: paused; }
+.bonusFloat.popping .bonusBubble { pointer-events: none; animation: bonusPop .38s ease-out forwards; }
+@keyframes bonusPop {
+  0%   { transform: scale(1); opacity: 1; }
+  45%  { transform: scale(1.3); opacity: .85; border-width: 1px; }
+  100% { transform: scale(1.55); opacity: 0; border-width: 0; }
+}
+.bonusFloat.popping .bonusItem { animation: bonusItemUp .5s ease-out forwards; }
+@keyframes bonusItemUp { to { transform: translateY(-16px) scale(1.25); opacity: 0; } }
+
+.bonusDrop, .bonusSpark {
+  position: absolute; left: 50%; top: 50%; pointer-events: none;
+  animation: bonusBurst .6s ease-out forwards;
+}
+.bonusDrop { width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: rgba(200,235,255,.9); box-shadow: 0 0 6px rgba(160,220,255,.9); }
+.bonusSpark { font-size: 18px; margin: -10px 0 0 -9px; animation: bonusSparkle .95s ease-out forwards; filter: drop-shadow(0 0 6px rgba(255,210,80,.9)); }
+@keyframes bonusSparkle {
+  0%   { transform: translate(0, 0) scale(.5) rotate(0deg); opacity: 1; }
+  55%  { opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(.9) rotate(120deg); opacity: 0; }
+}
+@keyframes bonusBurst {
+  0%   { transform: translate(0, 0) scale(.6); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(.2); opacity: 0; }
+}
+
+.bonusPlus {
+  position: absolute; left: 50%; top: 18px; transform: translateX(-50%);
+  font-size: 20px; font-weight: 800; color: #fff; white-space: nowrap; pointer-events: none;
+  text-shadow: 0 2px 6px rgba(0,0,0,.55), 0 0 10px rgba(140,200,255,.6);
+  animation: bonusPlusUp 1s ease-out forwards;
+}
+.bonusPlus.gold { font-size: 24px; color: #ffe27a; text-shadow: 0 2px 6px rgba(0,0,0,.55), 0 0 14px rgba(255,200,60,.9); animation-duration: 1.25s; }
+@keyframes bonusPlusUp {
+  0%   { transform: translate(-50%, 6px) scale(.7); opacity: 0; }
+  20%  { transform: translate(-50%, -4px) scale(1.1); opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translate(-50%, -38px) scale(1); opacity: 0; }
+}
+
+/* Лічильник ⭐ ледь «підстрибує», коли бали додались */
+#points.bonusPulse { animation: bonusPulse .6s ease-out; }
+@keyframes bonusPulse { 0% { transform: scale(1); } 40% { transform: scale(1.25); } 100% { transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bonusBob, .bonusBubble, .bonusBubble.gold, .bonusTwinkle { animation: none; }
+}

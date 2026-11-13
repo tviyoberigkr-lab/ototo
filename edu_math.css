@@ -1,0 +1,187 @@
+/* OTOTO — навчальна гра «Математика» (слот 1). CoLaba Production.
+   Лише CSS/емодзі/SVG, без картинок. Екран гри = .eduHost-math (див. edu.css). */
+.eduHost-math { display: flex; width: min(452px, calc(100vw - 28px)); max-width: 100%; }
+/* #view-edu успадковує align-items:center від .view → блок гри стискався б до ширини заголовка */
+.eduPlay:has(> .eduHost-math) { align-self: stretch; width: 100%; }
+.mWrap { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 8px; padding: 10px 12px 12px;
+  overflow-x: hidden; overflow-y: auto; -webkit-tap-highlight-color: transparent; }
+.mWrap button { font-family: inherit; color: inherit; -webkit-user-select: none; user-select: none; touch-action: manipulation; }
+
+/* ---------- старт гри ---------- */
+.mScrIntro { justify-content: center; }
+.mIntro { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+.mBig { font-size: 76px; line-height: 1; animation: mBob 2.4s ease-in-out infinite; }
+.mLvl { font-size: 24px; font-weight: 800; }
+.mStats { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; font-size: 14px; opacity: .85; }
+.mBtn { border: none; border-radius: 18px; cursor: pointer; font-weight: 800; }
+.mPlay { display: flex; align-items: center; justify-content: center; gap: 10px; width: min(100%, 300px); min-height: 64px; padding: 10px 18px;
+  font-size: 24px; background: linear-gradient(135deg, var(--accent2, #6bffd1), var(--accent, #4fc3ff)); color: #0d0f1a !important;
+  box-shadow: 0 6px 0 rgba(0,0,0,.25); }
+.mPlay:active, .mSpeed:active, .mOkBig:active { transform: translateY(3px); box-shadow: 0 3px 0 rgba(0,0,0,.25); }
+.mPlayIco { font-size: 26px; }
+.mPlay .fit { max-width: 100%; overflow-wrap: anywhere; }
+.mSpeed { display: flex; flex-direction: column; align-items: center; gap: 2px; width: min(100%, 300px); min-height: 60px; padding: 8px 14px;
+  font-size: 18px; background: #2a2f55; box-shadow: 0 5px 0 rgba(0,0,0,.25); border: 2px solid rgba(255,207,90,.5); }
+.mSpeed small { font-size: 12px; font-weight: 600; opacity: .8; }
+.mMedalRow { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; max-width: 320px; margin-top: 4px; }
+.mMd { font-size: 20px; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;
+  background: rgba(255,255,255,.06); filter: grayscale(1); opacity: .35; }
+.mMd.on { filter: none; opacity: 1; background: rgba(255,207,90,.18); }
+
+/* ---------- завдання ---------- */
+.mTop { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 22px; }
+.mDots { display: flex; gap: 6px; flex-wrap: wrap; }
+.mDots i { width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,.14); }
+.mDots i.done { background: var(--accent2, #6bffd1); }
+.mDots i.cur { background: #ffcf5a; transform: scale(1.2); }
+.mLvlSm { font-size: 13px; font-weight: 700; opacity: .75; white-space: nowrap; }
+.mQ { font-size: 20px; font-weight: 800; text-align: center; line-height: 1.2; overflow-wrap: break-word; }
+.mVis { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+.mVisEmpty { flex: 0 0 0; }
+.mFb { min-height: 28px; text-align: center; font-size: 18px; font-weight: 800; line-height: 1.25; }
+.mFb.good { color: #6bffd1; animation: mPop .35s ease-out; }
+.mFb.try { color: #ffcf5a; }
+.mFb.show { color: #ffcf5a; }
+.mShowAns { color: #fff; font-size: 22px; }
+.mShowAns .mFr { font-size: 18px; }
+
+/* предмети (емодзі), до 5 у ряду — як «десятка» */
+.mObjs { display: grid; grid-template-columns: repeat(5, auto); justify-content: center; gap: 4px 6px; line-height: 1; }
+.mObj { display: inline-block; }
+.mS1 .mObj { font-size: 46px; }
+.mS2 .mObj { font-size: 36px; }
+.mS3 .mObj { font-size: 27px; }
+.mObjs.mSm .mObj { font-size: 26px; }
+.mObjs.mSm.mS3 .mObj { font-size: 20px; }
+.mGone { position: relative; filter: grayscale(.8) brightness(.6); }
+.mGone::after { content: '✕'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #ff5c7a; font-weight: 900; font-size: 1em; text-shadow: 0 0 3px #000; }
+.mSum { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.mSum .mObjs { grid-template-columns: repeat(3, auto); }
+.mOp { font-size: 34px; font-weight: 900; color: #ffcf5a; }
+.mGroupsRow { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.mBag { padding: 6px; border-radius: 14px; border: 2px dashed rgba(255,255,255,.25); background: rgba(255,255,255,.04); }
+.mBag .mObjs { grid-template-columns: repeat(3, auto); gap: 2px 3px; }
+.mBag .mObjs.mSm .mObj { font-size: 22px; }
+.mKids { font-size: 28px; letter-spacing: 2px; }
+
+/* вираз */
+.mExpr { font-weight: 900; text-align: center; line-height: 1.25; letter-spacing: .5px; overflow-wrap: break-word; max-width: 100%; }
+.mE1 { font-size: 46px; }
+.mE2 { font-size: 36px; }
+.mE3 { font-size: 28px; }
+.mExpr sup { font-size: .6em; vertical-align: .7em; line-height: 0; }
+.mQm { display: inline-block; min-width: 1.1em; padding: 0 .12em; border-radius: 10px; background: rgba(255,207,90,.2); color: #ffcf5a; }
+.mBox { min-width: 1.3em; }
+.mX { color: var(--accent2, #6bffd1); font-family: Georgia, 'Times New Roman', serif; }
+.mStory { font-size: 20px; line-height: 1.4; text-align: center; font-weight: 600; margin: 0; overflow-wrap: break-word; max-width: 100%; }
+.mSeq { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
+.mCell { min-width: 58px; height: 58px; padding: 0 6px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+  font-size: 28px; font-weight: 900; background: rgba(255,255,255,.08); }
+.mCell.mMiss { background: rgba(255,207,90,.22); color: #ffcf5a; border: 2px dashed #ffcf5a; }
+.mPizza { width: 156px; height: 156px; max-height: 30vh; }
+.mCrust { fill: #c9893f; }
+.mSl { fill: #ffe7b0; stroke: #8a5a24; stroke-width: 2.5; }
+.mSl.on { fill: #ff7a45; }
+.mFr { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.15; vertical-align: middle; font-weight: 900; }
+.mFr b, .mFr i { line-height: 1.15; }
+.mFr b { padding: 0 .15em 1px; border-bottom: .09em solid currentColor; }
+.mFr i { font-style: normal; padding-top: 1px; }
+.mExpr .mFr { font-size: .78em; }
+
+/* відповіді: великі кнопки */
+.mAns { flex: 0 0 auto; }
+.mChoices { display: grid; gap: 10px; }
+.mC2, .mC4 { grid-template-columns: 1fr 1fr; }
+.mC3 { grid-template-columns: 1fr 1fr 1fr; }
+.mOpt { min-height: 68px; border-radius: 18px; border: 2px solid rgba(255,255,255,.12); background: #1f2448; font-size: 34px; font-weight: 900; cursor: pointer;
+  box-shadow: 0 5px 0 rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; padding: 6px; }
+.mBand3 .mOpt, .mBand4 .mOpt { min-height: 84px; font-size: 44px; }
+.mOpt .mFr { font-size: 26px; }
+.mOpt:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(0,0,0,.25); }
+.mOpt.right, .mGrp.right { background: #1f6b52; border-color: #6bffd1; animation: mPop .35s ease-out; }
+.mOpt.wrong, .mGrp.wrong { background: #5a2234; border-color: #ff5c7a; opacity: .7; }
+.mOpt.reveal, .mGrp.reveal { animation: mPulse .8s ease-in-out infinite; }
+
+/* цифрова клавіатура */
+.mPadBox { display: flex; flex-direction: column; gap: 8px; }
+.mDisp { height: 54px; border-radius: 14px; background: rgba(0,0,0,.3); border: 2px solid rgba(255,255,255,.14);
+  display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 900; letter-spacing: 1px; }
+.mDisp.empty::after { content: '_'; opacity: .35; animation: mBlink 1s steps(1) infinite; }
+.mDisp.reveal { border-color: #ffcf5a; color: #ffcf5a; }
+.mPad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+.mKey { height: 50px; border-radius: 14px; border: none; background: #262c58; font-size: 26px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 0 rgba(0,0,0,.25); }
+.mKey:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,.25); }
+.mKey[data-k="⌫"], .mKey[data-k="±"] { background: #1c2040; }
+.mOk { grid-column: 1 / -1; background: linear-gradient(135deg, var(--accent2, #6bffd1), var(--accent, #4fc3ff)); color: #0d0f1a !important; font-size: 28px; }
+
+/* торкнись стількох */
+.mTapHead { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.mTapN { font-size: 72px; font-weight: 900; line-height: 1.15; color: #ffcf5a; }
+.mTapE { font-size: 48px; }
+.mTapBox { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.mTapGrid { display: grid; grid-template-columns: repeat(4, 62px); gap: 8px; justify-content: center; }
+.mTapObj { width: 62px; height: 62px; border-radius: 16px; border: 3px solid transparent; background: rgba(255,255,255,.07); font-size: 36px; cursor: pointer; padding: 0; }
+.mTapObj.sel { border-color: #6bffd1; background: rgba(107,255,209,.22); transform: scale(.94); }
+.mTapCnt { min-height: 30px; font-size: 26px; font-weight: 900; color: #6bffd1; }
+.mOkBig { width: min(100%, 240px); min-height: 60px; font-size: 32px; background: linear-gradient(135deg, var(--accent2, #6bffd1), var(--accent, #4fc3ff)); color: #0d0f1a !important; box-shadow: 0 5px 0 rgba(0,0,0,.25); }
+
+/* де більше / менше */
+.mGrpBox { flex: 1 1 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; min-height: 180px; max-height: 360px; }
+.mGrp { border-radius: 20px; border: 3px solid rgba(255,255,255,.14); background: #1f2448; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 8px 4px; box-shadow: 0 5px 0 rgba(0,0,0,.25); }
+.mGrp .mObjs { grid-template-columns: repeat(2, auto); gap: 6px 8px; }
+.mGrp .mObjs.mSm .mObj { font-size: 30px; }
+
+/* кінець раунду */
+.mScrEnd { justify-content: center; }
+.mEnd { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.mEndIco { font-size: 64px; line-height: 1.1; animation: mPop .6s ease-out; }
+.mEndT { font-size: 26px; font-weight: 900; max-width: 100%; }
+.mEndP { font-size: 17px; font-weight: 700; color: #6bffd1; }
+.mBigScore { font-size: 24px; color: #fff; }
+.mEndStars { font-size: 40px; font-weight: 900; color: #ffcf5a; animation: mPop .5s .2s ease-out both; }
+.mEndLvl, .mEndRec { font-size: 16px; font-weight: 700; opacity: .9; }
+.mEndRec { color: #ffcf5a; opacity: 1; }
+.mEndMd { display: flex; flex-direction: column; gap: 4px; padding: 8px 14px; border-radius: 16px; background: rgba(255,207,90,.12); max-width: 100%; }
+.mEndMdT { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: #ffcf5a; }
+.mEndMdI { display: flex; align-items: center; gap: 8px; font-size: 15px; text-align: left; }
+.mEndMdI span { font-size: 24px; }
+.mEndMdMore { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; font-size: 22px; padding-top: 2px; }
+.mEnd .mPlay { margin-top: 6px; }
+.mEnd .secondaryBtn { min-height: 44px; min-width: 140px; margin-top: 2px; }
+.mTopSpeed { gap: 12px; }
+.mTimer { flex: 1; height: 12px; border-radius: 99px; background: rgba(255,255,255,.12); overflow: hidden; }
+.mTimer i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, #ff5c7a, #ffcf5a, #6bffd1); transition: width .2s linear; }
+.mScore { font-size: 16px; font-weight: 900; white-space: nowrap; }
+
+/* конфеті */
+.mConf { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.mConf i { position: absolute; top: -14px; width: 9px; height: 14px; border-radius: 2px; animation: mFall 2s ease-in forwards; }
+
+/* анімації */
+.mShake { animation: mShake .4s ease-in-out; }
+@keyframes mShake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-8px); } 40% { transform: translateX(8px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(5px); } }
+@keyframes mPop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.12); opacity: 1; } 100% { transform: scale(1); } }
+@keyframes mPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(107,255,209,.6); } 50% { box-shadow: 0 0 0 8px rgba(107,255,209,0); } }
+@keyframes mBob { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-8px) rotate(4deg); } }
+@keyframes mBlink { 50% { opacity: 0; } }
+@keyframes mFall { 0% { transform: translate(0, 0) rotate(0); opacity: 1; } 100% { transform: translate(var(--dx, 0), 110vh) rotate(var(--rot, 360deg)); opacity: .9; } }
+@media (prefers-reduced-motion: reduce) { .mBig, .mConf i, .mShake, .mOpt.reveal, .mGrp.reveal { animation: none !important; } .mConf { display: none; } }
+
+/* низькі екрани (360×740 і менше) */
+@media (max-height: 760px) {
+  .mWrap { gap: 6px; padding: 8px 10px 10px; }
+  .mKey { height: 46px; }
+  .mDisp { height: 48px; font-size: 30px; }
+  .mOpt { min-height: 60px; }
+  .mBand3 .mOpt, .mBand4 .mOpt { min-height: 72px; }
+  .mE1 { font-size: 40px; } .mE2 { font-size: 32px; } .mE3 { font-size: 26px; }
+  .mTapObj { width: 56px; height: 56px; font-size: 32px; }
+  .mTapGrid { grid-template-columns: repeat(4, 56px); }
+  .mTapN { font-size: 60px; }
+  .mBig { font-size: 64px; }
+  .mStory { font-size: 18px; }
+  .mEndIco { font-size: 56px; }
+  .mEndT { font-size: 23px; }
+  .mEndStars { font-size: 34px; }
+  .mEnd { gap: 6px; }
+}

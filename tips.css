@@ -1,0 +1,97 @@
+/* OTOTO — модуль «Підказки» (tips.js). CoLaba Production. */
+
+#tipsLayer { position: absolute; inset: 0; z-index: 40; pointer-events: none; overflow: hidden; }
+#tipsLayer.tips-paused { visibility: hidden; }
+#tipsLayer.tips-paused * { pointer-events: none !important; }
+
+/* притемнення з «віконцями» навколо цілей (лише екскурсія) */
+.tipsDim { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+.tips-dim .tipsDim { display: block; animation: tipsFade .35s ease-out; }
+.tipsShade { fill: rgba(6, 8, 22, .68); }
+.tips-wait .tipsDim, .tips-wait .tipsRing, .tips-wait .tipsBubble { opacity: 0; transition: opacity .25s; }
+
+/* прозорі «стіни», що ловлять тапи повз ціль */
+.tipsBlock { position: absolute; left: 0; top: 0; display: none; pointer-events: auto; }
+.tips-dim .tipsBlock { display: block; }
+.tips-dim.tips-interactive .tipsBlock-c { display: none; }
+.tips-wait .tipsBlock { display: block !important; }
+
+/* м'яке сяйво навколо цілі */
+.tipsRing {
+  position: absolute; left: 0; top: 0; pointer-events: none;
+  border: 3px solid rgba(255, 233, 150, .95);
+  box-shadow: 0 0 0 4px rgba(255, 214, 110, .25), 0 0 18px 4px rgba(255, 214, 110, .55), inset 0 0 12px rgba(255, 214, 110, .35);
+  animation: tipsGlow 1.6s ease-in-out infinite;
+}
+.tipsRing-minor { border-width: 2px; border-color: rgba(255, 233, 150, .7); box-shadow: 0 0 12px 2px rgba(255, 214, 110, .4); animation-delay: .4s; }
+.tips-interactive.tips-tour .tipsRing:not(.tipsRing-minor) { animation: tipsGlow 1.6s ease-in-out infinite, tipsPulse 1.6s ease-in-out infinite; }
+.tips-hint .tipsRing { border-color: rgba(255, 233, 150, .9); }
+.tipsRing.tipsNudge { animation: tipsNudge .5s ease-in-out 2; }
+
+/* хмарка, у якій «говорить» улюбленець */
+.tipsBubble {
+  position: absolute; left: 0; top: 0; pointer-events: auto;
+  background: #fff; color: #222; border-radius: 18px; padding: 12px 14px 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
+  font-size: 15px; line-height: 1.35;
+}
+.tips-hint .tipsBubble { pointer-events: none; padding: 10px 12px; font-size: 14px; }
+.tipsBubble.tipsPop { animation: tipsPop .35s cubic-bezier(.3, 1.5, .5, 1); }
+.tipsBody { display: flex; align-items: flex-start; gap: 10px; }
+.tipsAvatar {
+  flex: 0 0 auto; width: 46px; height: 46px; object-fit: contain; border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, #e9f6ff, #cfe3ff); padding: 3px;
+  animation: tipsTalk 1.4s ease-in-out infinite;
+}
+.tips-hint .tipsAvatar { width: 38px; height: 38px; }
+.tipsText { flex: 1 1 auto; min-width: 0; overflow-wrap: break-word; padding-top: 2px; }
+
+.tipsFoot { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.tipsSkip {
+  min-height: 44px; padding: 0 6px; background: none; border: none; color: #7a7f99;
+  font-size: 13px; font-family: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+  max-width: 34%; line-height: 1.15;
+}
+.tipsDots { flex: 1 1 auto; display: flex; justify-content: center; gap: 5px; min-width: 0; }
+.tipsDots i { width: 7px; height: 7px; border-radius: 50%; background: #d6d9e8; }
+.tipsDots i.past { background: #a9b0d0; }
+.tipsDots i.on { background: var(--accent); transform: scale(1.25); }
+.tipsNext {
+  min-height: 48px; min-width: 112px; max-width: 56%; padding: 0 18px; border: none; border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff;
+  font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; line-height: 1.15;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .18);
+}
+.tipsNext:active { transform: scale(.97); }
+.tipsNext.tipsNudge { animation: tipsNudge .5s ease-in-out 2; }
+.tipsSkip.hidden + .tipsDots { justify-content: flex-start; }
+
+/* хвостик хмарки — до цілі */
+.tipsTail { position: absolute; width: 18px; height: 18px; background: #fff; transform: translateX(-50%) rotate(45deg); display: none; border-radius: 3px; }
+.tipsBubble[data-tail="top"] .tipsTail { display: block; top: -7px; }
+.tipsBubble[data-tail="bottom"] .tipsTail { display: block; bottom: -7px; }
+
+/* «Як грати?» — тиха кнопка під рядом «Кімната / Мапа / Звук» */
+#btnTips {
+  align-self: center; flex: 0 0 auto; margin-top: 2px;
+  min-height: 44px; max-width: 100%; padding: 0 14px 0 8px; border: none; border-radius: 22px;
+  background: transparent; color: #f4f1ff; opacity: .6; cursor: pointer; font-family: inherit;
+  display: inline-flex; align-items: center; gap: 7px; font-size: 12px;
+}
+#btnTips b {
+  flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; background: #1c2040;
+  display: inline-flex; align-items: center; justify-content: center; font-size: 13px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .15);
+}
+#btnTips span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+#btnTips:active { opacity: .9; }
+
+@keyframes tipsFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes tipsGlow { 0%, 100% { opacity: .75; } 50% { opacity: 1; } }
+@keyframes tipsPulse { 0%, 100% { transform-origin: center; outline: 0 solid rgba(255, 233, 150, 0); } 50% { outline: 6px solid rgba(255, 233, 150, .18); } }
+@keyframes tipsNudge { 0%, 100% { translate: 0 0; } 25% { translate: -4px 0; } 75% { translate: 4px 0; } }
+@keyframes tipsPop { from { opacity: 0; scale: .9; } to { opacity: 1; scale: 1; } }
+@keyframes tipsTalk { 0%, 100% { translate: 0 0; } 50% { translate: 0 -2px; } }
+@media (prefers-reduced-motion: reduce) {
+  .tipsRing, .tipsAvatar, .tipsBubble.tipsPop, .tips-dim .tipsDim { animation: none !important; }
+}
