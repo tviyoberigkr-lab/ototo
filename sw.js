@@ -7,7 +7,7 @@
    гри (без перезавантаження посеред гри). Мережевих запитів назовні немає. */
 
 /* PRECACHE-START (не редагувати вручну) */
-const VERSION = '94474c6d0896';
+const VERSION = '4fc8700ede76';
 const PRECACHE = [
   "achieve.css",
   "achieve.js",
