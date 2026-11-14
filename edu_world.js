@@ -278,7 +278,9 @@
     { id: 'edu.world.rocket', e: '🚀', cat: 'sky', need: 15 },
   ];
   const LOCALE = { uk: 'uk-UA', en: 'en-GB', pl: 'pl-PL', de: 'de-DE', ro: 'ro-RO', kk: 'kk-KZ', fr: 'fr-FR', es: 'es-ES',
-    it: 'it-IT', pt: 'pt-PT', nl: 'nl-NL', cs: 'cs-CZ', el: 'el-GR', sv: 'sv-SE', hu: 'hu-HU', bg: 'bg-BG', uz: 'uz-UZ', az: 'az-AZ' };
+    it: 'it-IT', pt: 'pt-PT', nl: 'nl-NL', cs: 'cs-CZ', el: 'el-GR', sv: 'sv-SE', hu: 'hu-HU', bg: 'bg-BG', uz: 'uz-UZ', az: 'az-AZ',
+    tr: 'tr-TR', id: 'id-ID', ja: 'ja-JP', ko: 'ko-KR', fi: 'fi-FI', da: 'da-DK', nb: 'nb-NO', sk: 'sk-SK', hr: 'hr-HR',
+    sr: 'sr-RS', bs: 'bs-BA', lt: 'lt-LT', lv: 'lv-LV', hy: 'hy-AM', ka: 'ka-GE', 'pt-BR': 'pt-BR' };
 
   const later = (fn, ms) => { const id = setTimeout(() => { timers = timers.filter(x => x !== id); fn(); }, ms); timers.push(id); };
   const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
@@ -293,8 +295,13 @@
   function findVoice() {
     voice = null;
     try {
-      const want = C.lang;
-      voice = (window.speechSynthesis && speechSynthesis.getVoices() || []).find(v => (v.lang || '').toLowerCase().replace('_', '-').split('-')[0] === want) || null;
+      // регіональний код (pt-BR): спершу голос саме цього регіону, інакше будь-який голос мови
+      const want = String(C.lang).toLowerCase(), base = want.split('-')[0];
+      const vs = (window.speechSynthesis && speechSynthesis.getVoices()) || [], norm = v => (v.lang || '').toLowerCase().replace('_', '-');
+      // норвезька: голос буває позначений 'nb-NO', 'no-NO' або 'nn-NO'
+      const alias = { nb: ['no', 'nn'] }[base] || [];
+      voice = (want !== base && vs.find(v => norm(v) === want)) || vs.find(v => norm(v).split('-')[0] === base) ||
+        vs.find(v => alias.includes(norm(v).split('-')[0])) || null;
     } catch (e) { voice = null; }
     if (root) root.querySelector('.wwSay').classList.toggle('hidden', !voice);
   }

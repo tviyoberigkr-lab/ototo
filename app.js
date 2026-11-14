@@ -229,8 +229,12 @@ let pendingLang = null;      // мова під час активації, до 
 let pendingCountry = null;
 
 function detectLang() {
-  const nav = (navigator.language || 'en').toLowerCase().slice(0, 2);
+  const full = (navigator.language || 'en').toLowerCase();
+  const nav = full.slice(0, 2);
   if (nav === 'ru' || nav === 'be') return 'en'; // російської/білоруської в грі немає
+  // регіональний варіант мови (pt-BR → lang/pt-BR.js), якщо такий файл є
+  const regional = Object.keys(window.BO_LANG || {}).find(k => k.includes('-') && k.toLowerCase() === full);
+  if (regional) return regional;
   return (window.BO_LANG && window.BO_LANG[nav]) ? nav : 'en';
 }
 function curLang() { return (state && state.lang) || pendingLang || detectLang(); }
@@ -249,9 +253,10 @@ function t(key, vars) {
 // форма множини: 1 день / 2 дні / 5 днів (правила кожної мови — вбудовані в браузер)
 function tPlural(base, n) {
   let form = 'other';
-  // pt — це португальська Португалії: 'pt' у браузері = бразильські правила (0 → «one»), а pt-PT дає «0 dias»
+  // pt — це португальська Португалії: 'pt' у браузері = бразильські правила (0 → «one»), а pt-PT дає «0 dias».
+  // pt-BR теж бере pt-PT: у шкільній нормі Бразилії «zero dias», а не «0 dia».
   const pl = langReady(curLang()) ? curLang() : 'en';
-  try { form = new Intl.PluralRules(pl === 'pt' ? 'pt-PT' : pl).select(n); } catch (e) {}
+  try { form = new Intl.PluralRules(pl === 'pt' || pl === 'pt-BR' ? 'pt-PT' : pl).select(n); } catch (e) {}
   const key = base + '.' + form;
   const v = t(key, { n });
   return v === key ? t(base + '.other', { n }) : v;
@@ -1394,7 +1399,7 @@ function renderCountryList() {
     top.classList.add('suggested');
     host.appendChild(top);
   }
-  ['cis', 'america', 'europe'].forEach(g => {
+  ['cis', 'america', 'europe', 'asia', 'oceania'].forEach(g => {
     const h = document.createElement('div');
     h.className = 'countryGroup'; h.textContent = t('start.group.' + g);
     host.appendChild(h);

@@ -8,6 +8,9 @@
      code  — 2 літери (ISO), за ним береться прапор img/flags/<code>.svg
      name  — назва МОВОЮ САМОЇ КРАЇНИ (дитина впізнає свою)
      langs — мови країни, перша = за замовчуванням
+   Код мови — зазвичай 2 літери (lang/<код>.js); регіональний варіант мови — з дефісом
+   за BCP 47, напр. 'pt-BR' (португальська Бразилії, файл lang/pt-BR.js): такий код
+   браузер сам розуміє для голосу, множини, великих/малих літер.
    росії і білорусі в каталозі немає і не буде. Російської мови теж немає. */
 
 window.BO_LANGUAGES = {
@@ -20,6 +23,8 @@ window.BO_LANGUAGES = {
   sv: 'Svenska', nb: 'Norsk', da: 'Dansk', is: 'Íslenska', mt: 'Malti',
   kk: 'Қазақша', uz: 'Oʻzbekcha', ky: 'Кыргызча', tg: 'Тоҷикӣ', tk: 'Türkmençe',
   az: 'Azərbaycanca', hy: 'Հայերեն', ka: 'ქართული',
+  tr: 'Türkçe', id: 'Bahasa Indonesia', ja: '日本語', ko: '한국어',
+  'pt-BR': 'Português (Brasil)',
 };
 
 window.BO_COUNTRIES = [
@@ -38,6 +43,26 @@ window.BO_COUNTRIES = [
   // ---- Америка ----
   { code: 'us', group: 'america', name: 'United States', langs: ['en', 'es'] },
   { code: 'ca', group: 'america', name: 'Canada',        langs: ['en', 'fr'] },
+  { code: 'mx', group: 'america', name: 'México',        langs: ['es'] },
+  { code: 'gt', group: 'america', name: 'Guatemala',     langs: ['es'] },
+  { code: 'hn', group: 'america', name: 'Honduras',      langs: ['es'] },
+  { code: 'sv', group: 'america', name: 'El Salvador',   langs: ['es'] },
+  { code: 'ni', group: 'america', name: 'Nicaragua',     langs: ['es'] },
+  { code: 'cr', group: 'america', name: 'Costa Rica',    langs: ['es'] },
+  { code: 'pa', group: 'america', name: 'Panamá',        langs: ['es'] },
+  { code: 'cu', group: 'america', name: 'Cuba',          langs: ['es'] },
+  { code: 'do', group: 'america', name: 'República Dominicana', langs: ['es'] },
+  { code: 'pr', group: 'america', name: 'Puerto Rico',   langs: ['es'] },
+  { code: 'co', group: 'america', name: 'Colombia',      langs: ['es'] },
+  { code: 've', group: 'america', name: 'Venezuela',     langs: ['es'] },
+  { code: 'ec', group: 'america', name: 'Ecuador',       langs: ['es'] },
+  { code: 'pe', group: 'america', name: 'Perú',          langs: ['es'] },
+  { code: 'bo', group: 'america', name: 'Bolivia',       langs: ['es'] },
+  { code: 'cl', group: 'america', name: 'Chile',         langs: ['es'] },
+  { code: 'ar', group: 'america', name: 'Argentina',     langs: ['es'] },
+  { code: 'py', group: 'america', name: 'Paraguay',      langs: ['es'] },
+  { code: 'uy', group: 'america', name: 'Uruguay',       langs: ['es'] },
+  { code: 'br', group: 'america', name: 'Brasil',        langs: ['pt-BR'] },
 
   // ---- Європа ----
   { code: 'gb', group: 'europe', name: 'United Kingdom', langs: ['en'] },
@@ -76,4 +101,14 @@ window.BO_COUNTRIES = [
   { code: 'dk', group: 'europe', name: 'Danmark',        langs: ['da'] },
   { code: 'is', group: 'europe', name: 'Ísland',         langs: ['is'] },
   { code: 'mt', group: 'europe', name: 'Malta',          langs: ['mt', 'en'] },
+
+  // ---- Азія ----
+  { code: 'tr', group: 'asia', name: 'Türkiye',        langs: ['tr'] },
+  { code: 'id', group: 'asia', name: 'Indonesia',      langs: ['id'] },
+  { code: 'jp', group: 'asia', name: '日本',           langs: ['ja'] },
+  { code: 'kr', group: 'asia', name: '대한민국',        langs: ['ko'] },
+
+  // ---- Океанія ----
+  { code: 'au', group: 'oceania', name: 'Australia',     langs: ['en'] },
+  { code: 'nz', group: 'oceania', name: 'New Zealand',   langs: ['en'] },
 ];

@@ -411,3 +411,10 @@ body.theme-mimi { --accent: #ff7ac6; --accent2: #8a6bff; }
 #agePick.ageNeed .ageStrip { animation: ageShake .45s ease; }
 #agePick.ageNeed .agePickLabel { color: #ffb36b; opacity: 1; }
 @keyframes ageShake { 0%,100% { transform: none; } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+/* ka — грузинське мхедрулі без регістру: text-transform: uppercase у деяких рушіях (Safari/WebKit) перетворює
+   його на Мтаврулі (ᲐᲑᲒ), яких дітям не показуємо. Chrome і Firefox грузинську й так не змінюють. */
+html:lang(ka) .countryGroup, html:lang(ka) .decorGroupTitle, html:lang(ka) .achDetailTier,
+html:lang(ka) .eduTag, html:lang(ka) .mEndMdT { text-transform: none; letter-spacing: normal; }
+/* ja — японський текст для дітей пишеться з пробілами між словами (いっしょに あそぼう): переносимо рядок
+   лише на пробілах, а не посеред слова; надто довге слово без пробілів усе одно переноситься, щоб не вилізти за край. */
+html:lang(ja) body { word-break: keep-all; overflow-wrap: anywhere; }

@@ -64,11 +64,13 @@
 
   /* ================= КАЛЕНДАР ================= */
   // Групи країн (коди з countries.js)
+  const LATAM = ['mx', 'gt', 'hn', 'sv', 'ni', 'cr', 'pa', 'cu', 'do', 'pr', 'co', 've', 'ec', 'pe', 'bo', 'cl', 'ar', 'py', 'uy', 'br'];
+  const OCEANIA = ['au', 'nz'];
   const WEST_EASTER = ['us', 'ca', 'gb', 'ie', 'pl', 'de', 'at', 'ch', 'fr', 'be', 'nl', 'lu', 'it', 'es', 'pt',
-    'cz', 'sk', 'hu', 'hr', 'si', 'lt', 'lv', 'ee', 'fi', 'se', 'no', 'dk', 'is', 'mt', 'am', 'al', 'ba'];
+    'cz', 'sk', 'hu', 'hr', 'si', 'lt', 'lv', 'ee', 'fi', 'se', 'no', 'dk', 'is', 'mt', 'am', 'al', 'ba'].concat(LATAM, OCEANIA);
   const ORTH_EASTER = ['ua', 'md', 'ge', 'ro', 'bg', 'gr', 'cy', 'rs', 'me', 'mk', 'ba', 'al'];
   const CENTRAL_ASIA_AZ = ['kz', 'uz', 'kg', 'tj', 'tm', 'az'];
-  const XMAS_DEC25 = WEST_EASTER.filter(c => c !== 'am').concat(['ua', 'md', 'ro', 'bg', 'gr', 'cy']);
+  const XMAS_DEC25 = WEST_EASTER.filter(c => c !== 'am').concat(['ua', 'md', 'ro', 'bg', 'gr', 'cy', 'jp', 'kr']);
   const SECOND_SUN_MAY = { m: 5, wd: 0, n: 2 };
   const FIRST_SUN_MAY = { m: 5, wd: 0, n: 1 };
   const LAST_SUN_MAY = { m: 5, wd: 0, n: -1 };
@@ -90,24 +92,45 @@
     si: '6-25', hr: '5-30', rs: '2-15', me: '7-13', mk: '9-8', al: '11-28', lt: '2-16', lv: '11-18',
     ee: '2-24', fi: '12-6', se: '6-6', no: '5-17', dk: '6-5', is: '6-17', mt: '9-21',
     bg: '9-22', gr: '3-25', cy: '10-1',
+    tr: '10-29',   // Cumhuriyet Bayramı (День Республіки)
+    id: '8-17',    // Hari Kemerdekaan
+    kr: '10-3',    // Кечхонджоль (День заснування держави)
+    // Латинська Америка й Океанія — найбільші ринки (День незалежності / національний день)
+    mx: '9-16', br: '9-7', ar: '7-9', co: '7-20', cl: '9-18', pe: '7-28', nz: '2-6',
   };
+
+  // Корея: Соллаль (1.1) і Чхусок (15.8) за місячним календарем — таблиця дат (КАСІ, 2024–2050);
+  // поза таблицею свята просто немає (null), без помилок
+  const KR_LUNAR = {
+    seollal: ['2024-02-10', '2025-01-29', '2026-02-17', '2027-02-07', '2028-01-27', '2029-02-13', '2030-02-03', '2031-01-23',
+      '2032-02-11', '2033-01-31', '2034-02-19', '2035-02-08', '2036-01-28', '2037-02-15', '2038-02-04', '2039-01-24', '2040-02-12',
+      '2041-02-01', '2042-01-22', '2043-02-10', '2044-01-30', '2045-02-17', '2046-02-06', '2047-01-26', '2048-02-14', '2049-02-02', '2050-01-23'],
+    chuseok: ['2024-09-17', '2025-10-06', '2026-09-25', '2027-09-15', '2028-10-03', '2029-09-22', '2030-09-12', '2031-10-01',
+      '2032-09-19', '2033-09-08', '2034-09-27', '2035-09-16', '2036-10-04', '2037-09-24', '2038-09-13', '2039-10-02', '2040-09-21',
+      '2041-09-10', '2042-09-28', '2043-09-17', '2044-10-05', '2045-09-25', '2046-09-15', '2047-10-04', '2048-09-22', '2049-09-11', '2050-09-30'],
+  };
+  const krLunar = id => ({ fn: y => { const d = KR_LUNAR[id].find(x => +x.slice(0, 4) === y);
+    return d ? mk(y, +d.slice(5, 7), +d.slice(8, 10)) : null; } });
 
   const HOLIDAYS = [
     { id: 'christmas',   theme: 'christmas', emoji: '🎄', countries: XMAS_DEC25, rule: '12-24', len: 3, pre: 7, gift: 20 },
     { id: 'christmas_o', theme: 'christmas', emoji: '🎄', countries: ['md', 'ge', 'rs', 'me', 'mk', 'ba', 'am'],
       rule: '1-7', rules: { am: '1-6' }, len: 1, pre: 0, gift: 15 },
-    { id: 'new_year',    theme: 'newyear',   emoji: '🎆', countries: 'all', rule: '12-31', len: 2, pre: 5, gift: 20 },
+    { id: 'new_year',    theme: 'newyear',   emoji: '🎆', countries: 'all', except: ['jp'], rule: '12-31', len: 2, pre: 5, gift: 20 },
+    // Японія: Сьоґацу (お正月) — 1–3 січня, головне родинне свято року; замість загального new_year
+    { id: 'shogatsu',    theme: 'shogatsu',  emoji: '🎍', countries: ['jp'], rule: '1-1', len: 3, pre: 3, gift: 20 },
     { id: 'st_nicholas', theme: 'nicholas',  emoji: '🎁', countries: ['ua', 'pl', 'de', 'at', 'ch', 'be', 'nl', 'lu', 'cz', 'sk', 'hu', 'hr', 'si', 'ro'],
       rule: '12-6', rules: { nl: '12-5' }, len: 1, pre: 1, gift: 15 },
     { id: 'lucia',       theme: 'lucia',     emoji: '🕯️', countries: ['se'], rule: '12-13', len: 1, pre: 0, gift: 10 },
-    { id: 'three_kings', theme: 'kings',     emoji: '👑', countries: ['es'], rule: '1-6', len: 1, pre: 1, gift: 15 },
+    { id: 'three_kings', theme: 'kings',     emoji: '👑', countries: ['es', 'mx', 'pr', 'do', 'ar', 'uy', 'py'], rule: '1-6', len: 1, pre: 1, gift: 15 },
     { id: 'befana',      theme: 'kings',     emoji: '🧹', countries: ['it'], rule: '1-6', len: 1, pre: 0, gift: 15 },
     { id: 'easter_w',    theme: 'easter',    emoji: '🐣', countries: WEST_EASTER, rule: { easter: 'w' }, len: 2, pre: 3, gift: 15 },
     { id: 'easter_o',    theme: 'easter',    emoji: '🐣', countries: ORTH_EASTER, rule: { easter: 'o' }, len: 2, pre: 3, gift: 15 },
     { id: 'pancake_day', theme: 'pancake',   emoji: '🥞', countries: ['gb', 'ie'], rule: { easter: 'w', off: -47 }, len: 1, pre: 0, gift: 10 },
-    { id: 'valentine',   theme: 'valentine', emoji: '💗', countries: 'all', except: ['uz', 'tj', 'tm'], rule: '2-14', len: 1, pre: 1, gift: 10 },
+    { id: 'valentine',   theme: 'valentine', emoji: '💗', countries: 'all', except: ['uz', 'tj', 'tm', 'br', 'id'], rule: '2-14', len: 1, pre: 1, gift: 10 },
     { id: 'martisor',    theme: 'martisor',  emoji: '🌼', countries: ['ro', 'md', 'bg'], rule: '3-1', len: 1, pre: 0, gift: 10 },
-    { id: 'womens_day',  theme: 'moms',      emoji: '💐', countries: ['kz', 'uz', 'kg', 'tj', 'tm', 'az', 'md', 'bg', 'hu'], rule: '3-8', len: 1, pre: 0, gift: 10 },
+    { id: 'hinamatsuri', theme: 'hina',      emoji: '🎎', countries: ['jp'], rule: '3-3', len: 1, pre: 3, gift: 10 },
+    { id: 'womens_day',  theme: 'moms',      emoji: '💐', countries: ['kz', 'uz', 'kg', 'tj', 'tm', 'az', 'am', 'md', 'bg', 'hu'], rule: '3-8', len: 1, pre: 0, gift: 10 },
     { id: 'st_patrick',  theme: 'patrick',   emoji: '🍀', countries: ['ie', 'us', 'ca'], rule: '3-17', len: 1, pre: 0, gift: 10 },
     { id: 'nowruz',      theme: 'nowruz',    emoji: '🌷', countries: CENTRAL_ASIA_AZ, rule: '3-21', rules: { az: '3-20' },
       len: 3, pre: 3, gift: 20 },
@@ -115,40 +138,65 @@
     { id: 'kings_day',   theme: 'orange',    emoji: '🧡', countries: ['nl'], rule: NL_KINGS, len: 1, pre: 0, gift: 10 },
     { id: 'mothers_day', theme: 'moms',      emoji: '💐',
       countries: ['us', 'ca', 'ua', 'de', 'at', 'ch', 'be', 'nl', 'it', 'dk', 'fi', 'ee', 'is', 'hr', 'cz', 'sk', 'gr', 'cy', 'lv',
-        'gb', 'ie', 'pl', 'fr', 'lu', 'es', 'pt', 'lt', 'hu', 'ro', 'se', 'no', 'ge', 'am', 'si', 'mt'],
+        'gb', 'ie', 'pl', 'fr', 'lu', 'es', 'pt', 'lt', 'hu', 'ro', 'se', 'no', 'ge', 'am', 'si', 'mt',
+        'mx', 'br', 'ar', 'co', 'cl', 'pe', 'au', 'nz', 'tr', 'id', 'jp'],
       rule: SECOND_SUN_MAY,
       rules: { gb: { easter: 'w', off: -21 }, ie: { easter: 'w', off: -21 }, pl: '5-26', fr: FR_MOTHERS,
         es: FIRST_SUN_MAY, pt: FIRST_SUN_MAY, lt: FIRST_SUN_MAY, hu: FIRST_SUN_MAY, ro: FIRST_SUN_MAY,
-        se: LAST_SUN_MAY, no: { m: 2, wd: 0, n: 2 }, ge: '3-3', am: '4-7', si: '3-25', lu: { m: 6, wd: 0, n: 2 } },
+        se: LAST_SUN_MAY, no: { m: 2, wd: 0, n: 2 }, ge: '3-3', am: '4-7', si: '3-25', lu: { m: 6, wd: 0, n: 2 },
+        mx: '5-10', ar: { m: 10, wd: 0, n: 3 },
+        id: '12-22' },   // id: Hari Ibu
       len: 1, pre: 0, gift: 10 },
     { id: 'vyshyvanka',  theme: 'vyshyvanka', emoji: '🌺', countries: ['ua'], rule: { m: 5, wd: 4, n: 3 }, len: 1, pre: 0, gift: 10 },
     { id: 'children_day', theme: 'children', emoji: '🎈',
       countries: ['ua', 'md', 'kz', 'uz', 'kg', 'tj', 'tm', 'az', 'am', 'ge', 'pl', 'cz', 'sk', 'ro', 'bg', 'pt', 'al', 'mk',
-        'lt', 'lv', 'si', 'rs', 'ba', 'me', 'hr', 'hu', 'de'],
-      rule: '6-1', rules: { hu: LAST_SUN_MAY, de: '9-20' }, len: 1, pre: 0, gift: 20 },
+        'lt', 'lv', 'si', 'rs', 'ba', 'me', 'hr', 'hu', 'de', 'mx', 'br', 'ar', 'co', 'cl', 'pe', 'nz', 'tr', 'id', 'kr'],
+      rule: '6-1', rules: { hu: LAST_SUN_MAY, de: '9-20',
+        // Мексика 30.04, Бразилія 12.10, Аргентина — 3-тя неділя серпня, Колумбія — остання субота квітня,
+        // Чилі — 2-га неділя серпня, Перу — 2-га неділя квітня, Нова Зеландія — 1-ша неділя березня
+        mx: '4-30', br: '10-12', ar: { m: 8, wd: 0, n: 3 }, co: { m: 4, wd: 6, n: -1 }, cl: { m: 8, wd: 0, n: 2 },
+        pe: { m: 4, wd: 0, n: 2 }, nz: { m: 3, wd: 0, n: 1 },
+        // tr: 23 Nisan — Ulusal Egemenlik ve Çocuk Bayramı; id: Hari Anak Nasional; kr: 어린이날
+        tr: '4-23', id: '7-23', kr: '5-5' }, len: 1, pre: 0, gift: 20 },
+    // Японія: Кодомо-но хі (こどもの日) — 5 травня, коропи-вимпели коінобори
+    { id: 'kodomo_no_hi', theme: 'koinobori', emoji: '🎏', countries: ['jp'], rule: '5-5', len: 1, pre: 3, gift: 20 },
     { id: 'midsummer',   theme: 'midsummer', emoji: '🌼', countries: ['se', 'fi', 'lv', 'ee', 'lt', 'no', 'dk'],
       rule: '6-23', rules: { se: MIDSUMMER_FRI, fi: MIDSUMMER_FRI, lt: '6-24' }, len: 2, pre: 0, gift: 10 },
-    { id: 'knowledge_day', theme: 'school',  emoji: '🎒', countries: ['ua', 'md', 'kz', 'kg', 'tj', 'tm', 'am', 'az'], rule: '9-1', len: 1, pre: 0, gift: 10 },
+    { id: 'tanabata',    theme: 'tanabata',  emoji: '🎋', countries: ['jp'], rule: '7-7', len: 1, pre: 2, gift: 10 },
+    { id: 'knowledge_day', theme: 'school',  emoji: '🎒', countries: ['ua', 'md', 'kz', 'kg', 'tj', 'tm', 'am', 'az', 'id'], rule: '9-1',
+      rules: { id: '5-2' }, len: 1, pre: 0, gift: 10 },   // id: Hari Pendidikan Nasional
+    { id: 'seollal',     theme: 'seollal',   emoji: '🪁', countries: ['kr'], rule: krLunar('seollal'), len: 2, pre: 2, gift: 20 },
+    { id: 'chuseok',     theme: 'chuseok',   emoji: '🌕', countries: ['kr'], rule: krLunar('chuseok'), len: 2, pre: 2, gift: 20 },
+    { id: 'hangeul_day', theme: 'school',    emoji: '📚', countries: ['kr'], rule: '10-9', len: 1, pre: 0, gift: 10 },
     { id: 'national',    theme: 'national',  emoji: '🎉', countries: Object.keys(NATIONAL), rule: null, rules: NATIONAL, len: 1, pre: 0, gift: 15 },
     { id: 'thanksgiving', theme: 'thanks',   emoji: '🥧', countries: ['us', 'ca'], rule: { m: 11, wd: 4, n: 4 },
       rules: { ca: { m: 10, wd: 1, n: 2 } }, len: 1, pre: 2, gift: 15 },
-    { id: 'halloween',   theme: 'halloween', emoji: '🎃', countries: ['us', 'ca', 'ie', 'gb'], rule: '10-31', len: 1, pre: 6, gift: 15 },
+    { id: 'halloween',   theme: 'halloween', emoji: '🎃', countries: ['us', 'ca', 'ie', 'gb', 'jp'], rule: '10-31', len: 1, pre: 6, gift: 15 },
   ];
 
-  // Пори року (метеорологічні). Усі країни каталогу — у північній півкулі;
-  // для південної півкулі досить додати країну в SOUTH.
-  const SOUTH = [];
+  // Пори року (метеорологічні). Країни південної півкулі — у SOUTH: там пори зсунуті на пів року
+  // (грудень–лютий = літо). Тропічні країни біля екватора лишаються за північним календарем.
+  const SOUTH = ['br', 'ar', 'cl', 'uy', 'py', 'bo', 'pe', 'au', 'nz'];
+  const southM = m => ((m + 5) % 12) + 1;   // місяць північної півкулі ↔ південної (зсув на 6)
+  // Тропіки (Індонезія): зими, весни й осені немає — завжди сонячна «літня» тема (без снігу й листопаду),
+  // привітання пори року — раз на рік; сезонні речі зими/весни/осені там не з'являються, «літні» — цілий рік.
+  const TROPICAL = ['id'];
   const SEASONS_N = [['winter', 12], ['spring', 3], ['summer', 6], ['autumn', 9]];
   const SEASON_EMOJI = { winter: '❄️', spring: '🌸', summer: '☀️', autumn: '🍂' };
   function seasonFor(dt, cc) {
-    let m = dt.getMonth() + 1;
-    if (SOUTH.includes(cc)) m = ((m + 5) % 12) + 1;
+    if (TROPICAL.includes(cc)) {
+      const ty = dt.getFullYear();
+      return { id: 'summer', key: 'summer@' + ty, emoji: SEASON_EMOJI.summer, start: mk(ty, 1, 1), end: mk(ty, 12, 31) };
+    }
+    const south = SOUTH.includes(cc), realM = dt.getMonth() + 1;
+    const m = south ? southM(realM) : realM;
     const id = m === 12 || m <= 2 ? 'winter' : m <= 5 ? 'spring' : m <= 8 ? 'summer' : 'autumn';
-    // рік сезону: зима грудня-лютого — за роком грудня
-    const y = dt.getFullYear() - (id === 'winter' && m <= 2 ? 1 : 0);
+    // рік сезону = рік його першого місяця (зима грудня–лютого на півночі, літо грудня–лютого на півдні)
     const startM = SEASONS_N.find(s => s[0] === id)[1];
-    const start = SOUTH.includes(cc) ? null : mk(y, startM, 1);
-    const end = start ? addDays(new Date(y, startM + 2, 1, 12), -1) : null; // останній день 3-го місяця
+    const startReal = south ? southM(startM) : startM;
+    const y = dt.getFullYear() - (realM < startReal ? 1 : 0);
+    const start = mk(y, startReal, 1);
+    const end = addDays(new Date(y, startReal + 2, 1, 12), -1); // останній день 3-го місяця
     return { id, key: id + '@' + y, emoji: SEASON_EMOJI[id], start, end };
   }
 
@@ -213,7 +261,9 @@
     if (hol.length) return pickWin(hol);
     const season = tags.find(t => t.startsWith('season:'));
     if (!season) return null;
-    const startM = SEASONS_N.find(s => s[0] === season.slice(7))[1];
+    if (TROPICAL.includes(cc)) return season === 'season:summer' ? [mk(y, 1, 1), mk(y, 12, 31)] : null;
+    let startM = SEASONS_N.find(s => s[0] === season.slice(7))[1];
+    if (SOUTH.includes(cc)) startM = southM(startM);   // шарф — у червні, а не в грудні
     return pickWin([y - 1, y, y + 1].map(yy => [mk(yy, startM, 1), addDays(new Date(yy, startM + 2, 1, 12), -1)]));
   }
 
@@ -267,14 +317,20 @@
     school:    { fall: ['✨', '🍁'], n: 5, floor: ['📚', '🍎'], bonus: ['⭐', '📚', '✏️', '🍎'] },
     national:  { fall: ['🎉', '✨'], n: 8, burst: ['🎆', '🎇'], bonus: ['⭐', '🎉', '🎈', '🍬'] },
     thanks:    { fall: ['🍂', '🍁'], n: 7, leaf: true, floor: ['🥧', '🌽'], bonus: ['⭐', '🥧', '🌽', '🍎'] },
+    seollal:   { fall: ['✨'], n: 6, floor: ['🪁', '🍲'], bonus: ['⭐', '🪁', '🍲', '🎁'] },
+    chuseok:   { fall: ['🍂'], n: 6, leaf: true, floor: ['🌕', '🌾'], bonus: ['⭐', '🌕', '🌰', '🍐'] },
     halloween: { fly: ['🦇', '👻'], n: 3, fall: ['🍂'], floor: ['🎃', '🎃'], bonus: ['⭐', '🍬', '🎃', '🍭'] },
+    shogatsu:  { fall: ['✨', '🌸'], n: 6, drift: true, floor: ['🎍', '🎍'], bonus: ['⭐', '🎍', '🍡', '🪁'] },
+    hina:      { fall: ['🌸'], n: 7, drift: true, floor: ['🎎'], bonus: ['⭐', '🎎', '🌸', '🍡'] },
+    koinobori: { fly: ['🎏'], n: 3, floor: ['🎏'], bonus: ['⭐', '🎏', '🍙', '🎈'] },
+    tanabata:  { fall: ['⭐', '✨'], n: 9, floor: ['🎋'], bonus: ['⭐', '🎋', '🌟', '✨'] },
   };
 
   // Святковий одяг. tags — свята за порядком: береться перше, яке є в країні
   // дитини ('season:<пора>' — пора року, є всюди). pre/post — днів до/після.
   const WARDROBE = [
     { id: 'hat_santa',     tags: ['christmas', 'christmas_o', 'new_year'], pre: 24, post: 14 }, // уже є в app.js
-    { id: 'hat_top',       emoji: '🎩', gender: 'any',  tags: ['new_year'], pre: 10, post: 7, place: { top: -20, right: -2, rotate: 0 } },
+    { id: 'hat_top',       emoji: '🎩', gender: 'any',  tags: ['new_year', 'shogatsu'], pre: 10, post: 7, place: { top: -20, right: -2, rotate: 0 } },
     { id: 'scarf_winter',  emoji: '🧣', gender: 'any',  tags: ['season:winter'], pre: 0, post: 0, place: { top: 50, right: 44, rotate: -8 } },
     { id: 'clip_heart',    emoji: '💖', gender: 'any',  tags: ['valentine', 'mothers_day'], pre: 7, post: 3, place: { top: -8, right: 10, rotate: -15 } },
     { id: 'ears_bunny',    emoji: '🐰', gender: 'any',  tags: ['easter_w', 'easter_o', 'nowruz', 'season:spring'], pre: 7, post: 7, place: { top: -22, right: -2, rotate: 0 } },
